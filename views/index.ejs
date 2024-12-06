@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="images/favicon.png"> <!-- Adjust the path here -->
+    <link rel="icon" href="/views/assets/images/favicon2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Youtube converter</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+body {
+      font-family: Arial, sans-serif;
+    }
+
+    .dropdown {
+      position: absolute;
+      display: inline-block;
+      margin-left: 7px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-item {
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      color: #333;
+    }
+
+    .dropdown-item:hover {
+      background-color: #ddd;
+    }
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+.inst-cont{
+    position: relative;
+    background: none;
+
+    padding-left: 19px;
+    margin: 22px 0% 0px 0%;
+    
+}
+
+.inst-cont>p>strong{
+  background: none;
+}
+.inst-cont>p{
+
+  font-weight: 440;
+    line-height: 2;
+    font-size: 16px;
+    
+    
+}
+.inst-cont>h2{
+  font-weight: 400;
+    font-size: 25px;
+}
+.t-and-c-p{
+    background: white;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 13px;
+
+}
+.t-and-c-link{
+
+    background: none;
+    color: #800020;
+}
+
+
+
+
+
+
+
+
+
+
+
+.nepo{
+  position: relative;
+
+}
+
+
+.hr-0{
+  background: rgba(0,0,0,0) radial-gradient(ellipse at center center,rgba(0,0,0,0.2) 0px,rgba(255,255,255,0) 75%) repeat scroll 0 0;
+  position: relative;
+  width: 75%;
+  margin: 229px 12.5% 28px 12.5%;
+  border-width: 0;
+  border-top: 1px solid darkgrey;
+}
+
+
+.red{
+
+  position: relative;
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+
+}
+
+.icon-sec{
+  position: relative;
+  width: auto;
+  margin-bottom: 8%;
+}
+
+
+.fa{
+  font-size: 4rem;
+  position: relative;
+  color: #800020;
+
+}
+.red>h3{
+
+  color: #800020;
+  margin-top: 20px;
+
+}
+.red-p{
+  margin-top: 16px;
+}
+.foot-lakeer{
+  background: rgba(0,0,0,0) radial-gradient(ellipse at center center,rgba(0,0,0,0.2) 0px,rgba(255,255,255,0) 75%) repeat scroll 0 0;
+  position: relative;
+  width: 100%;
+
+  border-width: 0;
+  border-top: 1px solid darkgrey;
+}
+.footer{
+  margin-bottom: 0%;
+}
+
+.copyright{
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 10%;
+  color: #1B1B1B;
+}
+.footer-address{
+  margin: 3% 20%;
+  display: inline-block;
+  position: relative;
+}
+.footer-address>P{
+  margin-bottom: 10px;
+}
+
+.footer-address>p>a{
+  text-decoration: none;
+  color: #1B1B1B;
+
+}
+.footer-address>p>a:hover{
+  text-decoration: underline;
+  color: #1B1B1B;
+
+}
+.footer-address1>p>a:hover{
+  text-decoration: underline;
+  color: #1B1B1B;
+
+}
+.footer-address2>p>a:hover{
+  text-decoration: underline;
+  color: #1B1B1B;
+
+}
+
+
+
+.footer-address1{
+  margin: 3% 0% 0 -106px;
+  position: absolute;
+  display: inline-block;
+}
+.footer-address1>P{
+  margin-bottom: 10px;
+}
+
+.footer-address1>p>a{
+  text-decoration: none;
+  color: #1B1B1B;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer-address2{
+  margin: 3% 0% 0 142px;
+  display: inline-block;
+  position: absolute;
+}
+.footer-address2>P{
+  margin-bottom: 10px;
+}
+
+.footer-address2>p>a{
+  text-decoration: none;
+  color: #1B1B1B;
+
+}
+.lem{
+  margin: 0px -11px 0 31px;
+   margin-right: 76px;
+}
+
+input[type="checkbox"]{
+  display: none;
+}
+
+
+@media (max-width: 680px) {
+
+
+    .logo {
+        padding: 1px 0px 1px 0px;
+    }
+    nav {
+        padding: 2px 37px 0 28px;
+    }
+    .inst-cont{
+        padding-left: 5px;
+    }
+
+    .after-cont>div>p{
+        width: 100%;
+        margin: 0;
+        font-weight: 300;
+        font-size: 16px;
+    }
+    .right{
+      float: none;
+      margin-left: 17%;
+      margin-right: 0;
+    }
+
+
+    .hr-0 {
+      margin: 38px 12.5%;
+  }
+
+
+
+.inst-cont {
+    margin: 9px 0% 10px 1%;
+}
+  
+.dropdown-content {
+    margin-left: 30%;
+}
+
+}
+
+
+@media (min-width: 681px) and (max-width: 919px) {
+  .right{
+    float: none;
+    margin-left: 15%;
+    margin-right: 0;
+  }
+
+  .dropdown-content{
+  margin-left: 55%;
+}
+}
+
+@media (max-width: 920px) {
+
+
+    body{
+        width: 100%;
+
+       
+    }
+    nav {
+      padding: 0px 7px 0 0px;
+
+    }
+  nav .menu-btn i{
+    border: 2px solid;
+    border-radius: 21%;
+    padding: 2px 5px 2px 5px;
+    display: block;
+  }
+  .search-input{
+    width: 90%;
+  }
+  #click:checked ~ .menu-btn i:before{
+    content: "\f00d";
+  }
+  .hidden-arr{
+    display: block;
+  }
+  .hidden-xs{
+    display: none;
+  }
+  .start-btn{
+    width: 62px;
+  }
+  .cont-hr{
+    margin: 17% 0px 2% 20%;
+
+  }
+
+  .after-cont>div>p{
+    margin: 0px 0% 100px 1%;;
+    width: 98%;
+
+  }
+.lem{
+  margin: 0;
+  height: 39px;
+  background-color: purple;
+}
+
+
+.poondi{
+
+  margin-top: 6px;
+    padding-left: 10px;
+}
+.dropdown{
+  position: relative;
+margin-left: 0;
+    background: purple;
+    width: 100%;
+}
+
+.dropdown-content{
+  background: none;
+  z-index: -1;
+}
+
+#selectedItem{
+  background: none;
+}
+
+.dog{
+  background: none;
+    color: black;
+    font-size: 18px;
+    margin-left: 3px;
+    position: absolute;
+  
+}
+  nav ul{
+    position: absolute;
+    top: 80px;
+    /* left: -100%; */
+    background: #800020;
+    height: 340px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  #click:checked ~ ul{
+    left: 0;
+    z-index: 1;
+  }
+
+
+
+  nav ul li{
+    width: 100%;
+    margin: 40px 0;
+  }
+  nav ul li a{
+    width: 100%;
+    margin-left: -100%;
+    display: block;
+    font-size: 20px;
+    transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  #click:checked ~ ul li a{
+    margin-left: 0px;
+    transition: 0.3s ease;
+    background: purple;
+  }
+  nav ul li a.active,
+  nav ul li a:hover{
+    background: none;
+    color: red;
+  }
+
+  .content{
+    width: 100%;
+    clear: right;
+    padding: 0 2%;
+    margin-right: 0;
+    transition: margin-top 0.3s ease; /* Smooth transition animation */
+
+  }
+  .left{
+    float: left;
+    position: relative;
+    padding: 0 0%;
+    margin: 0px 8%;
+    width: 92%;
+    margin-bottom: 20px;
+    z-index: 1;
+  }
+
+.card-title1{
+    padding-top: 0px;
+}
+.red{
+  display: block;
+  text-align: center;
+  margin: 0 0% 7% 0%;
+  /* padding: 0 -33%; */
+  width: 100%;
+}
+.fa{
+  font-size: 3rem;
+}
+
+.footer-address{
+  display: block;
+  margin: 7% 7%;
+  position: relative;
+}
+.footer-address1{
+  display: block;
+  position: relative;
+  margin: 0% 0% 32px 7%;
+}
+.footer-address2{
+  display: block;
+  margin: 0% 0px 0% 7%;
+  position: relative;
+}
+
+
+}
+
+
+
+
+
+
+@media (min-width: 921px) and (max-width: 1000px) {
+
+    nav{
+        padding: 0 40px 0 50px;
+      }
+    .content{
+        margin-right: 5%;
+        width: 90%;
+    }
+    .logo{
+        position: relative;
+        bottom: 24px;
+        /* margin-left: 40px; */
+    }
+
+    
+nav .logo-name{
+    position: absolute;
+}
+}
+@media (min-width: 681px) and (max-width: 919px) {
+  .hr-0{
+    margin: 56px 12.5%;
+  }
+}
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <nav>
+       <div class="logo">
+          <img class="logo-img" src="/images/favicon2.png" height="50px" width="50px" alt="">
+          <p class="logo-name"><a href="#" style="text-decoration: none; color: #800020;">Y2DPro</a></p>
+       
+        </div>
+       <input type="checkbox" id="click">
+       <label for="click" class="menu-btn">
+       <i class="fas fa-bars"></i>
+       </label>
+       <ul>
+          <li><a class="active" href="/index">Youtube Converter</a></li>
+          <li><a href="/">Youtube  Downloader</a></li>
+          <li><a href="/mp3">Youtube to MP3</a></li>
+          <li class="lem" style=""><a class="poondi" href="#" style="padding: 0;">    <div class="dropdown">
+            <span id="selectedItem">English</span> <strong class="dog"><i style="background: none;" class="fa-solid fa-caret-down"></i></strong>
+            <div class="dropdown-content" style="cursor: pointer;">
+              <a style="background-color: #e0e0e0" id="reloadLink" class="dropdown-item" onclick="selectItem('English')" data-reload lang="English">English</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('Dutch')" data-reload lang="Dutch">Dutch</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('German')" data-reload lang="German">German</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('हिंदी')" data-reload lang="Hindi">हिंदी</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" style="font-size: 20px;" onclick="selectItem('اردو')" data-reload lang="Urdu">اردو</a>
+            </div>
+          </div></a></li>
+
+
+ 
+         
+
+       </ul>
+    </nav>
+    <div class="content">
+
+    
+          <h1 class="cont-heading">YouTube Converter - YouTube to MP3, MP4,...
+          </h1>
+          <div class="search-div">
+            <form class="search" id="download-form" method="GET">
+                <input class="search-input" value="" id="txt-url" name="url" type="text" placeholder="Search or paste link here..." autocomplete="off">
+                <button type="submit" class="start-btn" id="start-btn">
+                    <span class="hidden-xs">Start </span><i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <p class="t-and-c-p">
+                You are using our service by accepting our
+                <a href="terms" class="t-and-c-link">Terms of use</a>
+            </p>
+        </div>
+        <div class="loader" style="display:none;"></div>
+        <div class="image-container">
+            <img class="thumbnail-image" src="">
+            <h2 class="thumb-p"></h2>
+        </div>
+
+
+          <div class="table-container">
+            <ul>
+              <li><a href="#" class="video"><i class="fas fa-video icon"></i>Video</a></li>
+              <li><a href="#" class="audio"><i class="fas fa-volume-up icon"></i>Audio</a></li>
+            </ul>
+            <table>
+              <thead>
+                <tr>
+                  <th>Quality</th>
+                  <th>Size</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody id="format-table-body">
+                <tr>
+         
+                </tr>
+            </tbody>
+            </table>
+          </div>
+
+            <hr class="cont-hr">
+            <div class="inst-cont">
+            
+
+            <h2 class="instruction-h2">How to convert a YouTube video?</h2>
+            <p class="p1"><b style="background: none;font-weight: 400;">1.</b> First open youtube app in your device and choose the video you want to download.</p>
+            <p class="p2"><b style="background: none;font-weight: 400;">2.</b> Then after opening the video in layout you will find a share icon click it.</p>
+            <p class="p3"><b style="background: none;font-weight: 400;">3.</b> Then copy the link from there</p>
+            <p class="p4"><b style="background: none;font-weight: 400;">4.</b> Then paste the link in our website and click the start button and choose any format you want to download like mp3.</p></p>
+        </div>
+</div>
+  <div class="after-cont">
+    <div>
+    <h2>
+        <strong class="not">
+            Youtube Converter MP3, MP4...
+        </strong>
+    </h2>
+
+    <p class="not1">
+      Welcome to
+       Y2DPro.com, your ultimate YouTube converter platform! Our server
+        is dedicated to providing seamless conversion and download services 
+        for YouTube videos, allowing you to effortlessly transform URLs into
+         MP3 and MP4 formats. At Y2DPro.com, we prioritize user convenience and
+          privacy. You won't encounter any registration or signup requirements here
+           – it's unlimited access with no strings attached. Rest assured, your personal 
+           information remains entirely unnecessary, as your privacy is paramount to us.
+            So go ahead, convert and
+       download your favorite YouTube content hassle-free, only at Y2DPro.com!</p>
+  </div>
+
+  <hr class="h1">
+</div>
+<div class="nepo">
+  <div class="left card">
+    <h2 class="card-title1">Instructions</h2>
+    <p class="e1">1. Seach by name or paste the link of the video you want to convert.</p>
+    <p class="e2">2. Click "Start" button to begin converting process.</p>
+    <p class="e3">3. Select the video/audio format you want to download, then click "Download" button.</p>
+  </div>
+
+  <div class="right card">
+    <h2 class="card-title">Features</h2>
+    <ul>
+      <li class="li1">Unlimited downloads and always free</li>
+      <li class="li2">High-speed video converter</li>
+      <li class="li3">No registration required</li>
+      <li class="li4">Support downloading with all formats</li>
+    </ul> 
+  </div>
+
+</div>
+<hr class="hr-0">
+
+
+<div class="icon-sec">
+<div class="red">    
+  <i class="fa fa-server"></i>
+
+    <h3 id="icon-p-1" class="icons-p">Free Service</h3>
+    <p id="red-p-1" class="red-p">Free Fast And Unlimited Service</p>
+    
+
+</div>
+<div class="red">    
+  <i class="fa fa-file"></i>
+
+    <h3 id="icon-p-2" class="icons-p">All Formats</h3>
+    <p id="red-p-2" class="red-p">Video And Music All Formats</p>
+    
+
+</div>
+
+<div class="red" style="margin-left: -8px;">    
+  <i class="fa fa-handshake"></i>
+
+    <h3 id="icon-p-3" class="icons-p">Easy Download</h3>
+    <p id="red-p-3" class="red-p">Easy To Download From Any Browser</p>
+    
+
+</div>
+
+</div>
+
+<hr class="foot-lakeer">
+
+<footer class="footer">
+  <p class="copyright">@ 2024 Y2DPro.com</p>
+  <div class="footer-address">
+    <p><a href="/">Y2DPro.com</a></p>
+    <p><a href="/">Youtube Downloader</a></p>
+    <p><a href="/index">Youtube Converter</a></p>
+    <p><a href="/mp3">Youtube to MP3</a></p>
+  </div>
+  <div class="footer-address1">
+    <p><a href="/">Youtube Downloader</a></p>
+    <p><a href="/">Instgram Downloader</a></p>
+    <p><a href="/">Tiktok Downloader</a></p>
+    <p><a href="/">Facebook Downloader</a></p>
+  </div>
+  <div class="footer-address2">
+    <p><a href="/about">About</a></p>
+    <p><a href="/faq">FAQ</a></p>
+    <p><a href="/contact">Contact</a></p>
+    <p><a href="/terms">Terms of Service</a></p>
+    <p><a href="/privacy-policy">Privacy Policy</a></p>
+  </div>
+  <p class="copyright">©Copyright Y2DPro.com </p>
+</footer>
+
+<script>
+  function selectItem(item) {
+    var h1 = document.querySelector(".cont-heading");
+    var dropdownItem = document.getElementById('selectedItem');
+
+    dropdownItem.textContent = item;
+
+    switch (item) {
+      case "Dutch":
+        h1.textContent = "YouTube-video-Converter - YouTube naar MP3, MP4, ...";
+        document.querySelector('.t-and-c-p').childNodes[0].textContent = "U maakt gebruik van onze service door onze te accepteren ";
+        document.querySelector('.instruction-h2').textContent = "Hoe een YouTube-video converteren?";
+        document.querySelector('.p1').childNodes[1].textContent = "Open eerst de YouTube-app op uw apparaat en kies de video die u wilt downloaden.";
+        document.querySelector('.p2').childNodes[1].textContent = "Nadat u de video in de lay-out hebt geopend, ziet u een deelpictogram waarop u erop klikt.";
+        document.querySelector('.p3').childNodes[1].textContent = "Kopieer vervolgens de link vanaf daar";
+        document.querySelector('.p4').childNodes[1].textContent = "Plak vervolgens de link op onze website, klik op de startknop en kies het gewenste formaat, zoals mp3.";
+        document.querySelector('.not').textContent = "Youtube-converter MP3, MP4...";
+        document.querySelector('.not1').textContent = "Welkom bij Y2DPro.com, je ultieme YouTube-converterplatform! Onze server is toegewijd aan het leveren van naadloze conversie- en downloadservices voor YouTube-video's, zodat u URL's moeiteloos kunt omzetten in MP3- en MP4-formaten. Bij Y2DPro.com geven we prioriteit aan gebruikersgemak en privacy. U zult hier geen registratie- of aanmeldingsvereisten tegenkomen – het is onbeperkte toegang zonder verplichtingen. U kunt er zeker van zijn dat uw persoonlijke gegevens volkomen overbodig blijven, aangezien uw privacy voor ons van het allergrootste belang is. Dus ga je gang, converteer en download je favoriete YouTube-inhoud probleemloos, alleen op Y2DPro.com!";
+        document.querySelector('.card-title1').textContent = "Instructies";
+        document.querySelector('.card-title').textContent = "Functies";
+        document.querySelector('.e1').textContent = "1. Zoek op naam of plak de link van de video die je wilt converteren.";
+        document.querySelector('.e2').textContent = '2. Klik op de knop "Start" om het conversieproces te starten.';
+        document.querySelector('.e3').textContent = '3. Selecteer het video-/audioformaat dat u wilt downloaden en klik vervolgens op de knop "Downloaden".';
+
+        document.querySelector('.li1').textContent = "Onbeperkte downloads en altijd gratis";
+        document.querySelector('.li2').textContent = 'Snelle video-omzetter';
+        document.querySelector('.li3').textContent = 'Geen registratie vereist';
+        document.querySelector('.li4').textContent = 'Ondersteuning voor downloaden met alle formaten';
+        document.querySelector('#icon-p-1').textContent = 'Gratis dienst';
+        document.querySelector('#icon-p-2').textContent = 'Alle formaten';
+        document.querySelector('#icon-p-3').textContent = 'Eenvoudig downloaden';
+        document.querySelector('#red-p-1').textContent = 'Gratis snelle en onbeperkte service';
+        document.querySelector('#red-p-2').textContent = 'Video en muziek alle formaten';
+        document.querySelector('#red-p-3').textContent = 'Gemakkelijk te downloaden vanuit elke browser';
+
+        break;
+      case "German":
+        h1.textContent = "YouTube-Konverter – YouTube zu MP3, MP4,...";
+        document.querySelector('.t-and-c-p').childNodes[0].textContent = "Sie nutzen unseren Service, indem Sie unsere akzeptieren ";
+        document.querySelector('.instruction-h2').textContent = "Wie konvertiert man ein YouTube-Video?";
+        document.querySelector('.p1').childNodes[1].textContent = "Öffnen Sie zunächst die YouTube-App auf Ihrem Gerät und wählen Sie das Video aus, das Sie herunterladen möchten.";
+        document.querySelector('.p2').childNodes[1].textContent = "Nachdem Sie das Video im Layout geöffnet haben, finden Sie ein Freigabesymbol. Klicken Sie darauf.";
+        document.querySelector('.p3').childNodes[1].textContent = "Dann kopieren Sie den Link von dort";
+        document.querySelector('.p4').childNodes[1].textContent = "Fügen Sie dann den Link in unsere Website ein, klicken Sie auf die Schaltfläche „Start“ und wählen Sie ein beliebiges Format aus, das Sie herunterladen möchten, z. B. MP3.";
+        document.querySelector('.not').textContent = "YouTube-Konverter MP3, MP4...";
+        document.querySelector('.not1').textContent = "Willkommen bei Y2DPro.com, Ihrer ultimativen YouTube-Konverterplattform! Unser Server ist auf die Bereitstellung nahtloser Konvertierungs- und Downloaddienste für YouTube-Videos spezialisiert, sodass Sie URLs mühelos in MP3- und MP4-Formate umwandeln können. Bei Y2DPro.com legen wir Wert auf Benutzerfreundlichkeit und Datenschutz. Hier gibt es keine Registrierungs- oder Registrierungsanforderungen – es gibt unbegrenzten Zugang ohne Bedingungen. Seien Sie versichert, Ihre persönlichen Daten bleiben völlig unnötig, da Ihre Privatsphäre für uns an erster Stelle steht. Also los, konvertieren Sie Ihre Lieblings-YouTube-Inhalte und laden Sie sie problemlos herunter, nur bei Y2DPro.com!";
+        document.querySelector('.card-title1').textContent = "Anweisungen";
+        document.querySelector('.card-title').textContent = "Merkmale";
+
+        document.querySelector('.e1').textContent = "1. Suchen Sie nach dem Namen oder fügen Sie den Link des Videos ein, das Sie konvertieren möchten.";
+        document.querySelector('.e2').textContent = '2. Klicken Sie auf die Schaltfläche „Start“, um den Konvertierungsvorgang zu starten.';
+        document.querySelector('.e3').textContent = '3. Wählen Sie das Video-/Audioformat aus, das Sie herunterladen möchten, und klicken Sie dann auf die Schaltfläche „Herunterladen“.';
+       
+        document.querySelector('.li1').textContent = "Unbegrenzte Downloads und immer kostenlos";
+        document.querySelector('.li2').textContent = 'Hochgeschwindigkeits-Videokonverter';
+        document.querySelector('.li3').textContent = 'Keine Anmeldung erforderlich';
+        document.querySelector('.li4').textContent = 'Unterstützt das Herunterladen mit allen Formaten';
+        document.querySelector('#icon-p-1').textContent = 'Kostenloser Service';
+        document.querySelector('#icon-p-2').textContent = 'Alle Formate';
+        document.querySelector('#icon-p-3').textContent = 'Einfacher Download';
+
+        document.querySelector('#red-p-1').textContent = 'Kostenloser, schneller und unbegrenzter Service';
+        document.querySelector('#red-p-2').textContent = 'Video und Musik in allen Formaten';
+        document.querySelector('#red-p-3').textContent = 'Einfach von jedem Browser herunterzuladen';
+
+        break;
+      case "हिंदी":
+        h1.textContent = "यूट्यूब वीडियो डाउनलोडर - यूट्यूब से MP3, MP4, ...";
+        document.querySelector('.t-and-c-p').childNodes[0].textContent = "आप हमारी सेवा स्वीकार करके इसका उपयोग कर रहे हैं ";
+        document.querySelector('.instruction-h2').textContent = "यूट्यूब वीडियो कैसे कनवर्ट करें?";
+        document.querySelector('.p1').childNodes[1].textContent = "सबसे पहले अपने डिवाइस में यूट्यूब ऐप खोलें और वह वीडियो चुनें जिसे आप डाउनलोड करना चाहते हैं।";
+        document.querySelector('.p2').childNodes[1].textContent = "फिर वीडियो को लेआउट में खोलने के बाद आपको एक शेयर आइकन मिलेगा उस पर क्लिक करें।";
+        document.querySelector('.p3').childNodes[1].textContent = "फिर वहां से लिंक को कॉपी करें";
+        document.querySelector('.p4').childNodes[1].textContent = "फिर हमारी वेबसाइट में लिंक पेस्ट करें और स्टार्ट बटन पर क्लिक करें और एमपी3 जैसा कोई भी प्रारूप चुनें जिसे आप डाउनलोड करना चाहते हैं।";
+        document.querySelector('.not').textContent = "यूट्यूब कन्वर्टर MP3, MP4...";
+        document.querySelector('.not1').textContent = "आपके सर्वोत्तम YouTube कन्वर्टर प्लेटफ़ॉर्म Y2DPro.com में आपका स्वागत है! हमारा सर्वर यूट्यूब वीडियो के लिए निर्बाध रूपांतरण और डाउनलोड सेवाएं प्रदान करने के लिए समर्पित है, जिससे आप आसानी से यूआरएल को एमपी3 और एमपी4 प्रारूप में बदल सकते हैं। Y2DPro.com पर, हम उपयोगकर्ता की सुविधा और गोपनीयता को प्राथमिकता देते हैं। आपको यहां किसी भी पंजीकरण या साइनअप आवश्यकताओं का सामना नहीं करना पड़ेगा - यह बिना किसी शर्त के असीमित पहुंच है। निश्चिंत रहें, आपकी व्यक्तिगत जानकारी पूरी तरह से अनावश्यक है, क्योंकि आपकी गोपनीयता हमारे लिए सर्वोपरि है। तो आगे बढ़ें, अपनी पसंदीदा YouTube सामग्री को बिना किसी परेशानी के रूपांतरित करें और डाउनलोड करें, केवल Y2DPro.com पर!";
+        document.querySelector('.card-title1').textContent = "निर्देश";
+        document.querySelector('.card-title').textContent = "विशेषताएँ";
+        document.querySelector('.e1').textContent = "1. जिस वीडियो को आप कनवर्ट करना चाहते हैं उसका नाम से खोजें या लिंक पेस्ट करें।";
+        document.querySelector('.e2').textContent = '2. कनवर्ट करने की प्रक्रिया शुरू करने के लिए "प्रारंभ" बटन पर क्लिक करें।';
+        document.querySelector('.e3').textContent = '3. वह वीडियो/ऑडियो प्रारूप चुनें जिसे आप डाउनलोड करना चाहते हैं, फिर "डाउनलोड" बटन पर क्लिक करें।';
+        document.querySelector('.li1').textContent = "असीमित डाउनलोड और हमेशा निःशुल्क";
+        document.querySelector('.li2').textContent = 'हाई-स्पीड वीडियो कनवर्टर';
+        document.querySelector('.li3').textContent = 'पंजीकरण की आवश्यकता नहीं है';
+        document.querySelector('.li4').textContent = 'सभी प्रारूपों के साथ डाउनलोडिंग का समर्थन करें';
+        document.querySelector('#icon-p-1').textContent = 'नि: शुल्क सेवा';
+        document.querySelector('#icon-p-2').textContent = 'सभी प्रारूप';
+        document.querySelector('#icon-p-3').textContent = 'आसान डाउनलोड';
+
+
+        document.querySelector('#red-p-1').textContent = 'मुफ़्त तेज़ और असीमित सेवा';
+        document.querySelector('#red-p-2').textContent = 'वीडियो और संगीत सभी प्रारूप';
+        document.querySelector('#red-p-3').textContent = 'किसी भी ब्राउज़र से डाउनलोड करना आसान';
+
+
+        break;
+      case "اردو":
+        h1.textContent = "یوٹیوب ویڈیو ڈاؤن لوڈر - یوٹیوب سے MP3 ، MP4 ، ...";
+        document.querySelector('.t-and-c-p').childNodes[0].textContent = " آپ ہماری خدمت کو قبول کر کے استعمال کر رہے ہیں۔ ";
+        document.querySelector('.instruction-h2').textContent = "یوٹیوب ویڈیو کو کیسے تبدیل کیا جائے؟";
+        document.querySelector('.p1').childNodes[1].textContent = "پہلے اپنے آلے میں یوٹیوب ایپ کھولیں اور جس ویڈیو کو آپ ڈاؤن لوڈ کرنا چاہتے ہیں اسے منتخب کریں۔";
+        document.querySelector('.p2').childNodes[1].textContent = "پھر ویڈیو کو لے آؤٹ میں کھولنے کے بعد آپ کو ایک شیئر آئیکن ملے گا اس پر کلک کریں۔";
+        document.querySelector('.p3').childNodes[1].textContent = "پھر وہاں سے لنک کاپی کریں۔";
+        document.querySelector('.p4').childNodes[1].textContent = "MP4 یا MP3 پھر ہماری ویب سائٹ میں لنک پیسٹ کریں اور اسٹارٹ بٹن پر کلک کریں اور کوئی بھی فارمیٹ منتخب کریں جسے آپ  ڈاؤن لوڈ کرناچاہتے ہیں جیسے"
+        document.querySelector('.not').textContent = "...MP3، MP4 یوٹیوب کنورٹر ";
+        document.querySelector('.not1').textContent = "Y2DPro.com میں خوش آمدید، آپ کے حتمی YouTube کنورٹر پلیٹ فارم! ہمارا سرور YouTube ویڈیوز کے لیے بغیر کسی رکاوٹ کے تبادلوں اور ڈاؤن لوڈ کی خدمات فراہم کرنے کے لیے وقف ہے، جس سے آپ آسانی سے URLs کو MP3 اور MP4 فارمیٹس میں تبدیل کر سکتے ہیں۔ Y2DPro.com پر، ہم صارف کی سہولت اور رازداری کو ترجیح دیتے ہیں۔ آپ کو یہاں کسی بھی رجسٹریشن یا سائن اپ کی ضروریات کا سامنا نہیں کرنا پڑے گا - یہ لامحدود رسائی ہے جس میں کوئی تار منسلک نہیں ہے۔ یقین دلائیں، آپ کی ذاتی معلومات مکمل طور پر غیر ضروری رہتی ہیں، کیونکہ آپ کی رازداری ہمارے لیے سب سے اہم ہے۔ تو آگے بڑھیں، صرف Y2DPro.com پر اپنے پسندیدہ YouTube مواد کو بغیر کسی پریشانی کے بدلیں اور ڈاؤن لوڈ کریں!";
+        document.querySelector('.card-title1').textContent = "ہدایات";
+        document.querySelector('.card-title').textContent = "خصوصیات";
+        document.querySelector('.e1').textContent = "1. جس ویڈیو کو آپ تبدیل کرنا چاہتے ہیں اس کا لنک نام سے تلاش کریں یا پیسٹ کریں۔";
+        document.querySelector('.e2').textContent = '2. تبدیل کرنے کا عمل شروع کرنے کے لیے "اسٹارٹ" بٹن پر کلک کریں۔';
+        document.querySelector('.e3').textContent = '3۔ وہ ویڈیو/آڈیو فارمیٹ منتخب کریں جسے آپ ڈاؤن لوڈ کرنا چاہتے ہیں، پھر "ڈاؤن لوڈ" بٹن پر کلک کریں۔';
+        document.querySelector('.li1').textContent = "لامحدود ڈاؤن لوڈ اور ہمیشہ مفت";
+        document.querySelector('.li2').textContent = 'تیز رفتار ویڈیو کنورٹر';
+        document.querySelector('.li3').textContent = 'رجسٹریشن کی ضرورت نہیں۔';
+        document.querySelector('.li4').textContent = 'تمام فارمیٹس کے ساتھ ڈاؤن لوڈ کرنے کی حمایت کریں۔';
+        document.querySelector('#icon-p-1').textContent = 'مفت سروس';
+        document.querySelector('#icon-p-2').textContent = 'تمام فارمیٹس';
+        document.querySelector('#icon-p-3').textContent = 'آسان ڈاؤن لوڈ';
+        document.querySelector('#red-p-1').textContent = 'مفت تیز اور لامحدود سروس';
+        document.querySelector('#red-p-2').textContent = 'ویڈیو اور میوزک تمام فارمیٹس';
+        document.querySelector('#red-p-3').textContent = 'کسی بھی براؤزر سے ڈاؤن لوڈ کرنا آسان ہے۔';
+
+        document.querySelector('#red-p-1').textContent = 'مفت تیز اور لامحدود سروس';
+        document.querySelector('#red-p-2').textContent = 'ویڈیو اور میوزک تمام فارمیٹس';
+        document.querySelector('#red-p-3').textContent = 'کسی بھی براؤزر سے ڈاؤن لوڈ کرنا آسان ہے۔';
+
+        break;
+      default:
+
+      }
+
+      var reloadLink = document.getElementById('reloadLink');
+
+// Add an event listener for the click event
+reloadLink.addEventListener('click', function(event) {
+  // Prevent the default behavior of the anchor tag
+  event.preventDefault();
+  
+  // Reload the website
+  location.reload();
+});
+  }
+
+  document.getElementById('click').addEventListener('click', function() {
+  var contentDiv = document.querySelector('.content');
+  contentDiv.style.marginTop = this.checked ? '340px' : '0';
+});
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const links = document.querySelectorAll(".table-container ul li a");
+
+    // Add active class to the "Video" link by default
+    links[0].classList.add("active");
+
+    links.forEach(link => {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        // Remove active class from all links
+        links.forEach(link => {
+          link.classList.remove("active");
+        });
+
+        // Add active class to the clicked link
+        this.classList.add("active");
+      });
+    });
+});
+
+
+
+
+
+document.getElementById('download-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const url = document.getElementById('txt-url').value.trim();
+    if (!url) {
+        alert('Please enter a valid URL.');
+        return;
+    }
+
+    const loader = document.querySelector('.loader');
+    const imageContainer = document.querySelector('.image-container');
+    const thumbnailImage = document.querySelector('.thumbnail-image');
+    const thumbP = document.querySelector('.thumb-p');
+    const tableContainer = document.querySelector('.table-container');
+    const formatTableBody = document.getElementById('format-table-body');
+
+    displayLoader(loader);
+
+    // Fetch title and thumbnail first
+    fetch(`/quick-info?url=${encodeURIComponent(url)}`)
+        .then(response => response.json())
+        .then(data => {
+            thumbnailImage.src = data.thumbnail;
+            thumbP.textContent = data.title;
+            imageContainer.style.display = 'block'; // Ensure thumbnail and title stay visible
+        })
+        .catch(error => {
+            console.error('Error fetching quick info:', error);
+            alert('Error fetching video title and thumbnail.');
+        });
+
+    // Fetch formats and sizes in the background
+    fetch(`/video-info?url=${encodeURIComponent(url)}`)
+        .then(response => response.json())
+        .then(data => {
+            hideLoader(loader);
+            tableContainer.style.display = 'block'; // Show the table container
+            displayVideoInfo(data, formatTableBody);
+            attachDownloadEventListeners();
+        })
+        .catch(error => {
+            hideLoader(loader);
+            console.error('Error fetching video info:', error);
+            alert('Error fetching video formats and sizes.');
+        });
+});
+
+function displayLoader(loader) {
+    loader.style.display = 'block';
+}
+
+function hideLoader(loader) {
+    loader.style.display = 'none';
+}
+
+// Display video info in the table
+function displayVideoInfo(data, formatTableBody) {
+    // Clear existing table rows
+    formatTableBody.innerHTML = '';
+
+    // Populate table with format information
+    data.formats.forEach(format => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${format.quality}</td>
+            <td>${format.size === 'Unknown' ? 'Unknown' : format.size}</td>
+            <td>
+                <a href="/download?url=${encodeURIComponent(data.url)}&itag=${format.itag}" class="styled-button download-btn">
+                    <span class="icon"><i class="fas fa-download"></i></span>
+                    Download
+                </a>
+            </td>
+        `;
+        formatTableBody.appendChild(row);
+    });
+}
+
+// Attach download event listeners
+function attachDownloadEventListeners() {
+    document.querySelectorAll('.download-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const url = this.getAttribute('href');
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+ </body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="German">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="images/favicon.png"> <!-- Adjust the path here -->
+    <link rel="icon" href="/views/assets/images/favicon2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <title>Youtube converter</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+body {
+      font-family: Arial, sans-serif;
+    }
+
+    .dropdown {
+      position: absolute;
+      display: inline-block;
+      margin-left: 7px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-item {
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      color: #333;
+    }
+
+    .dropdown-item:hover {
+      background-color: #ddd;
+    }
+
+    </style>
+</head>
+<body>
+    <nav>
+       <div class="logo">
+          <img class="logo-img" src="/views/assets/images/favicon2.png" height="50px" width="50px" alt="">
+          <p class="logo-name">Y2DPro</p>
+       </div>
+       <input type="checkbox" id="click">
+       <label for="click" class="menu-btn">
+       <i class="fas fa-bars"></i>
+       </label>
+       <ul>
+          <li><a  href="#">Youtube Converter</a></li>
+          <li><a href="/downloader">Youtube  Downloader</a></li>
+          <li><a class="active" href="/mp3">Youtube to MP3</a></li>
+          <li style="margin: 0px -11px 0 31px; margin-right: 76px;"><a href="#" style="padding: 0;">    <div class="dropdown">
+            <span id="selectedItem">English </span> <strong>⮟</strong>
+            <div class="dropdown-content" style="cursor: pointer;">
+              <a class="dropdown-item" onclick="selectItem('English')" data-reload lang="Englsih">Englsih</a>
+              <a class="dropdown-item" onclick="selectItem('Dutch')" data-reload lang="Dutch">Dutch</a>
+              <a class="dropdown-item" onclick="selectItem('German')" data-reload lang="German">German</a>
+              <a class="dropdown-item" onclick="selectItem('Hindi')" data-reload lang="Hindi">हिंदी</a>
+              <a class="dropdown-item" onclick="selectItem('Urdu')" data-reload lang="Urdu">اردو</a>
+            </div>
+          </div></a></li>
+
+
+ 
+         
+
+       </ul>
+    </nav>
+    <div class="content">
+
+    
+          <h1 class="cont-heading">YouTube Converter - YouTube to MP3, MP4,...
+          </h1>
+          <div class="search-div">
+              <form class="search" action="">
+                  <input class="search-input" value="" id="txt-url" name="query" type="text" placeholder="Search or paste link here..." autocomplete="off">
+                  <button type="button" value="Start" id="btn-submit" class="start-btn" onclick="analyze();">
+                      <span class="hidden-xs">Start </span><i class="fas fa-arrow-right"></i>
+                      </button>
+                      
+                   
+              </form>
+              <p class="t-and-c-p">
+                You are using our service by accepting our 
+                <a href="terms" class="t-and-c-link">Terms of use</a>
+              </p>
+              
+          </div>
+
+        
+            <div></div>
+            <hr class="cont-hr">
+            <div class="inst-cont">
+            
+
+            <h2 class="instruction-h2">How to convert a YouTube video?</h2>
+            <p class="p1"><strong>1.</strong> First open youtube app in your device and choose the video you want to download.</p>
+            <p class="p2"><strong>2.</strong> Then after opening the video in layout you will find a share icon click it.</p>
+            <p class="p3"><strong>3.</strong> Then copy the link from there</p>
+            <p class="p4"><strong>4.</strong> Then paste the link in our website and click the start button and choose any format you want to download like mp3.</p></p>
+        </div>
+</div>
+  <div class="after-cont">
+    <div>
+    <h2>
+        <strong>
+            Youtube Converter
+        </strong>
+    </h2>
+
+    <p>Hey there Lorem ipsum dolor sit,
+         amet consectetur adipisicing elit.
+          Voluptatum eligendi reiciendis eos unde aut nam 
+          nesciunt itaque beatae ut voluptatibus quasi vero, 
+          reprehenderit expedita veniam fugiat debitis? Sint, impedit veniam.</p>
+  </div>
+
+  <hr class="h1">
+</div>
+<div class="nepo">
+  <div class="left card">
+    <h2 class="card-title1">Instructions</h2>
+    <p>1. Seach by name or paste the link of the video you want to convert.</p>
+    <p>2. Click "Start" button to begin converting process.</p>
+    <p>3. Select the video/audio format you want to download, then click "Download" button.</p>
+  </div>
+
+  <div class="right card">
+    <h2 class="card-title">Features</h2>
+    <ul>
+      <li class="li1">Unlimited downloads and always free</li>
+      <li class="li2">High-speed video converter</li>
+      <li class="li3">No registration required</li>
+      <li class="li4">Support downloading with all formats</li>
+    </ul> 
+  </div>
+
+</div>
+<hr class="hr-0">
+
+
+<div class="icon-sec">
+<div class="red">    
+  <i class="fa fa-server"></i>
+
+    <h3 class="icons-p">Free Service</h3>
+    <p class="red-p">Free Fast And Unlimited Service</p>
+    
+
+</div>
+<div class="red">    
+  <i class="fa fa-file"></i>
+
+    <h3 class="icons-p">All Formats</h3>
+    <p class="red-p">Video And Music All Formats</p>
+    
+
+</div>
+
+<div class="red">    
+  <i class="fa fa-handshake"></i>
+
+    <h3 class="icons-p">Easy Download</h3>
+    <p class="red-p">Easy To Download From Any Browser</p>
+    
+
+</div>
+
+</div>
+
+<hr class="foot-lakeer">
+
+<footer class="footer">
+  <p class="copyright">@ 2024 Y2DPro.com</p>
+  <div class="footer-address">
+    <p><a href="/">Y2DPro.com</a></p>
+    <p><a href="/downloader">Youtube Downloader</a></p>
+    <p><a href="/">Youtube Converter</a></p>
+    <p><a href="/mp3">Youtube to MP3</a></p>
+  </div>
+  <div class="footer-address1">
+    <p><a href="/">Youtube Downloader</a></p>
+    <p><a href="/">Instgram Downloader</a></p>
+    <p><a href="/">Tiktok Downloader</a></p>
+    <p><a href="/">Facebook Downloader</a></p>
+  </div>
+  <div class="footer-address2">
+    <p><a href="/about">About</a></p>
+    <p><a href="/faq">FAQ</a></p>
+    <p><a href="/contact">Contact</a></p>
+    <p><a href="/terms">Terms of Service</a></p>
+    <p><a href="/privacy-policy">Privacy Policy</a></p>
+  </div>
+  <p class="copyright">©Copyright Y2DPro.com </p>
+</footer>
+
+<script>
+  function selectItem(item) {
+    document.getElementById('selectedItem').textContent = item;
+  }
+
+
+  var h1 = document.querySelector(".cont-heading");
+
+// get the dropdown element by its id
+var dropdown = document.getElementById("selectedItem");
+
+// add an event listener to the dropdown element
+dropdown.addEventListener("click", function() {
+  // get the selected language from the dropdown element
+  var lang = dropdown.textContent;
+
+  // use a switch statement to change the h1 text based on the language
+  switch (lang) {
+    case "Dutch":
+      h1.textContent = "YouTube-video-downloader - YouTube naar MP3, MP4, ...";
+      break;
+    case "German":
+      h1.textContent = "YouTube-Video-Downloader - YouTube zu MP3, MP4, ...";
+      break;
+    case "Hindi":
+      h1.textContent = "यूट्यूब वीडियो डाउनलोडर - यूट्यूब से MP3, MP4, ...";
+      break;
+    case "Urdu":
+      h1.textContent = "یوٹیوب ویڈیو ڈاؤن لوڈر - یوٹیوب سے MP3 ، MP4 ، ...";
+      break;
+    default:
+      h1.textContent = "YouTube Video Downloader - YouTube to MP3, MP4, ...";
+  }
+});
+
+
+
+
+</script>
+ </body>
+</html>
