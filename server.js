@@ -7,7 +7,7 @@ const os = require('os');
 const ffmpeg = require('fluent-ffmpeg');
 const ffmpegPath = require('ffmpeg-static');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-
+const env = require('dotenv').config();
 const app = express();
 const cors = require('cors');
 
@@ -46,6 +46,10 @@ app.get('/mp3', (req, res) => {
     res.render('mp3');
 });
 
+
+const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY; // Add this to your Render environment variables
+process.env.YTDL_NO_UPDATE = 'true'; // Disable ytdl-core update checks
+
 app.get('/quick-info', async (req, res) => {
     const videoUrl = req.query.url;
 
@@ -55,8 +59,8 @@ app.get('/quick-info', async (req, res) => {
 
     try {
         const videoId = ytdlCore.getVideoID(videoUrl);
-        const apiKey = 'AIzaSyCc8qcNnIeaaIiohcQ2nrIPqWw7lc9RdR8'; // Replace with your YouTube API key
-        const apiUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${apiKey}`;
+        if (!YOUTUBE_API_KEY) throw new Error('YouTube API key is missing');
+        const apiUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`;
 
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error('YouTube API error');
@@ -76,6 +80,7 @@ app.get('/quick-info', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch video info' });
     }
 });
+
 
 app.get('/video-info', async (req, res) => {
     const videoUrl = decodeURIComponent(req.query.url);
