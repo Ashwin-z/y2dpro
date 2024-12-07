@@ -48,7 +48,6 @@ app.get('/mp3', (req, res) => {
 
 
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY; // Add this to your Render environment variables
-process.env.YTDL_NO_UPDATE = 'true'; // Disable ytdl-core update checks
 
 app.get('/quick-info', async (req, res) => {
     const videoUrl = req.query.url;
