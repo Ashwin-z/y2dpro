@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-// const ytdlCore = require('ytdl-core');
+const Core = require('ytdl-core');
 const ytdlCore = require('@distube/ytdl-core');
 const fs = require('fs');
 const os = require('os');
