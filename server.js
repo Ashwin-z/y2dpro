@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const ytdlCore = require('ytdl-core');
-const distubeYtdlCore = require('@distube/ytdl-core');
+// const ytdlCore = require('ytdl-core');
+const ytdlCore = require('@distube/ytdl-core');
 const fs = require('fs');
 const os = require('os');
 const ffmpeg = require('fluent-ffmpeg');
