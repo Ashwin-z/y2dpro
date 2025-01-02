@@ -1,20 +1,30 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const ytdlCore = require('ytdl-core');
-const distubeYtdlCore = require('@distube/ytdl-core');
-const fs = require('fs');
+
+const puppeteer = require('puppeteer');
+const instagramGetUrl = require('instagram-url-direct'); // Changed import
+
+const bodyParser = require('body-parser'); // Make sure this is installed
+const cheerio = require('cheerio');
+
 const os = require('os');
-const ffmpeg = require('fluent-ffmpeg');
-const ffmpegPath = require('ffmpeg-static');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const env = require('dotenv').config();
+const qs = require('querystring');
+const axios = require('axios');
 const app = express();
 const cors = require('cors');
+const { spawn } = require('child_process');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 
+app.use(express.static('public'));
+app.use(express.json()); // For parsing application/json
+app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
+app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -39,286 +49,274 @@ app.get('/faq', (req, res) => {
 app.get('/about', (req, res) => { 
     res.render('about');
 });
-app.get('/', (req, res) => { 
-    res.render('downloader');
-});
-app.get('/mp3', (req, res) => { 
-    res.render('mp3');
-});
 
 
-const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY; // Add this to your Render environment variables
-process.env.YTDL_NO_UPDATE = 'true'; // Disable ytdl-core update checks
 
-app.get('/quick-info', async (req, res) => {
-    const videoUrl = req.query.url;
+const mp3Routes = require('./mp3Routes');
+app.use('/', mp3Routes);
 
-    if (!videoUrl) {
-        return res.status(400).json({ error: 'URL is required' });
-    }
+const reelRoutes = require('./reels');
+app.use('/', reelRoutes);
 
-    try {
-        const videoId = ytdlCore.getVideoID(videoUrl);
-        if (!YOUTUBE_API_KEY) throw new Error('YouTube API key is missing');
-        const apiUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`;
-
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error('YouTube API error');
-        const data = await response.json();
-
-        if (data.items.length === 0) {
-            return res.status(404).json({ error: 'Video not found' });
-        }
-
-        const videoDetails = data.items[0].snippet;
-        res.json({
-            title: videoDetails.title,
-            thumbnail: videoDetails.thumbnails.high.url,
-        });
-    } catch (error) {
-        console.error('Error fetching quick info:', error);
-        res.status(500).json({ error: 'Failed to fetch video info' });
-    }
+// Test route to verify server is working
+app.get('/test', (req, res) => {
+    res.json({ message: 'Server is working!' });
 });
 
+const cache = new Map();
+const CACHE_DURATION = 3600000; // 1 hour
 
-app.get('/video-info', async (req, res) => {
-    const videoUrl = decodeURIComponent(req.query.url);
-    console.log('Received URL:', videoUrl);
-  
-    if (!videoUrl) {
-        return res.status(400).json({ error: 'URL is required' });
+// Browser instance management
+let browserInstance = null;
+const PAGE_POOL = [];
+const MAX_PAGES = 3;
+
+// Validate Instagram reel URLs - Optimized regex
+const REEL_URL_REGEX = /^https?:\/\/(?:www\.)?instagram\.com\/(?:reel|reels|tv)\/([A-Za-z0-9_-]+)/;
+
+async function getBrowser() {
+    if (!browserInstance) {
+        browserInstance = await puppeteer.launch({
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-gpu',
+                '--disable-extensions',
+                '--disable-audio-output',
+                '--disable-background-networking',
+                '--disable-background-timer-throttling',
+                '--disable-breakpad',
+                '--disable-component-extensions-with-background-pages',
+                '--disable-features=TranslateUI',
+                '--disable-ipc-flooding-protection',
+                '--disable-renderer-backgrounding',
+                '--enable-features=NetworkService,NetworkServiceInProcess',
+                '--mute-audio',
+                '--no-default-browser-check',
+                '--no-experiments',
+                '--no-pings'
+            ],
+            defaultViewport: { width: 1280, height: 720 }
+        });
     }
-  
+    return browserInstance;
+}
+
+async function getPage() {
+    // Reuse existing page if available
+    const freePage = PAGE_POOL.find(p => !p.inUse);
+    if (freePage) {
+        freePage.inUse = true;
+        return freePage.page;
+    }
+
+    // Create new page if pool not full
+    if (PAGE_POOL.length < MAX_PAGES) {
+        const browser = await getBrowser();
+        const page = await browser.newPage();
+        
+        // Optimize page settings
+        await Promise.all([
+            page.setRequestInterception(true),
+            page.setDefaultNavigationTimeout(15000),
+            page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
+        ]);
+
+        // Aggressive resource blocking for faster loading
+        page.on('request', (req) => {
+            const resourceType = req.resourceType();
+            if (['image', 'stylesheet', 'font', 'media', 'other'].includes(resourceType) ||
+                req.url().includes('analytics') ||
+                req.url().includes('logging')) {
+                req.abort();
+            } else {
+                req.continue();
+            }
+        });
+
+        PAGE_POOL.push({ page, inUse: true });
+        return page;
+    }
+
+    // Wait for a page to become available
+    return new Promise((resolve) => {
+        const checkInterval = setInterval(async () => {
+            const freePage = PAGE_POOL.find(p => !p.inUse);
+            if (freePage) {
+                clearInterval(checkInterval);
+                freePage.inUse = true;
+                resolve(freePage.page);
+            }
+        }, 100);
+    });
+}
+
+async function releasePage(page) {
+    const pageEntry = PAGE_POOL.find(p => p.page === page);
+    if (pageEntry) {
+        pageEntry.inUse = false;
+    }
+}
+
+async function fetchReelContent(url, page) {
     try {
-        if (!ytdlCore.validateURL(videoUrl)) {
-            return res.status(400).json({ error: 'Invalid YouTube URL' });
-        }
-  
-        const videoInfo = await ytdlCore.getInfo(videoUrl);
-  
-        const getAccurateFileSize = async (url) => {
-            try {
-                const response = await fetch(url, {
-                    method: 'HEAD',
-                    headers: { 'Range': 'bytes=0-' }
-                });
-                const contentRange = response.headers.get('Content-Range');
-                if (contentRange) {
-                    const size = contentRange.split('/')[1];
-                    return parseInt(size);
-                }
-            } catch (error) {
-                console.error('Error fetching accurate file size:', error);
-            }
-            return null;
-        };
-  
-        const calculateTotalSize = async (format, videoInfo) => {
-            let totalSize = 0;
-            if (format.url) {
-                const accurateSize = await getAccurateFileSize(format.url);
-                if (accurateSize) {
-                    totalSize += accurateSize;
-                } else if (format.contentLength) {
-                    totalSize += parseInt(format.contentLength);
-                }
-            }
-            if (!format.hasAudio && format.url) {
-                const audioFormat = ytdlCore.chooseFormat(videoInfo.formats, { quality: 'highestaudio' });
-                if (audioFormat && audioFormat.url) {
-                    const audioSize = await getAccurateFileSize(audioFormat.url);
-                    if (audioSize) {
-                        totalSize += audioSize;
-                    } else if (audioFormat.contentLength) {
-                        totalSize += parseInt(audioFormat.contentLength);
-                    }
-                }
-            }
-            return totalSize;
-        };
-  
-        const formatSize = (bytes) => {
-            if (typeof bytes !== 'number' || isNaN(bytes)) {
-                return 'Unknown';
-            }
-            const mb = bytes / 1024 / 1024;
-            const lowerBound = mb.toFixed(1);
-            
-            return `${lowerBound}MB`;
-        };
-  
-        const formats = await Promise.all(videoInfo.formats
-            .filter(format => format.qualityLabel && format.hasVideo && format.itag !== 18)
-            .map(async format => {
-                const totalSize = await calculateTotalSize(format, videoInfo);
-                return {
-                    quality: format.qualityLabel,
-                    itag: format.itag,
-                    size: formatSize(totalSize),
-                    mimeType: format.mimeType,
-                    hasAudio: format.hasAudio
-                };
-            }));
-  
-        // Group formats by quality
-        const groupedFormats = formats.reduce((acc, format) => {
-            if (!acc[format.quality]) {
-                acc[format.quality] = [];
-            }
-            acc[format.quality].push(format);
-            return acc;
-        }, {});
-  
-        // Select the best format for each quality
-        const bestFormats = Object.values(groupedFormats).map(qualityGroup => {
-            const withAudio = qualityGroup.filter(f => f.hasAudio);
-            if (withAudio.length > 0) {
-                return withAudio.reduce((a, b) => (parseFloat(a.size.split(' - ')[0]) < parseFloat(b.size.split(' - ')[0]) ? a : b));
-            }
-            return qualityGroup.reduce((a, b) => (parseFloat(a.size.split(' - ')[0]) < parseFloat(b.size.split(' - ')[0]) ? a : b));
+        // Optimize page load
+        await page.evaluate(() => {
+            window.scrollBy = () => {};
+            window.innerWidth = 1280;
+            window.innerHeight = 720;
         });
-  
-        // Sort formats by resolution (highest to lowest)
-        bestFormats.sort((a, b) => {
-            const aRes = parseInt(a.quality.split('p')[0]);
-            const bRes = parseInt(b.quality.split('p')[0]);
-            return bRes - aRes;
+
+        await page.goto(url, {
+            waitUntil: 'domcontentloaded',
+            timeout: 15000
         });
-  
-        // Add a fallback format for 360p if it's missing
-        if (!bestFormats.some(f => f.quality === '360p')) {
-            const fallback360p = videoInfo.formats.find(f => f.qualityLabel === '360p' && f.itag !== 18);
-            if (fallback360p) {
-                const totalSize = await calculateTotalSize(fallback360p, videoInfo);
-                bestFormats.push({
-                    quality: '360p',
-                    itag: fallback360p.itag,
-                    size: formatSize(totalSize),
-                    mimeType: fallback360p.mimeType,
-                    hasAudio: fallback360p.hasAudio
-                });
-            }
-        }
-  
-        // Add MP3 format
-        const audioFormat = ytdlCore.chooseFormat(videoInfo.formats, { quality: 'highestaudio', filter: 'audioonly' });
-        const audioSize = await calculateTotalSize(audioFormat, videoInfo);
-        bestFormats.push({
-            quality: 'Audio (MP3)',
-            itag: audioFormat.itag,
-            size: formatSize(audioSize),
-            mimeType: audioFormat.mimeType,
-            hasAudio: true
-        });
-  
-        res.json({
-          
-            formats: bestFormats,
-            url: videoUrl
-        });
-    } catch (error) {
-        console.error('Error fetching video info:', error);
-        res.status(500).json({ error: 'Failed to fetch video info' });
-    }
-  });
-  
 
-
-
-  const { spawn } = require('child_process');
-
-
-  
-
-  app.get('/download', async (req, res) => {
-    const videoUrl = decodeURIComponent(req.query.url);
-    const itag = req.query.itag;
-
-    console.log('Download URL:', videoUrl);
-    console.log('Download itag:', itag);
-
-    if (!videoUrl || !itag) {
-        return res.status(400).json({ error: 'URL and itag are required' });
-    }
-
-    try {
-        const isHighQuality = parseInt(itag) > 140;
-        const ytdl = isHighQuality ? distubeYtdlCore : ytdlCore;
-
-        const videoInfo = await ytdl.getInfo(videoUrl);
-        const selectedFormat = videoInfo.formats.find(format => format.itag == itag);
-
-        if (!selectedFormat) {
-            console.error('Selected format not found');
-            return res.status(500).json({ error: 'Selected format not found' });
-        }
-        console.log(`Selected format: ${selectedFormat.qualityLabel} with itag ${selectedFormat.itag}`);
-
-        const tempDir = os.tmpdir();
-        const outputFilePath = path.join(tempDir, `video-${Date.now()}.mp4`);
-
-        if (selectedFormat.hasAudio) {
-            // If the format already has audio, download it directly
-            await new Promise((resolve, reject) => {
-                ytdl(videoUrl, { quality: itag })
-                    .pipe(fs.createWriteStream(outputFilePath))
-                    .on('finish', resolve)
-                    .on('error', reject);
+        // Fast content extraction
+        const content = await page.evaluate(() => {
+            const metaTags = {};
+            document.querySelectorAll('meta[property^="og:"]').forEach(meta => {
+                metaTags[meta.getAttribute('property')] = meta.getAttribute('content');
             });
-        } else {
-            // If the format doesn't have audio, we need to merge video and audio
-            const videoStream = ytdl(videoUrl, { quality: itag });
-            const audioStream = ytdl(videoUrl, { quality: 'highestaudio', filter: 'audioonly' });
 
-            await new Promise((resolve, reject) => {
-                const ffmpeg = spawn(ffmpegPath, [
-                    '-i', 'pipe:3',   // Video input
-                    '-i', 'pipe:4',   // Audio input
-                    '-c:v', 'copy',   // Copy video stream as is
-                    '-c:a', 'aac',    // Encode audio as AAC
-                    '-movflags', 'faststart',  // Enable fast start for web playback
-                    outputFilePath    // Output file
-                ], {
-                    stdio: ['pipe', 'pipe', 'pipe', 'pipe', 'pipe']
-                });
+            return {
+                thumbnail: metaTags['og:image'] || null,
+                title: document.title?.slice(0, 50) || 'Instagram Reel',
+                username: metaTags['og:title'] || null
+            };
+        });
 
-                videoStream.pipe(ffmpeg.stdio[3]);
-                audioStream.pipe(ffmpeg.stdio[4]);
+        return content;
+    } catch (error) {
+        console.error('Error in fetchReelContent:', error);
+        throw error;
+    }
+}
 
-                ffmpeg.on('close', (code) => {
-                    if (code === 0) {
-                        resolve();
-                    } else {
-                        reject(new Error(`FFmpeg process exited with code ${code}`));
-                    }
-                });
+app.post('/api/fetch-instagram', async (req, res) => {
+    const { url } = req.body;
+    
+    if (!url || !REEL_URL_REGEX.test(url)) {
+        return res.status(400).json({
+            success: false,
+            message: 'Please provide a valid Instagram reel URL'
+        });
+    }
 
-                ffmpeg.on('error', reject);
-            });
+    try {
+        // Check cache
+        const cachedData = cache.get(url);
+        if (cachedData && (Date.now() - cachedData.timestamp) < CACHE_DURATION) {
+            return res.json(cachedData.data);
         }
 
-        // Set headers for file download
-        res.setHeader('Content-Disposition', `attachment; filename="y2dpro.com - ${videoInfo.videoDetails.title} ${selectedFormat.qualityLabel}.mp4"`);
+        const page = await getPage();
+        
+        // Parallel fetching with timeout
+        const [content, igResponse] = await Promise.all([
+            fetchReelContent(url, page),
+            Promise.race([
+                instagramGetUrl(url),
+                new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('Timeout')), 15000)
+                )
+            ])
+        ]);
+
+        await releasePage(page);
+
+        if (!igResponse?.url_list?.length) {
+            throw new Error('Failed to fetch reel data');
+        }
+
+        const mediaUrl = igResponse.url_list.find(url => url.includes('.mp4'));
+        const responseData = {
+            success: true,
+            type: 'reel',
+            title: content.title,
+            thumbnail: content.thumbnail,
+            downloadUrl: mediaUrl,
+            mediaType: 'video'
+        };
+
+        // Cache successful responses
+        cache.set(url, {
+            timestamp: Date.now(),
+            data: responseData
+        });
+
+        res.json(responseData);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch reel: ' + error.message
+        });
+    }
+});
+
+app.get('/download', async (req, res) => {
+    const { url, filename } = req.query;
+    
+    if (!url) {
+        return res.status(400).json({ 
+            success: false,
+            message: 'Download URL is required' 
+        });
+    }
+
+    try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 20000);
+
+        const response = await axios({
+            method: 'GET',
+            url: url,
+            responseType: 'stream',
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive'
+            },
+            timeout: 20000,
+            maxContentLength: 200 * 1024 * 1024,
+            signal: controller.signal
+        });
+
+        clearTimeout(timeout);
+
+        res.setHeader('Content-Disposition', `attachment; filename="${filename || 'instagram-reel.mp4'}"`);
         res.setHeader('Content-Type', 'video/mp4');
-
-        // Stream the file to the client
-        const fileStream = fs.createReadStream(outputFilePath);
-        fileStream.pipe(res);
-
-        // Delete the file after it's sent
-        fileStream.on('close', () => {
-            fs.unlink(outputFilePath, (err) => {
-                if (err) console.error('Error deleting temporary file:', err);
-            });
+        
+        // Optimized streaming
+        response.data.pipe(res);
+        
+        response.data.on('error', (error) => {
+            console.error('Stream error:', error);
+            if (!res.headersSent) {
+                res.status(500).json({ success: false, message: 'Download failed' });
+            }
         });
 
     } catch (error) {
-        console.error('Error downloading video:', error);
-        res.status(500).json({ error: 'Failed to download video', details: error.message });
+        console.error('Download error:', error);
+        res.status(500).json({ 
+            success: false,
+            message: 'Download failed',
+            details: error.message 
+        });
     }
 });
 
+// Cleanup on exit
+process.on('SIGINT', async () => {
+    if (browserInstance) {
+        await browserInstance.close();
+    }
+    process.exit();
+});
 
 
 

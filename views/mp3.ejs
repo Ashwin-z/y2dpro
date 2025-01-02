@@ -193,8 +193,49 @@ nav ul{
 
 }
 
+.search-div1 {
+  margin: 39px auto;
+    max-width: 600px;
+    position: relative;
+    margin-bottom: 7rem;
+    background: none;
+}
 
 
+.loader{
+  margin: 9px 48%;
+}
+.size{
+
+    margin-top: 2.2rem;
+    border: none;
+    padding: 11px 24px;
+    border-radius: 5px;
+    color: black;
+    font-size: 15px;
+    background: gray;
+}
+
+.download {
+
+    margin-top: 2.2rem;
+    border: none;
+    padding: 11px 24px;
+    border-radius: 5px;
+    color: black;
+    font-size: 15px;
+    background: gray;
+}
+
+.button-group {
+    display: flex;
+    background: white;
+    /* gap: 130px; */
+    background: white;
+    margin: 0 23%;
+
+    gap: 10px;
+}
 /* HTML: <div class="loader"></div> */
 /* HTML: <div class="loader"></div> */
 
@@ -238,62 +279,35 @@ nav ul{
     
           <h1 class="cont-heading">YouTube To MP3, MP4 Converter
           </h1>
-          <div class="search-div">
-              <form class="search" action="">
-                  <input class="search-input" value="" id="txt-url" name="query" type="text" placeholder="Search or paste link here..." autocomplete="off">
-                  <button type="button" value="Start" id="btn-submit" class="start-btn" onclick="analyze();">
-                      <span class="hidden-xs">Start </span><i class="fas fa-arrow-right"></i>
-                      </button>
-                      
-                   
-              </form>
-              <p class="t-and-c-p">
-                You are using our service by accepting our 
+          <div class="search-div1">
+            <form class="search" id="profile">
+                <input 
+                    class="search-input" 
+                    id="txt-url" 
+                    name="url" 
+                    type="text" 
+                    placeholder="Enter Instagram username..." 
+                    autocomplete="off"
+                    required
+                >
+                <button type="button" class="start-btn" id="start-btn">
+                    <span class="hidden-xs">Start </span><i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <p class="t-and-c-p">
+                You are using our service by accepting our
                 <a href="terms" class="t-and-c-link">Terms of use</a>
-              </p>
-              
-          </div>
-
-          <div class="loader"></div>
-          <div class="image-container">
-            <!-- Add your image here -->
-            <img class="thumbnail-image" style="" src="https://static-cse.canva.com/blob/1396717/1600w-wK95f3XNRaM.jpg" alt="Your Image">
-
-            <h2 style="" class="thumb-p">How to convert a YouTube video? Lets Go Let Me Explain You What Is Going On Here.</h2>
-          </div>
-
-          <div class="table-container">
-            <ul>
-              <li><a href="#" class="video"><i class="fas fa-video icon"></i>Video</a></li>
-              <li><a href="#" class="audio"><i class="fas fa-volume-up icon"></i>Audio</a></li>
-            </ul>
-            <table>
-              <thead>
-                <tr>
-                  <th>Format Type</th>
-                  <th>Size</th>
-                  <th>Download</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>720p (.MP4)</td>
-                  <td>2 MB</td>
-                  <td><button class="styled-button">
-                    <span class="icon"><i class="fas fa-download"></i></span>
-                    Download
-                  </button></td>
-                </tr>
-                <!-- Add more rows as needed -->
-              </tbody>
-            </table>
-          </div>
-
-
-
-            <hr class="cont-hr">
-
-</div>
+            </p>
+            <div class="loader" id="loader" style="display:none;"></div>
+            <div class="button-group" style="display: none;" id="action-buttons">
+                <button class="size" id="sizebtn"> 
+                    View Pic 
+                </button>
+                <button class="download" id="downloadBtn">
+                    Download <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </div>
   <div class="after-cont">
     <div>
     <h2>
@@ -404,6 +418,7 @@ nav ul{
     </div>
     <p class="copyright">©Copyright Y2DPro.com </p>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
     function selectItem(item) {
@@ -553,6 +568,91 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   });
-  </script>
+
+
+
+
+// Frontend Code
+// JavaScript
+// Client-side JavaScript
+// Frontend JavaScript
+let hdUrl = '';  
+
+document.getElementById('start-btn').addEventListener('click', async () => {
+    const loader = document.getElementById('loader');
+    const actionButtons = document.getElementById('action-buttons');
+    const startBtn = document.getElementById('start-btn');
+    const usernameInput = document.getElementById('txt-url').value.trim();
+
+    if (!usernameInput) {
+        alert('Please enter a valid Instagram username.');
+        return;
+    }
+
+    loader.style.display = 'block';
+    actionButtons.style.display = 'none';
+
+    try {
+        // Send username to the backend
+        const response = await fetch(`/fetch-hd-url?username=${encodeURIComponent(usernameInput)}`);
+        const data = await response.json();
+
+        if (data.success && data.url) {
+            hdUrl = data.url;
+            console.log(`Fetched URL: ${hdUrl}`);
+            loader.style.display = 'none';
+            actionButtons.style.display = 'block';
+        } else {
+            alert('Failed to fetch the profile picture URL. Ensure the username is correct.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while fetching the profile picture.');
+    } finally {
+        loader.style.display = 'none';
+    }
+});
+
+// Size button
+document.getElementById('sizebtn').addEventListener('click', () => {
+    if (hdUrl) {
+        window.open(hdUrl, '_blank');
+    }
+});
+
+// Download button
+document.getElementById('downloadBtn').addEventListener('click', async () => {
+    if (hdUrl) {
+        try {
+            const downloadBtn = document.getElementById('downloadBtn');
+            downloadBtn.innerHTML = 'Downloading...';
+            downloadBtn.disabled = true;
+
+            const response = await fetch(`/download-profile-pic?url=${encodeURIComponent(hdUrl)}`);
+            if (!response.ok) throw new Error('Download failed');
+            
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `instagram_profile_${Date.now()}.jpg`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        } catch (error) {
+            console.error('Download error:', error);
+            alert('Error downloading the image. Please try again.');
+        } finally {
+            downloadBtn.innerHTML = 'Download <i class="fas fa-download"></i>';
+            downloadBtn.disabled = false;
+        }
+    }
+});
+
+
+
+</script>
+  
  </body>
 </html>
