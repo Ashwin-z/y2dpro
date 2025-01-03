@@ -82,6 +82,7 @@ async function getBrowser() {
     if (!browserInstance) {
         browserInstance = await puppeteer.launch({
             headless: true,
+            executablePath: '/usr/bin/chromium-browser', // Use system-installed Chromium
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
