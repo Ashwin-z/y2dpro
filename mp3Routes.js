@@ -77,8 +77,8 @@ async function fetchProfilePicture(username) {
       const response = await fetch(ENDPOINT_URL, {
           method: 'POST',
           headers: {
-              'x-rapidapi-key': RAPIDAPI_KEY,
-              'x-rapidapi-host': RAPIDAPI_HOST,
+              'x-rapidapi-key': "36e84dee12msh44306a8f68cd375p176090jsn88f44b1db756",
+              'x-rapidapi-host': "save-insta1.p.rapidapi.com",
               'Content-Type': 'application/json',
           },
           body: JSON.stringify({ username }),
