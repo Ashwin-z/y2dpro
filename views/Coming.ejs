@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="images/favicon.png"> <!-- Adjust the path here -->
+    <link rel="icon" href="/views/assets/images/favicon2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Youtube converter</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        body {
+              font-family: Arial, sans-serif;
+            }
+        
+            .dropdown {
+              position: absolute;
+              display: inline-block;
+              margin-left: 7px;
+            }
+        
+            .dropdown-content {
+              display: none;
+              position: absolute;
+              background-color: #f9f9f9;
+              min-width: 160px;
+              box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+              z-index: 1;
+              border: 1px solid rgba(0, 0, 0, 0.15);
+            }
+        
+            .dropdown:hover .dropdown-content {
+              display: block;
+            }
+        
+            .dropdown-item {
+              padding: 12px 16px;
+              text-decoration: none;
+              display: block;
+              color: #333;
+            }
+        
+            .dropdown-item:hover {
+              background-color: #ddd;
+            }
+            @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        
+        .inst-cont{
+            position: relative;
+            background: none;
+        
+            padding-left: 19px;
+            margin: 22px 0% 0px 0%;
+            
+        }
+        
+        .inst-cont>p>strong{
+          background: none;
+        }
+        .inst-cont>p{
+        
+          font-weight: 440;
+            line-height: 2;
+            font-size: 16px;
+            
+            
+        }
+        .inst-cont>h2{
+          font-weight: 400;
+            font-size: 25px;
+        }
+        .t-and-c-p{
+            background: white;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 13px;
+        
+        }
+        .t-and-c-link{
+        
+            background: none;
+            color: #800020;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        .nepo{
+          position: relative;
+        
+        }
+        
+        
+        .hr-0{
+          background: rgba(0,0,0,0) radial-gradient(ellipse at center center,rgba(0,0,0,0.2) 0px,rgba(255,255,255,0) 75%) repeat scroll 0 0;
+          position: relative;
+          width: 75%;
+          margin: 229px 12.5% 28px 12.5%;
+          border-width: 0;
+          border-top: 1px solid darkgrey;
+        }
+        
+        
+        .red{
+        
+          position: relative;
+          display: inline-block;
+          width: 33%;
+          text-align: center;
+        
+        }
+        
+        .icon-sec{
+          position: relative;
+          width: auto;
+          margin-bottom: 8%;
+        }
+        
+        
+        .fa{
+          font-size: 4rem;
+          position: relative;
+          color: #800020;
+        
+        }
+        .red>h3{
+        
+          color: #800020;
+          margin-top: 20px;
+        
+        }
+        .red-p{
+          margin-top: 16px;
+        }
+        .foot-lakeer{
+          background: rgba(0,0,0,0) radial-gradient(ellipse at center center,rgba(0,0,0,0.2) 0px,rgba(255,255,255,0) 75%) repeat scroll 0 0;
+          position: relative;
+          width: 100%;
+        
+          border-width: 0;
+          border-top: 1px solid darkgrey;
+        }
+        .footer{
+          margin-bottom: 0%;
+        }
+        
+        .copyright{
+          text-align: center;
+          font-size: 16px;
+          font-family: 'Roboto', sans-serif;
+          margin-top: 10%;
+          color: #1B1B1B;
+        }
+        .footer-address{
+          margin: 3% 18.6%;
+            display: inline-block;
+            position: relative;
+        }
+        .footer-address>P{
+          margin-bottom: 10px;
+        }
+        
+        .footer-address>p>a{
+          text-decoration: none;
+          color: #1B1B1B;
+        
+        }
+        .footer-address>p>a:hover{
+          text-decoration: underline;
+          color: #1B1B1B;
+        
+        }
+        .footer-address1>p>a:hover{
+          text-decoration: underline;
+          color: #1B1B1B;
+        
+        }
+        .footer-address2>p>a:hover{
+          text-decoration: underline;
+          color: #1B1B1B;
+        
+        }
+        
+        
+        
+        .footer-address1{
+          margin: 3% 0% 0 -106px;
+          position: absolute;
+          display: inline-block;
+        }
+        .footer-address1>P{
+          margin-bottom: 10px;
+        }
+        
+        .footer-address1>p>a{
+          text-decoration: none;
+          color: #1B1B1B;
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        .footer-address2{
+          margin: 3% 0% 0 142px;
+          display: inline-block;
+          position: absolute;
+        }
+        .footer-address2>P{
+          margin-bottom: 10px;
+        }
+        
+        .footer-address2>p>a{
+          text-decoration: none;
+          color: #1B1B1B;
+        
+        }
+        .lem{
+          margin: 0px -11px 0 31px;
+           margin-right: 76px;
+        }
+        
+        input[type="checkbox"]{
+          display: none;
+        }
+        
+        
+        @media (max-width: 680px) {
+        
+        
+            .logo {
+                padding: 1px 0px 1px 0px;
+            }
+            nav {
+                padding: 2px 37px 0 28px;
+            }
+            .inst-cont{
+                padding-left: 5px;
+            }
+        
+            .after-cont>div>p{
+                width: 100%;
+                margin: 0;
+                font-weight: 300;
+                font-size: 16px;
+            }
+            .right{
+              float: none;
+              margin-left: 17%;
+              margin-right: 0;
+            }
+        
+        
+            .hr-0 {
+              margin: 38px 12.5%;
+          }
+        
+        
+        
+        .inst-cont {
+            margin: 9px 0% 10px 1%;
+        }
+          
+        .dropdown-content {
+            margin-left: 30%;
+        }
+        
+        }
+        
+        
+        @media (min-width: 681px) and (max-width: 919px) {
+          .right{
+            float: none;
+            margin-left: 15%;
+            margin-right: 0;
+          }
+        
+          .dropdown-content{
+          margin-left: 55%;
+        }
+        }
+        
+        @media (max-width: 920px) {
+        
+        
+            body{
+                width: 100%;
+        
+               
+            }
+            nav {
+              padding: 0px 7px 0 0px;
+        
+            }
+          nav .menu-btn i{
+            border: 2px solid;
+            border-radius: 21%;
+            padding: 2px 5px 2px 5px;
+            display: block;
+          }
+          .search-input{
+            width: 90%;
+          }
+          #click:checked ~ .menu-btn i:before{
+            content: "\f00d";
+          }
+          .hidden-arr{
+            display: block;
+          }
+          .hidden-xs{
+            display: none;
+          }
+          .start-btn{
+            width: 62px;
+          }
+          .cont-hr{
+            margin: 17% 0px 2% 20%;
+        
+          }
+        
+          .after-cont>div>p{
+            margin: 0px 0% 100px 1%;;
+            width: 98%;
+        
+          }
+        .lem{
+          margin: 0;
+          height: 39px;
+          background-color: purple;
+        }
+        
+        
+        .poondi{
+        
+          margin-top: 6px;
+            padding-left: 10px;
+        }
+        .dropdown{
+          position: relative;
+        margin-left: 0;
+            background: purple;
+            width: 100%;
+        }
+        
+        .dropdown-content{
+          background: none;
+          z-index: -1;
+        }
+        
+        #selectedItem{
+          background: none;
+        }
+        
+        .dog{
+          background: none;
+            color: black;
+            font-size: 18px;
+            margin-left: 3px;
+            position: absolute;
+          
+        }
+          nav ul{
+            position: absolute;
+            top: 80px;
+            /* left: -100%; */
+            background: #800020;
+            height: 340px;
+            width: 100%;
+            text-align: center;
+            display: block;
+            transition: all 0.3s ease;
+          }
+          #click:checked ~ ul{
+            left: 0;
+            z-index: 1;
+          }
+        
+        
+        
+          nav ul li{
+            width: 100%;
+            margin: 40px 0;
+          }
+          nav ul li a{
+            width: 100%;
+            margin-left: -100%;
+            display: block;
+            font-size: 20px;
+            transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          }
+          #click:checked ~ ul li a{
+            margin-left: 0px;
+            transition: 0.3s ease;
+            background: purple;
+          }
+          nav ul li a.active,
+          nav ul li a:hover{
+            background: none;
+            color: red;
+          }
+        
+          .content{
+            width: 100%;
+            clear: right;
+            padding: 0 2%;
+            margin-right: 0;
+            transition: margin-top 0.3s ease; /* Smooth transition animation */
+        
+          }
+          .left{
+            float: left;
+            position: relative;
+            padding: 0 0%;
+            margin: 0px 8%;
+            width: 92%;
+            margin-bottom: 20px;
+            z-index: 1;
+          }
+        
+        .card-title1{
+            padding-top: 0px;
+        }
+        .red{
+          display: block;
+          text-align: center;
+          margin: 0 0% 7% 0%;
+          /* padding: 0 -33%; */
+          width: 100%;
+        }
+        .fa{
+          font-size: 3rem;
+        }
+        
+        .footer-address{
+          display: block;
+          margin: 7% 7%;
+          position: relative;
+        }
+        .footer-address1{
+          display: block;
+          position: relative;
+          margin: 0% 0% 32px 7%;
+        }
+        .footer-address2{
+          display: block;
+          margin: 0% 0px 0% 7%;
+          position: relative;
+        }
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        @media (min-width: 921px) and (max-width: 1000px) {
+        
+            nav{
+                padding: 0 40px 0 50px;
+              }
+            .content{
+                margin-right: 5%;
+                width: 90%;
+            }
+            .logo{
+                position: relative;
+                bottom: 24px;
+                /* margin-left: 40px; */
+            }
+        
+            
+        nav .logo-name{
+            position: absolute;
+        }
+        }
+        @media (min-width: 681px) and (max-width: 919px) {
+          .hr-0{
+            margin: 56px 12.5%;
+          }
+        }
+        
+        
+        .content>.cont-heading1 {
+            background: none;
+    font-size: 1.9rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 55px 1px 1px 1px;
+}
+        
+        
+        
+            </style>
+</head>
+<body>
+    <nav>
+       <div class="logo">
+        <a href="/index">
+          <img class="logo-img" src="/images/favicon2.png" height="50px" width="50px" alt=""></a>
+          <p class="logo-name"><a href="/index" style="text-decoration: none; color: #800020;">Y2DPro</a></p>
+       
+        </div>
+       <input type="checkbox" id="click">
+       <label for="click" class="menu-btn">
+       <i class="fas fa-bars"></i>
+       </label>
+       <ul>
+          <li><a class="" href="/index">Reel Downloader</a></li>
+          <li><a href="/">Post Downloader</a></li>
+          <li><a href="/mp3">Profile Pic Viewer/Downloader</a></li>
+          <li class="lem" style=""><a class="poondi" href="#" style="padding: 0;">    <div class="dropdown">
+            <span id="selectedItem">English</span> <strong class="dog"><i style="background: none;" class="fa-solid fa-caret-down"></i></strong>
+            <div class="dropdown-content" style="cursor: pointer;">
+              <a style="background-color: #e0e0e0" id="reloadLink" class="dropdown-item" onclick="selectItem('English')" data-reload lang="English">English</a>
+
+            </div>
+          </div></a></li>
+
+
+ 
+         
+
+       </ul>
+    </nav>
+    <div class="content" style="    padding-bottom: 0px;
+    margin-bottom: 0px;">
+
+    
+          <h1 class="cont-heading1">Coming Soon, <br> Our Developers Are Actively Working On It. <br>
+            Stay Tuned For More Updates...
+          </h1>
+          <div class="search-div">
+     
+            <hr class="cont-hr">
+            <div class="inst-cont">
+            
+
+
+        </div>
+</div>
+
+
+
+
+
+
+
+<hr class="foot-lakeer">
+
+<footer class="footer" style="    padding-top: 1%;">
+  <p class="copyright">@ 2025 Y2DPro.com</p>
+  <div class="footer-address">
+    <p><a href="/">Y2DPro.com</a></p>
+    <p><a href="/">Instagram Downloader</a></p>
+    <p><a href="/index">Instagram Post Downloader</a></p>
+    <p><a href="/mp3">Insta Profile Pic Downloader</a></p>
+  </div>
+  <div class="footer-address1">
+    <p><a href="/coming-soon">Youtube Downloader</a></p>
+    <p><a href="/">Instgram Downloader</a></p>
+    <p><a href="/coming-soon">Tiktok Downloader</a></p>
+    <p><a href="/coming-soon">Facebook Downloader</a></p>
+  </div>
+  <div class="footer-address2">
+    <p><a href="/about">About</a></p>
+    <p><a href="/faq">FAQ</a></p>
+    <p><a href="/contact">Contact</a></p>
+    <p><a href="/terms">Terms of Service</a></p>
+    <p><a href="/privacy-policy">Privacy Policy</a></p>
+  </div>
+  <p class="copyright">©Copyright Y2DPro.com </p>
+</footer>
+
+<script>
+  
+
+
+
+
+</script>
+
+ </body>
+</html>

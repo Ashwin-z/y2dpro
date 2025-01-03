@@ -34,6 +34,10 @@ app.use('/js', express.static(path.join(__dirname, 'js')));
 app.get('/index', (req, res) => { 
     res.render('index');
 });
+
+app.get('/coming-soon', (req, res) => {
+    res.render('Coming');
+})
 app.get('/privacy-policy', (req, res) => { 
     res.render('privacy-policy');
 });
@@ -55,7 +59,7 @@ app.get('/about', (req, res) => {
 const mp3Routes = require('./mp3Routes');
 app.use('/', mp3Routes);
 
-const reelRoutes = require('./reels');
+const reelRoutes = require('./post');
 app.use('/', reelRoutes);
 
 // Test route to verify server is working

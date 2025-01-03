@@ -177,7 +177,16 @@ nav ul{
     font-size: 25px;
     margin-bottom: 8px;
 }
+@media (max-width:470px) {
+  .size{
 
+    width: 100%;
+}
+.download{
+  
+  width: 100%;
+}
+}
 @media (max-width:680px) {
     .red{
         display: block;
@@ -207,24 +216,24 @@ nav ul{
 }
 .size{
 
-    margin-top: 2.2rem;
+  margin-top: 2.2rem;
     border: none;
     padding: 11px 24px;
     border-radius: 5px;
     color: black;
     font-size: 15px;
-    background: gray;
+    background: #55c2da;
 }
 
 .download {
 
-    margin-top: 2.2rem;
+  margin-top: 0.35rem;
     border: none;
     padding: 11px 24px;
     border-radius: 5px;
     color: black;
     font-size: 15px;
-    background: gray;
+    background: #E1306C;
 }
 
 .button-group {
@@ -236,6 +245,104 @@ nav ul{
 
     gap: 10px;
 }
+.mp3{
+  position: relative;
+    background: white;
+}
+.after-cont{
+  position: relative;
+    background: none;
+    border: 1px solid #e0e0e0;
+}
+.shit{
+  background: none;
+  margin-top: 1.5rem;
+}
+
+.kali{
+  background: none;
+}
+.dot1{
+  background: none;
+}
+
+.icon-sec{
+  background: none;
+  margin-top: 1rem;
+}
+
+.red{
+  background: white;
+}
+.fa-arrow-up-from-bracket{
+  background: white;
+}
+.icons-p{
+  background: white;
+}
+
+.after-cont>div>p{
+  background: none;
+}
+#not6, #not7, #not8, #not9{
+  background: none;
+}
+
+.fa-paperclip{
+  background: none;
+}
+.fa-gift{
+  background: none;
+}
+.footer{
+  background: none;
+}
+
+.copyright{
+  background: none;
+}
+
+.footer-address{
+  background: none;
+
+}
+.footer-address>p{
+  background: none;
+
+}
+.footer-address>p>a{
+  background: none;
+
+}
+
+.footer-address1{
+  background: none;
+
+}
+.footer-address1>p{
+  background: none;
+
+}
+.footer-address1>p>a{
+  background: none;
+
+}
+
+.footer-address2{
+  background: none;
+
+}
+.footer-address2>p{
+  background: none;
+
+}
+.footer-address2>p>a{
+  background: none;
+
+}
+.content{
+  margin-bottom: 0;
+}
 /* HTML: <div class="loader"></div> */
 /* HTML: <div class="loader"></div> */
 
@@ -245,26 +352,32 @@ nav ul{
     <nav>
        <div class="logo">
         
-          <img class="logo-img" src="/views/assets/images/favicon2.png" height="50px" width="50px" alt="">
-          <p class="logo-name">Y2DPro</p>
+        <img class="logo-img" src="/images/favicon2.png" height="50px" width="50px" alt=""></a>
+        <p class="logo-name"><a href="/index" style="text-decoration: none; color: #800020;">Y2DPro</a></p>
+     
        </div>
        <input type="checkbox" id="click">
        <label for="click" class="menu-btn">
        <i class="fas fa-bars"></i>
        </label>
        <ul>
-        <li><a href="/index">Youtube Converter</a></li>
-          <li><a href="/">Youtube Downloader</a></li>
+        <li><a href="/index">Reel Downloader</a></li>
+          <li><a href="/">Post Downloader</a></li>
 
-          <li><a class="active" href="/mp3">Youtube to MP3</a></li>
+          <li><a class="active" href="/mp3">Profile Pic Viewer/Downloader</a></li>
           <li class="lem" style=""><a class="poondi" href="#" style="padding: 0;">    <div class="dropdown">
             <span id="selectedItem">English</span> <strong class="dog"><i style="background: none;"  class="fa-solid fa-caret-down"></i></strong>
             <div class="dropdown-content" style="cursor: pointer;">
               <a style="background-color: #e0e0e0" id="reloadLink" class="dropdown-item" onclick="selectItem('English')" data-reload lang="English">English</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('Chinese')" data-reload lang="Chinese">Chinese</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('Spanish')" data-reload lang="Spanish">Spanish</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('French')" data-reload lang="French">French</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('Portuguese')" data-reload lang="Portuguese">Portuguese</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('عربي')" data-reload lang="عربي">Arabic/عربي</a>
               <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('Dutch')" data-reload lang="Dutch">Dutch</a>
               <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('German')" data-reload lang="German">German</a>
-              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('हिंदी')" data-reload lang="Hindi">हिंदी</a>
-              <a style="background-color: #e0e0e0" class="dropdown-item" style="font-size: 20px;" onclick="selectItem('اردو')" data-reload lang="Urdu">اردو</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('हिंदी')" data-reload lang="Hindi">Hindi/हिंदी</a>
+              <a style="background-color: #e0e0e0" class="dropdown-item" style="font-size: 20px;" onclick="selectItem('اردو')" data-reload lang="Urdu">Urdu/اردو</a>
             </div>
           </div></a></li>
 
@@ -277,10 +390,10 @@ nav ul{
     <div class="content">
 
     
-          <h1 class="cont-heading">YouTube To MP3, MP4 Converter
+          <h1 class="cont-heading">Instagram Profile Pic Downloader
           </h1>
           <div class="search-div1">
-            <form class="search" id="profile">
+            <form class="search" id="profile" action="javascript:void(0)">
                 <input 
                     class="search-input" 
                     id="txt-url" 
@@ -301,7 +414,7 @@ nav ul{
             <div class="loader" id="loader" style="display:none;"></div>
             <div class="button-group" style="display: none;" id="action-buttons">
                 <button class="size" id="sizebtn"> 
-                    View Pic 
+                    View Pic         <i class="fa-solid fa-eye" style="background:none; color: #800020;"></i>
                 </button>
                 <button class="download" id="downloadBtn">
                     Download <i class="fas fa-download"></i>
@@ -309,25 +422,25 @@ nav ul{
             </div>
         </div>
   <div class="after-cont">
-    <div>
-    <h2>
+    <div class="shit">
+    <h2 class="kali">
         <strong class="dot1">
-            Youtube To MP3 Converter
+            Instagram Downloader.
         </strong>
     </h2>
 
-    <p class="not1">Introducing Y2DPro.com, your premier
-         destination for seamless YouTube video 
-         conversion to MP3 and MP4 formats. Our server is 
-         tailored to provide you with a hassle-free experience
-          - simply paste the YouTube URL into our website, and voilà! 
-          You'll have your desired content converted in no time. What
-           sets us apart? We pride ourselves on offering a registration
-           -free platform with unlimited usage. Rest assured, your privacy
-            is paramount to us; hence, we require no personal information
-             whatsoever. Experience the convenience and efficiency of 
-             Y2DPro.com - 
-        the ultimate YouTube to MP3, MP4 converter.</p>
+    <p class="not1">Welcome to Y2DPro.com – your one-stop 
+      solution for 
+      downloading Instagram media effortlessly and in 
+      high quality. Whether it’s HD reels, profile pictures,
+       videos, or posts, Y2DPro allows you to save your
+        favorite content without any registration or limits. 
+        With a user-friendly
+       interface and lightning-fast performance, you can 
+       download your desired media in just a few clicks. No
+        ads, no distractions—just pure convenience for 
+        unlimited downloads. Stay ahead and enjoy the best
+         Instagram content offline, anytime, anywhere!</p>
   </div>
 
   <hr class="h1">
@@ -343,7 +456,7 @@ nav ul{
 
 
     <h3 id="not2" class="icons-p">Free & Limitless Service</h3>
-    <p id="not6" class="red-p" >Free Fast And Unlimited Service Video Audio All Formats Are Available.</p>    
+    <p id="not6" class="red-p" >Free Fast And Unlimited Service.</p>    
 
 </div>
 <div class="red">    
@@ -359,10 +472,10 @@ nav ul{
 </div>
 <div class="icon-sec">
     <div class="red">    
-        <i class="fa-solid fa-film" style="font-size: 3.5rem;position: relative;color: #800020;"></i>
+        <i class="fa-solid fa-film" style="font-size: 3.5rem;position: relative;background: none;color: #800020;"></i>
 
         <h3 id="not4" class="icons-p">All Formats Available</h3>
-        <p id="not8" class="red-p" style="padding: 0 14%;">All Types Of Formats Available Mp3 Mp4 etc...</p>
+        <p id="not8" class="red-p" style="padding: 0 14%;">All Types Of Media Available Reel, Post, Video ...</p>
         
     
     </div>
@@ -372,7 +485,7 @@ nav ul{
     
 
         <h3 id="not5" class="icons-p">Easy To Use</h3>
-        <p id="not9" class="red-p">Just Copy The Youtube Video Link And Paste The Link In Our Website.</p>
+        <p id="not9" class="red-p">Just Copy Instagram Profile Link And Paste The Link In Our Website.</p>
         
     
     </div>
@@ -386,28 +499,28 @@ nav ul{
     <div class="inst-cont">
             
 
-        <h2 class="instruction-h2">How to convert a YouTube video?</h2>
-        <p class="p1"><b style="background: none;font-weight: 400;">1.</b> First open youtube app in your device and choose the video you want to download.</p>
-        <p class="p2"><b style="background: none;font-weight: 400;">2.</b> Then after opening the video in layout you will find a share icon click it.</p>
-        <p class="p3"><b style="background: none;font-weight: 400;">3.</b> Then copy the link from there</p>
-        <p class="p4"><b style="background: none;font-weight: 400;">4.</b> Then paste the link in our website and click the start button and choose any format you want to download like MP3 or MP4 .</p></p>
+        <h2 class="instruction-h2">How to View/Download a Instagram Profile Picture?</h2>
+        <p class="p1"><b style="background: none;font-weight: 400;">1.</b> First open instagram app in your device and choose the Profile you want to View/download.</p>
+        <p class="p2"><b style="background: none;font-weight: 400;">2.</b> After that Paste the instagram profile Link/Username into our website</p>
+        <p class="p3"><b style="background: none;font-weight: 400;">3.</b> Then click the start button.</p>
+        <p class="p4"><b style="background: none;font-weight: 400;">4.</b>After Few Time You Will see 2 Buttons View & Download Choose What ever you want.</p></p>
     </div>
 
 <hr class="foot-lakeer">
 
 <footer class="footer">
-    <p class="copyright">@ 2024 Y2DPro.com</p>
+    <p class="copyright">@ 2025 Y2DPro.com</p>
     <div class="footer-address">
       <p><a href="/">Y2DPro.com</a></p>
-      <p><a href="/">Youtube Downloader</a></p>
-      <p><a href="/index">Youtube Converter</a></p>
-      <p><a href="/mp3">Youtube to MP3</a></p>
+      <p><a href="/">Instagram Downloader</a></p>
+      <p><a href="/index">Instagram Post Downloader</a></p>
+      <p><a href="/mp3">Insta Profile Pic Downloader</a></p>
     </div>
     <div class="footer-address1">
-      <p><a href="/">Youtube Downloader</a></p>
+      <p><a href="/coming-soon">Youtube Downloader</a></p>
       <p><a href="/">Instgram Downloader</a></p>
-      <p><a href="/">Tiktok Downloader</a></p>
-      <p><a href="/">Facebook Downloader</a></p>
+      <p><a href="/coming-soon">Tiktok Downloader</a></p>
+      <p><a href="/coming-soon">Facebook Downloader</a></p>
     </div>
     <div class="footer-address2">
       <p><a href="/about">About</a></p>
@@ -428,90 +541,209 @@ nav ul{
       dropdownItem.textContent = item;
   
       switch (item) {
-        case "Dutch":
-          h1.textContent = "YouTube naar MP3, MP4-converter";
-          document.querySelector('.t-and-c-p').childNodes[0].textContent = "U maakt gebruik van onze service door onze te accepteren ";
-          document.querySelector('.dot1').textContent = "Youtube naar MP3-converter";
+        case "Chinese":
+    h1.textContent = "Instagram 头像下载器";
+    document.querySelector('.t-and-c-p').childNodes[0].textContent = "通过接受我们的服务条款，您正在使用我们的服务 ";
+    document.querySelector('.dot1').textContent = "Instagram 下载器";
 
-          document.querySelector('.not1').textContent = "Maak kennis met Y2DPro.com, uw belangrijkste bestemming voor naadloze YouTube-videoconversie naar MP3- en MP4-formaten. Onze server is op maat gemaakt om u een probleemloze ervaring te bieden. Plak eenvoudigweg de YouTube-URL in onze website, en voilà! Binnen een mum van tijd heb je de gewenste content geconverteerd. Wat onderscheidt ons? We zijn er trots op dat we een registratievrij platform met onbeperkt gebruik aanbieden. Wees gerust, uw privacy staat bij ons voorop; Daarom hebben we geen enkele persoonlijke informatie nodig. Ervaar het gemak en de efficiëntie van Y2DPro.com - de ultieme YouTube naar MP3, MP4 converter.";
+    document.querySelector('.not1').textContent = "欢迎来到 Y2DPro.com – 您的一站式解决方案，可轻松下载高质量的 Instagram 媒体。无论是高清图像、头像、视频还是帖子，使用 Y2DPro，您可以在无需注册或限制的情况下保存您喜欢的内容。通过用户友好的界面和超快速性能，您只需点击几下即可下载所需的媒体。没有广告，没有干扰，只是纯粹的便利和无限下载。保持领先，随时随地离线享受最佳的 Instagram 内容！";
+    document.querySelector('#not2').textContent = "免费且无限制的服务";
+    document.querySelector('#not3').textContent = "无需注册账户";
+    document.querySelector('#not4').textContent = "支持所有格式";
+
+    document.querySelector('#not5').textContent = "易于使用";
+    document.querySelector('#not6').textContent = "免费、快速和无限的服务";
+    document.querySelector('#not7').textContent = "无需注册账户即可免费使用。";
+    document.querySelector('#not8').textContent = "支持所有类型的媒体 Reel、Post、Video ...";
+    document.querySelector('#not9').textContent = "只需复制 Instagram 个人资料链接并将其粘贴到我们的网站。";
+    document.querySelector('.instruction-h2').textContent = "如何查看/下载 Instagram 头像？";
+    document.querySelector('.p1').childNodes[1].textContent = "首先，打开您设备上的 Instagram 应用程序并选择您想要查看/下载的个人资料。";
+    document.querySelector('.p2').childNodes[1].textContent = "然后，将 Instagram 个人资料的链接/用户名粘贴到我们的网站中";
+    document.querySelector('.p3').childNodes[1].textContent = "接下来，点击开始按钮。";
+    document.querySelector('.p4').childNodes[1].textContent = "稍后，您将看到“查看”和“下载”两个按钮，选择您想要的。";
+
+    break;
+    case "Spanish":
+    h1.textContent = "Descargador de fotos de perfil de Instagram";
+    document.querySelector('.t-and-c-p').childNodes[0].textContent = "Estás utilizando nuestro servicio al aceptar nuestros ";
+    document.querySelector('.dot1').textContent = "Descargador de Instagram";
+
+    document.querySelector('.not1').textContent = "Bienvenido a Y2DPro.com: tu solución integral para descargar fácilmente medios de Instagram en alta calidad. Ya sea que se trate de imágenes HD, fotos de perfil, videos o publicaciones, con Y2DPro puedes guardar tu contenido favorito sin necesidad de registro ni límites. Con una interfaz fácil de usar y un rendimiento ultrarrápido, puedes descargar los medios deseados con solo unos pocos clics. Sin anuncios, sin distracciones, solo comodidad pura y descargas ilimitadas. ¡Mantente a la vanguardia y disfruta del mejor contenido de Instagram sin conexión, en cualquier momento y lugar!";
+    document.querySelector('#not2').textContent = "Servicio gratuito e ilimitado";
+    document.querySelector('#not3').textContent = "No se requiere registro de cuenta";
+    document.querySelector('#not4').textContent = "Todos los formatos disponibles";
+
+    document.querySelector('#not5').textContent = "Fácil de usar";
+    document.querySelector('#not6').textContent = "Servicio gratuito, rápido e ilimitado";
+    document.querySelector('#not7').textContent = "No se requiere registro de cuenta, totalmente gratuito.";
+    document.querySelector('#not8').textContent = "Todos los tipos de medios disponibles: Reel, Publicación, Video ...";
+    document.querySelector('#not9').textContent = "Simplemente copia el enlace del perfil de Instagram y pégalo en nuestro sitio web.";
+    document.querySelector('.instruction-h2').textContent = "¿Cómo ver/descargar una foto de perfil de Instagram?";
+    document.querySelector('.p1').childNodes[1].textContent = "Primero, abre la aplicación de Instagram en tu dispositivo y selecciona el perfil que deseas ver/descargar.";
+    document.querySelector('.p2').childNodes[1].textContent = "Luego, pega el enlace/nombre de usuario del perfil de Instagram en nuestro sitio web.";
+    document.querySelector('.p3').childNodes[1].textContent = "A continuación, haz clic en el botón de inicio.";
+    document.querySelector('.p4').childNodes[1].textContent = "Después de un momento, verás dos botones: Ver y Descargar. Elige lo que prefieras.";
+
+    break;
+    case "French":
+    h1.textContent = "Téléchargeur de photo de profil Instagram";
+    document.querySelector('.t-and-c-p').childNodes[0].textContent = "Vous utilisez notre service en acceptant nos ";
+    document.querySelector('.dot1').textContent = "Téléchargeur Instagram";
+
+    document.querySelector('.not1').textContent = "Bienvenue sur Y2DPro.com, votre solution tout-en-un pour télécharger facilement du contenu Instagram en haute qualité. Qu'il s'agisse d'images HD, de photos de profil, de vidéos ou de publications, avec Y2DPro, vous pouvez enregistrer votre contenu préféré sans inscription ni limite. Avec une interface conviviale et des performances ultra-rapides, téléchargez les médias souhaités en quelques clics. Pas de publicités, pas de distractions, juste un confort pur et des téléchargements illimités. Restez à jour et profitez du meilleur contenu Instagram hors ligne, à tout moment et en tout lieu !";
+    document.querySelector('#not2').textContent = "Service gratuit et illimité";
+    document.querySelector('#not3').textContent = "Pas d'inscription requise";
+    document.querySelector('#not4').textContent = "Tous les formats disponibles";
+
+    document.querySelector('#not5').textContent = "Facile à utiliser";
+    document.querySelector('#not6').textContent = "Service rapide, gratuit et illimité";
+    document.querySelector('#not7').textContent = "Aucune inscription de compte requise, totalement gratuit.";
+    document.querySelector('#not8').textContent = "Tous les types de médias disponibles : Reel, Publication, Vidéo...";
+    document.querySelector('#not9').textContent = "Copiez simplement le lien du profil Instagram et collez-le sur notre site web.";
+    document.querySelector('.instruction-h2').textContent = "Comment voir/télécharger une photo de profil Instagram ?";
+    document.querySelector('.p1').childNodes[1].textContent = "Tout d'abord, ouvrez l'application Instagram sur votre appareil et sélectionnez le profil que vous souhaitez voir/télécharger.";
+    document.querySelector('.p2').childNodes[1].textContent = "Ensuite, collez le lien/nom d'utilisateur du profil Instagram sur notre site.";
+    document.querySelector('.p3').childNodes[1].textContent = "Ensuite, cliquez sur le bouton de démarrage.";
+    document.querySelector('.p4').childNodes[1].textContent = "Après un moment, vous verrez deux boutons : Voir et Télécharger. Choisissez ce que vous préférez.";
+
+    break;
+    case "Portuguese":
+    h1.textContent = "Baixador de foto de perfil do Instagram";
+    document.querySelector('.t-and-c-p').childNodes[0].textContent = "Você está usando nosso serviço ao aceitar nossos ";
+    document.querySelector('.dot1').textContent = "Baixador do Instagram";
+
+    document.querySelector('.not1').textContent = "Bem-vindo ao Y2DPro.com, sua solução completa para baixar conteúdo do Instagram em alta qualidade. Seja imagens HD, fotos de perfil, vídeos ou postagens, com Y2DPro você pode salvar seu conteúdo favorito sem registro ou limites. Com uma interface amigável e desempenho ultrarrápido, baixe a mídia desejada com apenas alguns cliques. Sem anúncios, sem distrações, apenas conveniência pura e downloads ilimitados. Mantenha-se à frente e aproveite o melhor conteúdo do Instagram offline, a qualquer hora e em qualquer lugar!";
+    document.querySelector('#not2').textContent = "Serviço gratuito e ilimitado";
+    document.querySelector('#not3').textContent = "Não requer registro de conta";
+    document.querySelector('#not4').textContent = "Todos os formatos disponíveis";
+
+    document.querySelector('#not5').textContent = "Fácil de usar";
+    document.querySelector('#not6').textContent = "Serviço rápido, gratuito e ilimitado";
+    document.querySelector('#not7').textContent = "Não é necessário registro de conta, totalmente gratuito.";
+    document.querySelector('#not8').textContent = "Todos os tipos de mídia disponíveis: Reels, Postagens, Vídeos...";
+    document.querySelector('#not9').textContent = "Basta copiar o link do perfil do Instagram e colá-lo em nosso site.";
+    document.querySelector('.instruction-h2').textContent = "Como visualizar/baixar uma foto de perfil do Instagram?";
+    document.querySelector('.p1').childNodes[1].textContent = "Primeiro, abra o aplicativo do Instagram no seu dispositivo e selecione o perfil que deseja visualizar/baixar.";
+    document.querySelector('.p2').childNodes[1].textContent = "Depois, cole o link/nome de usuário do perfil do Instagram em nosso site.";
+    document.querySelector('.p3').childNodes[1].textContent = "Em seguida, clique no botão iniciar.";
+    document.querySelector('.p4').childNodes[1].textContent = "Após alguns momentos, você verá dois botões: Visualizar e Baixar. Escolha o que preferir.";
+
+    break;
+
+        case "Dutch":
+          h1.textContent = "Instagram profielfoto-downloader";
+          document.querySelector('.t-and-c-p').childNodes[0].textContent = "U maakt gebruik van onze service door onze te accepteren ";
+          document.querySelector('.dot1').textContent = "Instagram Downloader";
+
+          document.querySelector('.not1').textContent = "Welkom bij Y2DPro.com – uw one-stop oplossing voor moeiteloos en in Instagram-media downloaden hoge kwaliteit. Of het nu gaat om HD-beelden, profielfoto's,video's of berichten, met Y2DPro kunt u uw favoriete inhoud zonder enige registratie of limieten. Met een gebruiksvriendelijk interface en razendsnelle prestaties, dat kan download de gewenste media met slechts een paar klikken. Nee advertenties, geen afleiding, gewoon puur gemak onbeperkt downloaden. Blijf voorop en geniet van het beste Instagram-inhoud offline, altijd en overal!";
           document.querySelector('#not2').textContent = "Gratis en onbeperkte service";
           document.querySelector('#not3').textContent = "Geen accountregistratie";
           document.querySelector('#not4').textContent = "Alle formaten beschikbaar";
 
-          document.querySelector('#not5').textContent = "Makkelijk te gebruiken";
-          document.querySelector('#not6').textContent = "Gratis snelle en onbeperkte service Video Audio Alle formaten zijn beschikbaar.";
+          document.querySelector('#not5').textContent = "Eenvoudig te gebruiken";
+          document.querySelector('#not6').textContent = "Gratis snelle en onbeperkte service";
           document.querySelector('#not7').textContent = "Geen accountregistratie vereist Gratis te gebruiken.";
-          document.querySelector('#not8').textContent = "Alle soorten formaten beschikbaar Mp3 Mp4 enz...";
-          document.querySelector('#not9').textContent = "Kopieer gewoon de YouTube-videolink en plak de link in onze website.";
-          document.querySelector('.instruction-h2').textContent = "Hoe een YouTube-video converteren?";
-          document.querySelector('.p1').childNodes[1].textContent = "Open eerst de YouTube-app op uw apparaat en kies de video die u wilt downloaden.";
-        document.querySelector('.p2').childNodes[1].textContent = "Nadat u de video in de lay-out hebt geopend, ziet u een deelpictogram waarop u erop klikt.";
-        document.querySelector('.p3').childNodes[1].textContent = "Kopieer vervolgens de link vanaf daar";
-        document.querySelector('.p4').childNodes[1].textContent = "Plak vervolgens de link op onze website, klik op de startknop en kies het gewenste formaat, zoals mp3.";
+          document.querySelector('#not8').textContent = "Alle soorten media beschikbaar Reel, Post, Video ...";
+          document.querySelector('#not9').textContent = "Kopieer gewoon de Instagram-profiellink en plak de link in onze website.";
+          document.querySelector('.instruction-h2').textContent = "Hoe kan ik een Instagram-profielfoto bekijken/downloaden?";
+          document.querySelector('.p1').childNodes[1].textContent = "Open eerst de Instagram-app op je apparaat en kies het profiel dat je wilt bekijken/downloaden.";
+        document.querySelector('.p2').childNodes[1].textContent = "Plak daarna de link/gebruikersnaam van het Instagram-profiel in onze website";
+        document.querySelector('.p3').childNodes[1].textContent = "Klik vervolgens op de startknop.";
+        document.querySelector('.p4').childNodes[1].textContent = "Na een tijdje zie je 2 knoppen Bekijken en downloaden Kies wat je maar wilt.";
        
           break;
-        case "German":
-          h1.textContent = "YouTube zu MP3, MP4-Konverter";
-          document.querySelector('.t-and-c-p').childNodes[0].textContent = "Sie nutzen unseren Service, indem Sie unsere akzeptieren ";
-          document.querySelector('.dot1').textContent = "YouTube-zu-MP3-Konverter";
+          case "German":
+    h1.textContent = "Instagram Profilbild-Downloader";
+    document.querySelector('.t-and-c-p').childNodes[0].textContent = "Sie nutzen unseren Service, indem Sie unsere akzeptieren ";
+    document.querySelector('.dot1').textContent = "Instagram Downloader";
 
-          document.querySelector('.not1').textContent = "Wir stellen Ihnen Y2DPro.com vor, Ihre erste Adresse für die nahtlose Konvertierung von YouTube-Videos in die Formate MP3 und MP4. Unser Server ist darauf zugeschnitten, Ihnen ein problemloses Erlebnis zu bieten – fügen Sie einfach die YouTube-URL in unsere Website ein und voilà! Ihre gewünschten Inhalte werden im Handumdrehen konvertiert. Was zeichnet uns aus? Wir sind stolz darauf, eine registrierungsfreie Plattform mit unbegrenzter Nutzung anzubieten. Seien Sie versichert, Ihre Privatsphäre steht für uns an erster Stelle. Daher benötigen wir keinerlei personenbezogene Daten. Erleben Sie den Komfort und die Effizienz von Y2DPro.com – dem ultimativen YouTube-zu-MP3- und MP4-Konverter.";
-          document.querySelector('#not2').textContent = "Kostenloser und grenzenloser Service";
-          document.querySelector('#not3').textContent = "Keine Kontoregistrierung";
+    document.querySelector('.not1').textContent = "Willkommen bei Y2DPro.com, Ihrer All-in-One-Lösung für das einfache Herunterladen von Instagram-Inhalten in hoher Qualität. Egal ob HD-Bilder, Profilbilder, Videos oder Beiträge, mit Y2DPro können Sie Ihre Lieblingsinhalte ohne Registrierung und ohne Einschränkungen speichern. Mit einer benutzerfreundlichen Oberfläche und ultraschneller Leistung können Sie die gewünschten Medien mit nur wenigen Klicks herunterladen. Keine Werbung, keine Ablenkungen, nur reiner Komfort und unbegrenztes Herunterladen. Bleiben Sie vorne und genießen Sie die besten Instagram-Inhalte offline, jederzeit und überall!";
+    document.querySelector('#not2').textContent = "Kostenloser und unbegrenzter Service";
+    document.querySelector('#not3').textContent = "Keine Kontoanmeldung erforderlich";
+    document.querySelector('#not4').textContent = "Alle Formate verfügbar";
 
-          document.querySelector('#not4').textContent = "Alle Formate verfügbar";
-          document.querySelector('#not5').textContent = "Einfach zu verwenden";
-          document.querySelector('#not6').textContent = "Kostenloser, schneller und unbegrenzter Service für Video und Audio. Alle Formate sind verfügbar.";
-          document.querySelector('#not7').textContent = "Zur kostenlosen Nutzung ist keine Kontoregistrierung erforderlich.";
-          document.querySelector('#not8').textContent = "Alle Arten von Formaten verfügbar: MP3, MP4 usw.";
-          document.querySelector('#not9').textContent = "Kopieren Sie einfach den YouTube-Videolink und fügen Sie den Link in unsere Website ein.";
-          document.querySelector('.instruction-h2').textContent = "Wie konvertiert man ein YouTube-Video?";
-          document.querySelector('.p1').childNodes[1].textContent = "Öffnen Sie zunächst die YouTube-App auf Ihrem Gerät und wählen Sie das Video aus, das Sie herunterladen möchten.";
-        document.querySelector('.p2').childNodes[1].textContent = "Nachdem Sie das Video im Layout geöffnet haben, finden Sie ein Freigabesymbol. Klicken Sie darauf.";
-        document.querySelector('.p3').childNodes[1].textContent = "Dann kopieren Sie den Link von dort";
-        document.querySelector('.p4').childNodes[1].textContent = "Fügen Sie dann den Link in unsere Website ein, klicken Sie auf die Schaltfläche „Start“ und wählen Sie ein beliebiges Format aus, das Sie herunterladen möchten, z. B. MP3.";
-        
-          break;
+    document.querySelector('#not5').textContent = "Einfach zu verwenden";
+    document.querySelector('#not6').textContent = "Schneller, kostenloser und unbegrenzter Service";
+    document.querySelector('#not7').textContent = "Keine Kontoanmeldung erforderlich, völlig kostenlos.";
+    document.querySelector('#not8').textContent = "Alle Arten von Medien verfügbar: Reel, Beitrag, Video ...";
+    document.querySelector('#not9').textContent = "Kopieren Sie einfach den Instagram-Profillink und fügen Sie ihn auf unserer Website ein.";
+    document.querySelector('.instruction-h2').textContent = "Wie kann ich ein Instagram-Profilbild ansehen/herunterladen?";
+    document.querySelector('.p1').childNodes[1].textContent = "Öffnen Sie zuerst die Instagram-App auf Ihrem Gerät und wählen Sie das Profil aus, das Sie ansehen/herunterladen möchten.";
+    document.querySelector('.p2').childNodes[1].textContent = "Fügen Sie dann den Link/Benutzernamen des Instagram-Profils auf unserer Website ein.";
+    document.querySelector('.p3').childNodes[1].textContent = "Klicken Sie anschließend auf die Start-Schaltfläche.";
+    document.querySelector('.p4').childNodes[1].textContent = "Nach kurzer Zeit sehen Sie zwei Schaltflächen: Anzeigen und Herunterladen. Wählen Sie, was Sie möchten.";
+
+    break;
+
         case "हिंदी":
-          h1.textContent = "यूट्यूब से एमपी3, एमपी4 कन्वर्टर";
-          document.querySelector('.t-and-c-p').childNodes[0].textContent = "आप हमारी सेवा स्वीकार करके इसका उपयोग कर रहे हैं ";
-          document.querySelector('.dot1').textContent = "यूट्यूब से एमपी3 कन्वर्टर";
-          document.querySelector('.not1').textContent = "पेश है Y2DPro.com, जो YouTube वीडियो को MP3 और MP4 फॉर्मेट में निर्बाध रूप से बदलने के लिए आपका प्रमुख गंतव्य है। हमारा सर्वर आपको परेशानी-मुक्त अनुभव प्रदान करने के लिए तैयार किया गया है - बस YouTube URL को हमारी वेबसाइट में पेस्ट करें, और वॉइला! आपकी वांछित सामग्री कुछ ही समय में परिवर्तित हो जाएगी। क्या चीज़ हमें अलग करती है? हम असीमित उपयोग के साथ पंजीकरण-मुक्त मंच की पेशकश करने पर गर्व करते हैं। निश्चिंत रहें, आपकी गोपनीयता हमारे लिए सर्वोपरि है; इसलिए, हमें किसी भी प्रकार की व्यक्तिगत जानकारी की आवश्यकता नहीं है। Y2DPro.com की सुविधा और दक्षता का अनुभव करें - सर्वोत्तम YouTube से MP3, MP4 कनवर्टर।";
-            document.querySelector('#not2').textContent = "निःशुल्क एवं असीमित सेवा";
-            document.querySelector('#not3').textContent = "कोई खाता पंजीकरण नहीं";
-            document.querySelector('#not4').textContent = "सभी प्रारूप उपलब्ध हैं";
-            document.querySelector('#not5').textContent = "प्रयोग करने में आसान";
-            document.querySelector('#not6').textContent = "मुफ़्त तेज़ और असीमित सेवा वीडियो ऑडियो सभी प्रारूप उपलब्ध हैं।";
-            document.querySelector('#not7').textContent = "उपयोग के लिए किसी खाता पंजीकरण की आवश्यकता नहीं है।";
-            document.querySelector('#not8').textContent = "सभी प्रकार के फॉर्मेट उपलब्ध हैं Mp3 Mp4 आदि...";
-            document.querySelector('#not9').textContent = "बस यूट्यूब वीडियो लिंक को कॉपी करें और लिंक को हमारी वेबसाइट पर पेस्ट करें।";
-            document.querySelector('.instruction-h2').textContent = "यूट्यूब वीडियो कैसे कनवर्ट करें?";
-            document.querySelector('.p1').childNodes[1].textContent = "सबसे पहले अपने डिवाइस में यूट्यूब ऐप खोलें और वह वीडियो चुनें जिसे आप डाउनलोड करना चाहते हैं।";
-        document.querySelector('.p2').childNodes[1].textContent = "फिर वीडियो को लेआउट में खोलने के बाद आपको एक शेयर आइकन मिलेगा उस पर क्लिक करें।";
-        document.querySelector('.p3').childNodes[1].textContent = "फिर वहां से लिंक को कॉपी करें";
-        document.querySelector('.p4').childNodes[1].textContent = "फिर हमारी वेबसाइट में लिंक पेस्ट करें और स्टार्ट बटन पर क्लिक करें और एमपी3 जैसा कोई भी प्रारूप चुनें जिसे आप डाउनलोड करना चाहते हैं।";
        
-            break;
-        case "اردو":
-          h1.textContent = "YouTube سے MP3، MP4 کنورٹر  ";
-          document.querySelector('.t-and-c-p').childNodes[0].textContent = " آپ ہماری خدمت کو قبول کر کے استعمال کر رہے ہیں۔ ";
-          document.querySelector('.dot1').textContent = "یوٹیوب سے MP3 کنورٹر";
-          document.querySelector('.not1').textContent = "Y2DPro.com کا تعارف، MP3 اور MP4 فارمیٹس میں بغیر کسی رکاوٹ کے YouTube ویڈیو کی تبدیلی کے لیے آپ کی اولین منزل۔ ہمارا سرور آپ کو پریشانی سے پاک تجربہ فراہم کرنے کے لیے تیار کیا گیا ہے - بس یوٹیوب یو آر ایل کو ہماری ویب سائٹ میں پیسٹ کریں، اور voilà! آپ اپنے مطلوبہ مواد کو کسی بھی وقت میں تبدیل کر لیں گے۔ کیا ہمیں الگ کرتا ہے؟ ہمیں لامحدود استعمال کے ساتھ رجسٹریشن فری پلیٹ فارم پیش کرنے پر فخر ہے۔ یقین رکھیں، آپ کی رازداری ہمارے لیے سب سے اہم ہے۔ لہذا، ہمیں کسی بھی قسم کی ذاتی معلومات کی ضرورت نہیں ہے۔ Y2DPro.com کی سہولت اور کارکردگی کا تجربہ کریں - حتمی YouTube سے MP3، MP4 کنورٹر۔";
-          document.querySelector('#not2').textContent = "مفت اور لامحدود سروس";
-          document.querySelector('#not3').textContent = "کوئی اکاؤنٹ رجسٹریشن نہیں۔";
-          document.querySelector('#not4').textContent = "تمام فارمیٹس دستیاب ہیں۔";
-          document.querySelector('#not5').textContent = "استعمال میں آسان";
-          document.querySelector('#not6').textContent = "مفت تیز اور لامحدود سروس ویڈیو آڈیو تمام فارمیٹس دستیاب ہیں۔";
-          document.querySelector('#not7').textContent = "مفت استعمال کرنے کے لیے اکاؤنٹ کی رجسٹریشن کی ضرورت نہیں ہے۔";
-          document.querySelector('#not8').textContent = "تمام قسم کے فارمیٹس دستیاب Mp3 Mp4 وغیرہ...";
-          document.querySelector('#not9').textContent = "بس یوٹیوب ویڈیو لنک کو کاپی کریں اور لنک کو ہماری ویب سائٹ میں پیسٹ کریں۔";
-          document.querySelector('.instruction-h2').textContent = "یوٹیوب ویڈیو کو کیسے تبدیل کیا جائے؟";
-          document.querySelector('.p1').childNodes[1].textContent = "پہلے اپنے آلے میں یوٹیوب ایپ کھولیں اور جس ویڈیو کو آپ ڈاؤن لوڈ کرنا چاہتے ہیں اسے منتخب کریں۔";
-        document.querySelector('.p2').childNodes[1].textContent = "پھر ویڈیو کو لے آؤٹ میں کھولنے کے بعد آپ کو ایک شیئر آئیکن ملے گا اس پر کلک کریں۔";
-        document.querySelector('.p3').childNodes[1].textContent = "پھر وہاں سے لنک کاپی کریں۔";
-        document.querySelector('.p4').childNodes[1].textContent = "MP4 یا MP3 پھر ہماری ویب سائٹ میں لنک پیسٹ کریں اور اسٹارٹ بٹن پر کلک کریں اور کوئی بھی فارمیٹ منتخب کریں جسے آپ  ڈاؤن لوڈ کرناچاہتے ہیں جیسے"
-        
-          break;
+    h1.textContent = "इंस्टाग्राम प्रोफ़ाइल फ़ोटो डाउनलोडर";
+    document.querySelector('.t-and-c-p').childNodes[0].textContent = "आप हमारी सेवा का उपयोग कर रहे हैं और हमारी शर्तों को स्वीकार कर रहे हैं ";
+    document.querySelector('.dot1').textContent = "इंस्टाग्राम डाउनलोडर";
+
+    document.querySelector('.not1').textContent = "Y2DPro.com पर आपका स्वागत है, उच्च गुणवत्ता में इंस्टाग्राम सामग्री डाउनलोड करने के लिए आपका एकमात्र समाधान। चाहे एचडी इमेज, प्रोफ़ाइल फोटो, वीडियो, या पोस्ट हों, Y2DPro के साथ आप बिना किसी पंजीकरण या सीमा के अपने पसंदीदा सामग्री को सुरक्षित कर सकते हैं। एक उपयोगकर्ता-अनुकूल इंटरफ़ेस और सुपर-फास्ट प्रदर्शन के साथ, बस कुछ ही क्लिक में अपनी वांछित मीडिया डाउनलोड करें। कोई विज्ञापन नहीं, कोई रुकावट नहीं, सिर्फ शुद्ध सुविधा और अनलिमिटेड डाउनलोडिंग। सर्वश्रेष्ठ इंस्टाग्राम सामग्री को ऑफ़लाइन देखें और आनंद लें!";
+    document.querySelector('#not2').textContent = "फ्री और अनलिमिटेड सर्विस";
+    document.querySelector('#not3').textContent = "कोई खाता पंजीकरण आवश्यक नहीं";
+    document.querySelector('#not4').textContent = "सभी प्रारूप उपलब्ध हैं";
+
+    document.querySelector('#not5').textContent = "उपयोग में आसान";
+    document.querySelector('#not6').textContent = "तेज, मुफ्त और अनलिमिटेड सेवा";
+    document.querySelector('#not7').textContent = "खाता पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त।";
+    document.querySelector('#not8').textContent = "सभी प्रकार के मीडिया उपलब्ध: रील, पोस्ट, वीडियो...";
+    document.querySelector('#not9').textContent = "बस इंस्टाग्राम प्रोफ़ाइल लिंक को कॉपी करें और हमारी वेबसाइट पर पेस्ट करें।";
+    document.querySelector('.instruction-h2').textContent = "इंस्टाग्राम प्रोफ़ाइल फ़ोटो देखने/डाउनलोड करने का तरीका?";
+    document.querySelector('.p1').childNodes[1].textContent = "सबसे पहले, अपने डिवाइस पर इंस्टाग्राम ऐप खोलें और वह प्रोफ़ाइल चुनें जिसे आप देखना/डाउनलोड करना चाहते हैं।";
+    document.querySelector('.p2').childNodes[1].textContent = "फिर, इंस्टाग्राम प्रोफ़ाइल लिंक/उपयोगकर्ता नाम को हमारी वेबसाइट पर पेस्ट करें।";
+    document.querySelector('.p3').childNodes[1].textContent = "फिर, स्टार्ट बटन पर क्लिक करें।";
+    document.querySelector('.p4').childNodes[1].textContent = "कुछ समय बाद, आपको दो बटन दिखाई देंगे: देखें और डाउनलोड। अपनी पसंद चुनें।";
+
+    break;
+
+    case "عربي":
+    h1.textContent = "أداة تنزيل صور بروفايل انستغرام";
+    document.querySelector('.t-and-c-p').childNodes[0].textContent = "باستخدامك لخدمتنا، فإنك توافق على شروطنا ";
+    document.querySelector('.dot1').textContent = "أداة تنزيل انستغرام";
+
+    document.querySelector('.not1').textContent = "مرحبًا بك في Y2DPro.com، الحل الوحيد لتنزيل محتوى انستغرام بجودة عالية. سواء كنت بحاجة إلى صور عالية الدقة، صور بروفايل، فيديوهات، أو منشورات، مع Y2DPro يمكنك تنزيل محتواك المفضل بسهولة دون تسجيل حساب أو قيود. مع واجهة مستخدم سهلة وسرعة فائقة، قم بتنزيل الوسائط التي تريدها بنقرات قليلة فقط. لا إعلانات، لا انقطاع، مجرد تجربة مريحة وتنزيل غير محدود. استمتع بمشاهدة أفضل محتوى انستغرام دون الاتصال بالإنترنت!";
+    document.querySelector('#not2').textContent = "خدمة مجانية وغير محدودة";
+    document.querySelector('#not3').textContent = "لا حاجة لتسجيل حساب";
+    document.querySelector('#not4').textContent = "جميع التنسيقات متوفرة";
+
+    document.querySelector('#not5').textContent = "سهل الاستخدام";
+    document.querySelector('#not6').textContent = "سريع، مجاني وغير محدود";
+    document.querySelector('#not7').textContent = "لا حاجة لتسجيل حساب، الخدمة مجانية بالكامل.";
+    document.querySelector('#not8').textContent = "جميع أنواع الوسائط متاحة: ريل، منشورات، فيديوهات...";
+    document.querySelector('#not9').textContent = "فقط انسخ رابط بروفايل انستغرام والصقه على موقعنا.";
+    document.querySelector('.instruction-h2').textContent = "كيفية عرض/تنزيل صورة بروفايل انستغرام؟";
+    document.querySelector('.p1').childNodes[1].textContent = "أولاً، افتح تطبيق انستغرام على جهازك واختر البروفايل الذي ترغب في عرضه/تنزيله.";
+    document.querySelector('.p2').childNodes[1].textContent = "ثم الصق رابط/اسم المستخدم الخاص بالبروفايل على موقعنا.";
+    document.querySelector('.p3').childNodes[1].textContent = "بعد ذلك، انقر على زر البدء.";
+    document.querySelector('.p4').childNodes[1].textContent = "بعد بضع لحظات، ستظهر لك زرين: عرض وتنزيل. اختر ما تفضله.";
+
+    break;
+
+    case "اردو":
+    h1.textContent = "انسٹاگرام پروفائل فوٹو ڈاؤنلوڈر";
+    document.querySelector('.t-and-c-p').childNodes[0].textContent = "آپ ہماری خدمت کو استعمال کر رہے ہیں اور ہماری شرائط قبول کر رہے ہیں ";
+    document.querySelector('.dot1').textContent = "انسٹاگرام ڈاؤنلوڈر";
+
+    document.querySelector('.not1').textContent = "Y2DPro.com پر خوش آمدید، آپ کی تمام انسٹاگرام میڈیا کو آسانی سے ڈاؤنلوڈ کرنے کے لیے ایک ہی جگہ۔ چاہے ایچ ڈی تصاویر ہوں، پروفائل فوٹوز، ویڈیوز یا پوسٹس، Y2DPro کے ذریعے آپ اپنے پسندیدہ مواد کو بغیر کسی رجسٹریشن یا حد کے محفوظ کر سکتے ہیں۔ ایک صارف دوست انٹرفیس اور تیز رفتار کارکردگی کے ساتھ، آپ صرف چند کلکس میں اپنی مطلوبہ میڈیا کو ڈاؤنلوڈ کر سکتے ہیں۔ کوئی اشتہارات نہیں، کوئی رکاوٹ نہیں، صرف خالص سہولت اور لا محدود ڈاؤنلوڈنگ۔ بہترین انسٹاگرام مواد کو آف لائن دیکھیں اور لطف اٹھائیں!";
+    document.querySelector('#not2').textContent = "مفت اور لامحدود سروس";
+    document.querySelector('#not3').textContent = "اکاؤنٹ کی رجسٹریشن کی ضرورت نہیں";
+    document.querySelector('#not4').textContent = "تمام فارمیٹس دستیاب ہیں";
+
+    document.querySelector('#not5').textContent = "استعمال میں آسان";
+    document.querySelector('#not6').textContent = "تیز، مفت اور لا محدود سروس";
+    document.querySelector('#not7').textContent = "اکاؤنٹ کی رجسٹریشن کی ضرورت نہیں، مکمل طور پر مفت۔";
+    document.querySelector('#not8').textContent = "تمام اقسام کے میڈیا دستیاب ہیں: ریل، پوسٹ، ویڈیو ...";
+    document.querySelector('#not9').textContent = "بس انسٹاگرام پروفائل کا لنک کاپی کریں اور ہماری ویب سائٹ پر پیسٹ کریں۔";
+    document.querySelector('.instruction-h2').textContent = "انسٹاگرام پروفائل فوٹو کو دیکھنے/ڈاؤنلوڈ کرنے کا طریقہ؟";
+    document.querySelector('.p1').childNodes[1].textContent = "سب سے پہلے، اپنے ڈیوائس پر انسٹاگرام ایپ کھولیں اور وہ پروفائل منتخب کریں جسے آپ دیکھنا/ڈاؤنلوڈ کرنا چاہتے ہیں۔";
+    document.querySelector('.p2').childNodes[1].textContent = "پھر، انسٹاگرام پروفائل کا لنک/یوزر نیم ہماری ویب سائٹ پر پیسٹ کریں۔";
+    document.querySelector('.p3').childNodes[1].textContent = "پھر، اسٹارٹ بٹن پر کلک کریں۔";
+    document.querySelector('.p4').childNodes[1].textContent = "چند لمحوں بعد، آپ کو دو بٹن نظر آئیں گے: دیکھیں اور ڈاؤنلوڈ۔ اپنی پسند کا انتخاب کریں۔";
+
+    break;
         default:
   
         }
