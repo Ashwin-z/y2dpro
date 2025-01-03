@@ -78,14 +78,17 @@ const MAX_PAGES = 3;
 // Validate Instagram reel URLs - Optimized regex
 const REEL_URL_REGEX = /^https?:\/\/(?:www\.)?instagram\.com\/(?:reel|reels|tv)\/([A-Za-z0-9_-]+)/;
 
+// Modify your Puppeteer launch configuration
 async function getBrowser() {
     if (!browserInstance) {
         browserInstance = await puppeteer.launch({
-            headless: true,
+            headless: 'new',  // Use new headless mode
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
                 '--disable-dev-shm-usage',
+                '--single-process', // Important for Render
+                '--no-zygote', // Important for Render
                 '--disable-gpu',
                 '--disable-extensions',
                 '--disable-audio-output',
@@ -102,12 +105,14 @@ async function getBrowser() {
                 '--no-experiments',
                 '--no-pings'
             ],
+            executablePath: process.env.NODE_ENV === 'production' 
+                ? '/usr/bin/google-chrome-stable'  // Path on Render
+                : puppeteer.executablePath(), // Local Chrome path
             defaultViewport: { width: 1280, height: 720 }
         });
     }
     return browserInstance;
 }
-
 async function getPage() {
     // Reuse existing page if available
     const freePage = PAGE_POOL.find(p => !p.inUse);
