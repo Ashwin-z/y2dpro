@@ -88,19 +88,25 @@ async function getBrowser() {
                 '--disable-dev-shm-usage',
                 '--disable-gpu',
                 '--disable-extensions',
+                '--disable-audio-output',
                 '--disable-background-networking',
-                '--disable-renderer-backgrounding',
+                '--disable-background-timer-throttling',
                 '--disable-breakpad',
+                '--disable-component-extensions-with-background-pages',
                 '--disable-features=TranslateUI',
                 '--disable-ipc-flooding-protection',
+                '--disable-renderer-backgrounding',
+                '--enable-features=NetworkService,NetworkServiceInProcess',
                 '--mute-audio',
                 '--no-default-browser-check',
+                '--no-experiments',
+                '--no-pings'
             ],
+            defaultViewport: { width: 1280, height: 720 }
         });
     }
     return browserInstance;
 }
-
 
 async function getPage() {
     // Reuse existing page if available
