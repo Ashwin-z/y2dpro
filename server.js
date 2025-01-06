@@ -67,262 +67,279 @@ app.get('/test', (req, res) => {
     res.json({ message: 'Server is working!' });
 });
 
+
+// Force Puppeteer to use Render’s cache directory
+process.env.PUPPETEER_CACHE_DIR = '/opt/render/project/.cache/puppeteer';
+
+// You can optionally set your path for the Chromium binary here (adjust if necessary):
+const CHROME_PATH = '/opt/render/project/.cache/puppeteer/chrome/linux-1310/chrome'; 
+// ^ This path may differ, so be sure to check your actual build logs or 
+// Render’s file structure to confirm the exact location.
+
+
+// Simple cache
 const cache = new Map();
 const CACHE_DURATION = 3600000; // 1 hour
 
-// Browser instance management
+// Puppeteer Browser Instance
 let browserInstance = null;
 const PAGE_POOL = [];
 const MAX_PAGES = 3;
 
-// Validate Instagram reel URLs - Optimized regex
+// Regex to validate Instagram reel URLs
 const REEL_URL_REGEX = /^https?:\/\/(?:www\.)?instagram\.com\/(?:reel|reels|tv)\/([A-Za-z0-9_-]+)/;
 
+/**
+ * Get or launch the shared Puppeteer browser instance.
+ */
 async function getBrowser() {
-    if (!browserInstance) {
-        browserInstance = await puppeteer.launch({
-         executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
-    headless: true,
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--no-zygote',
-                '--disable-gpu',
-                '--disable-extensions',
-                '--disable-audio-output',
-                '--disable-background-networking',
-                '--disable-background-timer-throttling',
-                '--disable-breakpad',
-                '--disable-component-extensions-with-background-pages',
-                '--disable-features=TranslateUI',
-                '--disable-ipc-flooding-protection',
-                '--disable-renderer-backgrounding',
-                '--enable-features=NetworkService,NetworkServiceInProcess',
-                '--mute-audio',
-                '--no-default-browser-check',
-                '--no-experiments',
-                '--no-pings'
-            ],
-            defaultViewport: { width: 1280, height: 720 }
-        });
-    }
-    return browserInstance;
-}
-
-async function getPage() {
-    // Reuse existing page if available
-    const freePage = PAGE_POOL.find(p => !p.inUse);
-    if (freePage) {
-        freePage.inUse = true;
-        return freePage.page;
-    }
-
-    // Create new page if pool not full
-    if (PAGE_POOL.length < MAX_PAGES) {
-        const browser = await getBrowser();
-        const page = await browser.newPage();
-        
-        // Optimize page settings
-        await Promise.all([
-            page.setRequestInterception(true),
-            page.setDefaultNavigationTimeout(15000),
-            page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
-        ]);
-
-        // Aggressive resource blocking for faster loading
-        page.on('request', (req) => {
-            const resourceType = req.resourceType();
-            if (['image', 'stylesheet', 'font', 'media', 'other'].includes(resourceType) ||
-                req.url().includes('analytics') ||
-                req.url().includes('logging')) {
-                req.abort();
-            } else {
-                req.continue();
-            }
-        });
-
-        PAGE_POOL.push({ page, inUse: true });
-        return page;
-    }
-
-    // Wait for a page to become available
-    return new Promise((resolve) => {
-        const checkInterval = setInterval(async () => {
-            const freePage = PAGE_POOL.find(p => !p.inUse);
-            if (freePage) {
-                clearInterval(checkInterval);
-                freePage.inUse = true;
-                resolve(freePage.page);
-            }
-        }, 100);
+  if (!browserInstance) {
+    browserInstance = await puppeteer.launch({
+      headless: true,
+      // Point Puppeteer to the cached Chrome binary if found; otherwise, Puppeteer will try its default
+      executablePath: CHROME_PATH,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--disable-extensions',
+        '--disable-audio-output',
+        '--disable-background-networking',
+        '--disable-background-timer-throttling',
+        '--disable-breakpad',
+        '--disable-component-extensions-with-background-pages',
+        '--disable-features=TranslateUI',
+        '--disable-ipc-flooding-protection',
+        '--disable-renderer-backgrounding',
+        '--enable-features=NetworkService,NetworkServiceInProcess',
+        '--mute-audio',
+        '--no-default-browser-check',
+        '--no-experiments',
+        '--no-pings',
+      ],
+      defaultViewport: { width: 1280, height: 720 }
     });
+  }
+  return browserInstance;
 }
 
+/**
+ * Acquire a page from our page pool or create a new one if under MAX_PAGES.
+ */
+async function getPage() {
+  const freePage = PAGE_POOL.find(p => !p.inUse);
+  if (freePage) {
+    freePage.inUse = true;
+    return freePage.page;
+  }
+
+  if (PAGE_POOL.length < MAX_PAGES) {
+    const browser = await getBrowser();
+    const page = await browser.newPage();
+    await Promise.all([
+      page.setRequestInterception(true),
+      page.setDefaultNavigationTimeout(15000),
+      page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
+    ]);
+
+    page.on('request', req => {
+      const resourceType = req.resourceType();
+      if (
+        ['image', 'stylesheet', 'font', 'media', 'other'].includes(resourceType) ||
+        req.url().includes('analytics') ||
+        req.url().includes('logging')
+      ) {
+        req.abort();
+      } else {
+        req.continue();
+      }
+    });
+
+    PAGE_POOL.push({ page, inUse: true });
+    return page;
+  }
+
+  // Wait until a page becomes free
+  return new Promise(resolve => {
+    const checkInterval = setInterval(() => {
+      const freePg = PAGE_POOL.find(p => !p.inUse);
+      if (freePg) {
+        clearInterval(checkInterval);
+        freePg.inUse = true;
+        resolve(freePg.page);
+      }
+    }, 100);
+  });
+}
+
+/**
+ * Release a page back into the pool.
+ */
 async function releasePage(page) {
-    const pageEntry = PAGE_POOL.find(p => p.page === page);
-    if (pageEntry) {
-        pageEntry.inUse = false;
-    }
+  const pageEntry = PAGE_POOL.find(p => p.page === page);
+  if (pageEntry) {
+    pageEntry.inUse = false;
+  }
 }
 
+/**
+ * Fetch minimal reel content (title/thumbnail/username) by loading the page.
+ */
 async function fetchReelContent(url, page) {
-    try {
-        // Optimize page load
-        await page.evaluate(() => {
-            window.scrollBy = () => {};
-            window.innerWidth = 1280;
-            window.innerHeight = 720;
-        });
+  try {
+    // Make sure page is in a known state
+    await page.evaluate(() => {
+      window.scrollBy = () => {};
+      window.innerWidth = 1280;
+      window.innerHeight = 720;
+    });
 
-        await page.goto(url, {
-            waitUntil: 'domcontentloaded',
-            timeout: 15000
-        });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    const content = await page.evaluate(() => {
+      const metaTags = {};
+      document.querySelectorAll('meta[property^="og:"]').forEach(meta => {
+        metaTags[meta.getAttribute('property')] = meta.getAttribute('content');
+      });
+      return {
+        thumbnail: metaTags['og:image'] || null,
+        title: document.title?.slice(0, 50) || 'Instagram Reel',
+        username: metaTags['og:title'] || null
+      };
+    });
 
-        // Fast content extraction
-        const content = await page.evaluate(() => {
-            const metaTags = {};
-            document.querySelectorAll('meta[property^="og:"]').forEach(meta => {
-                metaTags[meta.getAttribute('property')] = meta.getAttribute('content');
-            });
-
-            return {
-                thumbnail: metaTags['og:image'] || null,
-                title: document.title?.slice(0, 50) || 'Instagram Reel',
-                username: metaTags['og:title'] || null
-            };
-        });
-
-        return content;
-    } catch (error) {
-        console.error('Error in fetchReelContent:', error);
-        throw error;
-    }
+    return content;
+  } catch (error) {
+    console.error('Error in fetchReelContent:', error);
+    throw error;
+  }
 }
 
+/**
+ * API endpoint to fetch Instagram reel details and return the download URL.
+ */
 app.post('/api/fetch-instagram', async (req, res) => {
-    const { url } = req.body;
-    
-    if (!url || !REEL_URL_REGEX.test(url)) {
-        return res.status(400).json({
-            success: false,
-            message: 'Please provide a valid Instagram reel URL'
-        });
+  const { url } = req.body;
+
+  if (!url || !REEL_URL_REGEX.test(url)) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please provide a valid Instagram reel URL'
+    });
+  }
+
+  try {
+    // Check cache
+    const cachedData = cache.get(url);
+    if (cachedData && (Date.now() - cachedData.timestamp) < CACHE_DURATION) {
+      return res.json(cachedData.data);
     }
 
-    try {
-        // Check cache
-        const cachedData = cache.get(url);
-        if (cachedData && (Date.now() - cachedData.timestamp) < CACHE_DURATION) {
-            return res.json(cachedData.data);
-        }
+    const page = await getPage();
 
-        const page = await getPage();
-        
-        // Parallel fetching with timeout
-        const [content, igResponse] = await Promise.all([
-            fetchReelContent(url, page),
-            Promise.race([
-                instagramGetUrl(url),
-                new Promise((_, reject) => 
-                    setTimeout(() => reject(new Error('Timeout')), 15000)
-                )
-            ])
-        ]);
+    // Parallel fetch: scrape page meta + use instagram-url-direct
+    const [content, igResponse] = await Promise.all([
+      fetchReelContent(url, page),
+      Promise.race([
+        instagramGetUrl(url),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 15000))
+      ])
+    ]);
 
-        await releasePage(page);
+    await releasePage(page);
 
-        if (!igResponse?.url_list?.length) {
-            throw new Error('Failed to fetch reel data');
-        }
-
-        const mediaUrl = igResponse.url_list.find(url => url.includes('.mp4'));
-        const responseData = {
-            success: true,
-            type: 'reel',
-            title: content.title,
-            thumbnail: content.thumbnail,
-            downloadUrl: mediaUrl,
-            mediaType: 'video'
-        };
-
-        // Cache successful responses
-        cache.set(url, {
-            timestamp: Date.now(),
-            data: responseData
-        });
-
-        res.json(responseData);
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Failed to fetch reel: ' + error.message
-        });
+    if (!igResponse?.url_list?.length) {
+      throw new Error('Failed to fetch reel data');
     }
+
+    // Typically reel videos are .mp4
+    const mediaUrl = igResponse.url_list.find(u => u.includes('.mp4'));
+    const responseData = {
+      success: true,
+      type: 'reel',
+      title: content.title,
+      thumbnail: content.thumbnail,
+      downloadUrl: mediaUrl,
+      mediaType: 'video'
+    };
+
+    // Cache the result
+    cache.set(url, {
+      timestamp: Date.now(),
+      data: responseData
+    });
+
+    res.json(responseData);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch reel: ' + error.message
+    });
+  }
 });
 
+/**
+ * Download endpoint to proxy the reel video from Instagram to the client.
+ */
 app.get('/download', async (req, res) => {
-    const { url, filename } = req.query;
-    
-    if (!url) {
-        return res.status(400).json({ 
-            success: false,
-            message: 'Download URL is required' 
-        });
-    }
+  const { url, filename } = req.query;
+  if (!url) {
+    return res.status(400).json({
+      success: false,
+      message: 'Download URL is required'
+    });
+  }
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
 
-    try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 20000);
+    const response = await axios({
+      method: 'GET',
+      url: url,
+      responseType: 'stream',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive'
+      },
+      timeout: 20000,
+      maxContentLength: 200 * 1024 * 1024,
+      signal: controller.signal
+    });
 
-        const response = await axios({
-            method: 'GET',
-            url: url,
-            responseType: 'stream',
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Connection': 'keep-alive'
-            },
-            timeout: 20000,
-            maxContentLength: 200 * 1024 * 1024,
-            signal: controller.signal
-        });
+    clearTimeout(timeout);
 
-        clearTimeout(timeout);
+    // Send file as an attachment
+    res.setHeader('Content-Disposition', `attachment; filename="${filename || 'instagram-reel.mp4'}"`);
+    res.setHeader('Content-Type', 'video/mp4');
 
-        res.setHeader('Content-Disposition', `attachment; filename="${filename || 'instagram-reel.mp4'}"`);
-        res.setHeader('Content-Type', 'video/mp4');
-        
-        // Optimized streaming
-        response.data.pipe(res);
-        
-        response.data.on('error', (error) => {
-            console.error('Stream error:', error);
-            if (!res.headersSent) {
-                res.status(500).json({ success: false, message: 'Download failed' });
-            }
-        });
+    response.data.pipe(res);
 
-    } catch (error) {
-        console.error('Download error:', error);
-        res.status(500).json({ 
-            success: false,
-            message: 'Download failed',
-            details: error.message 
-        });
-    }
+    response.data.on('error', error => {
+      console.error('Stream error:', error);
+      if (!res.headersSent) {
+        res.status(500).json({ success: false, message: 'Download failed' });
+      }
+    });
+  } catch (error) {
+    console.error('Download error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Download failed',
+      details: error.message
+    });
+  }
 });
 
-// Cleanup on exit
+// Clean up Puppeteer when the app exits
 process.on('SIGINT', async () => {
-    if (browserInstance) {
-        await browserInstance.close();
-    }
-    process.exit();
+  if (browserInstance) {
+    await browserInstance.close();
+  }
+  process.exit();
 });
+
 
 
 
