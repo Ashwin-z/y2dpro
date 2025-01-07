@@ -291,7 +291,7 @@ app.get('/download', async (req, res) => {
 
         clearTimeout(timeout);
 
-        res.setHeader('Content-Disposition', `attachment; filename="${filename || 'instagram-reel.mp4'}"`);
+        res.setHeader('Content-Disposition', `y2dpro.com - attachment; filename="${filename || 'instagram-reel.mp4'}"`);
         res.setHeader('Content-Type', 'video/mp4');
         
         // Optimized streaming

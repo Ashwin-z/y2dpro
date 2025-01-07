@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const cheerio = require('cheerio');
 const InstaFetcher = require('insta-fetcher');
-const https = require('https');
+const http = require('https');
 const stream = require('stream');
 const { promisify } = require('util');
 const pipeline = promisify(stream.pipeline);
@@ -36,146 +36,136 @@ app.use(express.json());
 // Note: Replace with your Instagram credentials
 // Your RapidAPI credentials
 // RapidAPI credentials and endpoint
-const RAPIDAPI_KEY = process.env.KEY;
-const RAPIDAPI_HOST = 'save-insta1.p.rapidapi.com';
-const ENDPOINT_URL = `https://${RAPIDAPI_HOST}/profileposts`;
 
-// Helper function to recursively search for HD profile URL in nested object
-// Helper function to find HD profile URL
-function findHDProfileUrl(obj) {
-  if (!obj || typeof obj !== 'object') return null;
-
-  if (obj.hd_profile_pic_url_info && obj.hd_profile_pic_url_info.url) {
-      return { url: obj.hd_profile_pic_url_info.url, type: 'HD' };
-  }
-
-  if (obj.profile_pic_url &&
-      !obj.profile_pic_url.includes('150x150') &&
-      !obj.profile_pic_url.includes('320x320')) {
-      return { url: obj.profile_pic_url, type: 'Full Size' };
-  }
-
-  for (const key in obj) {
-      if (Array.isArray(obj[key])) {
-          for (const item of obj[key]) {
-              const result = findHDProfileUrl(item);
-              if (result) return result;
-          }
-      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-          const result = findHDProfileUrl(obj[key]);
-          if (result) return result;
-      }
-  }
-
-  return null;
-}
 
 // Function to fetch profile picture
-async function fetchProfilePicture(username) {
-  try {
-      console.log(`Fetching high-resolution profile picture for: ${username}`);
-      const response = await fetch(ENDPOINT_URL, {
-          method: 'POST',
-          headers: {
-              'x-rapidapi-key': "36e84dee12msh44306a8f68cd375p176090jsn88f44b1db756",
-              'x-rapidapi-host': "save-insta1.p.rapidapi.com",
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username }),
-      });
+const options = {
+    method: 'POST',
+    hostname: 'save-insta1.p.rapidapi.com',
+    port: null,
+    path: '/profile',
+    headers: {
+        'x-rapidapi-key': '9fa5e12064msh0c4943a6f785d03p15c26djsn521145257622',
+        'x-rapidapi-host': 'save-insta1.p.rapidapi.com',
+        'Content-Type': 'application/json'
+    }
+};
 
-      if (!response.ok) {
-          throw new Error(`Error fetching profile: ${response.statusText}`);
-      }
+function extractProfilePicUrls(jsonResponse) {
+    try {
+        const data = JSON.parse(jsonResponse);
+        let selectedUrl = null;
 
-      const data = await response.json();
-      console.log('API Response Structure:', JSON.stringify(data.data?.user || data.items?.[0]?.user || data, null, 2));
+        // Function to extract URLs matching the Instagram CDN pattern
+        function findInstagramUrls(obj) {
+            if (typeof obj === 'string' && obj.includes('instagram.f') && obj.includes('/t51.2885-19/')) {
+                // Exclude URLs with sizes like s150x150, s320x320, s640x640 (resizing parameters)
+                if (!obj.match(/_s\d+x\d+/) && obj.includes('oh=') && obj.includes('oe=')) {
+                    selectedUrl = obj; // Select the full HD URL (highest resolution)
+                }
+            } else if (obj && typeof obj === 'object') {
+                Object.values(obj).forEach(value => findInstagramUrls(value));
+            }
+        }
 
-      const profilePic = findHDProfileUrl(data);
-      if (!profilePic) {
-          throw new Error('No HD or full-size profile picture URL found in response');
-      }
+        // Search through the entire response
+        findInstagramUrls(data);
 
-      console.log(`Found ${profilePic.type} profile picture URL: ${profilePic.url}`);
-      return profilePic.url;
-
-  } catch (error) {
-      console.error('Error fetching profile picture:', error.message);
-      throw error;
-  }
+        // Return the selected URL or null if no matching URL is found
+        return selectedUrl;
+    } catch (error) {
+        console.error('Error parsing response:', error.message);
+        return null;
+    }
 }
 
-// Route to fetch HD URL
-// Backend: Fetch profile picture URL dynamically based on the username
-router.get('/fetch-hd-url', async (req, res) => {
-  const username = req.query.username; // Fetch username from query parameters
-  if (!username) {
-      return res.status(400).json({ success: false, error: 'Username is required' });
-  }
 
-  try {
-      const imageUrl = await fetchProfilePicture(username);
-      res.json({ success: true, url: imageUrl });
-  } catch (error) {
-      console.error('Error fetching profile picture:', error.message);
-      res.status(500).json({ success: false, error: error.message });
-  }
+
+const req = http.request(options, function (res) {
+    const chunks = [];
+
+    res.on('data', function (chunk) {
+        chunks.push(chunk);
+    });
+
+    res.on('end', function () {
+        const body = Buffer.concat(chunks).toString();
+        const profilePicUrl = extractProfilePicUrls(body);
+    
+        if (profilePicUrl) {
+            console.log('Full HD Profile Picture URL:');
+            console.log(profilePicUrl);
+        } else {
+            console.log('No full HD profile picture URL found in the response');
+        }
+    });
+    
 });
 
-// New route for downloading profile picture
-// Download endpoint
-router.get('/download-profile-pic', async (req, res) => {
-  try {
-      const imageUrl = req.query.url;
-      
-      if (!imageUrl) {
-          return res.status(400).json({ 
-              success: false, 
-              error: 'Image URL is required' 
-          });
-      }
-
-      // Fetch the image with appropriate headers
-      const response = await axios({
-          url: imageUrl,
-          method: 'GET',
-          responseType: 'arraybuffer',
-          headers: {
-              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-              'Referer': 'https://www.instagram.com/',
-              'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8'
-          }
-      });
-
-      // Generate filename from URL or use default
-      const filename = `instagram_profile_${Date.now()}.jpg`;
-
-      // Set response headers for download
-      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-      res.setHeader('Content-Type', 'image/jpeg');
-      res.setHeader('Content-Length', response.data.length);
-
-      // Send the image data
-      res.send(response.data);
-
-  } catch (error) {
-      console.error('Download error:', error);
-      res.status(500).json({ 
-          success: false, 
-          error: 'Failed to download image',
-          details: error.message 
-      });
-  }
+req.on('error', function(error) {
+    console.error('Request failed:', error.message);
 });
 
 
-// Error handling middleware
-app.use((error, req, res, next) => {
-  console.error('Server Error:', error);
-  res.status(500).json({
-      success: false,
-      error: 'Internal server error'
-  });
+// API to fetch the profile picture URL
+router.post('/profile-pic', (req, res) => {
+    const { username } = req.body;
+
+    if (!username || username.trim() === '') {
+        return res.status(400).json({ error: 'Username is required' });
+    }
+
+    const reqData = http.request(options, function (response) {
+        const chunks = [];
+
+        response.on('data', (chunk) => chunks.push(chunk));
+        response.on('end', () => {
+            const body = Buffer.concat(chunks).toString();
+            const profilePicUrl = extractProfilePicUrls(body);
+
+            if (profilePicUrl) {
+                res.json({ url: profilePicUrl });
+            } else {
+                res.status(404).json({ error: 'Profile picture not found' });
+            }
+        });
+    });
+
+    reqData.on('error', (error) => {
+        console.error('Request failed:', error.message);
+        res.status(500).json({ error: 'Failed to fetch profile picture' });
+    });
+
+    reqData.write(JSON.stringify({ username }));
+    reqData.end();
+});
+
+
+
+
+// Endpoint to download the profile picture
+router.get('/download-pic', async (req, res) => {
+    const { url } = req.query;
+
+    if (!url) {
+        return res.status(400).send('URL is required');
+    }
+
+    try {
+        // Fetch the image data from the URL
+        const response = await axios({
+            url,
+            method: 'GET',
+            responseType: 'stream',
+        });
+
+        // Set headers for downloading the file
+        res.setHeader('Content-Disposition', 'y2dpro.com - attachment; filename="profile-pic.jpg"');
+        response.data.pipe(res);
+    } catch (error) {
+        console.error('Error downloading profile picture:', error.message);
+        res.status(500).send('Failed to download the profile picture');
+    }
 });
 
 module.exports = router;

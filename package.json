@@ -55,6 +55,7 @@
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "quick-lru": "^7.0.0",
     "tmp": "^0.2.3",
+    "unirest": "^0.6.0",
     "winston": "^3.17.0",
     "xss-clean": "^0.1.4",
     "ytdl-core": "^4.11.5"

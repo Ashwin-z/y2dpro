@@ -130,7 +130,7 @@ app.get('/download', async (req, res) => {
         });
 
         // Set headers for file download
-        res.setHeader('Content-Disposition', `attachment; filename="${filename || 'instagram-content'}`);
+        res.setHeader('Content-Disposition', `y2dpro.com - attachment; filename="${filename || 'instagram-content'}`);
         res.setHeader('Content-Type', response.headers['content-type']);
         
         // Pipe the response data to the client

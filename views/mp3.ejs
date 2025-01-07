@@ -412,14 +412,15 @@ nav ul{
                 <a href="terms" class="t-and-c-link">Terms of use</a>
             </p>
             <div class="loader" id="loader" style="display:none;"></div>
-            <div class="button-group" style="display: none;" id="action-buttons">
-                <button class="size" id="sizebtn"> 
-                    View Pic         <i class="fa-solid fa-eye" style="background:none; color: #800020;"></i>
-                </button>
-                <button class="download" id="downloadBtn">
-                    Download <i class="fas fa-download"></i>
-                </button>
-            </div>
+            <div class="button-group" id="action-buttons" style="display: none;">
+              <button class="size" id="sizebtn"> 
+                  View Pic <i class="fa-solid fa-eye" style="background:none; color: #800020;"></i>
+              </button>
+              <button class="download" id="downloadBtn">
+                  Download <i class="fas fa-download"></i>
+              </button>
+          </div>
+          
         </div>
   <div class="after-cont">
     <div class="shit">
@@ -808,79 +809,64 @@ document.addEventListener("DOMContentLoaded", function() {
 // JavaScript
 // Client-side JavaScript
 // Frontend JavaScript
-let hdUrl = '';  
 
 document.getElementById('start-btn').addEventListener('click', async () => {
+    const username = document.getElementById('txt-url').value.trim();
     const loader = document.getElementById('loader');
     const actionButtons = document.getElementById('action-buttons');
-    const startBtn = document.getElementById('start-btn');
-    const usernameInput = document.getElementById('txt-url').value.trim();
+    const viewPicBtn = document.getElementById('sizebtn');
+    const downloadBtn = document.getElementById('downloadBtn');
 
-    if (!usernameInput) {
+    // Hide action buttons initially
+    actionButtons.style.display = 'none';
+
+    if (!username) {
         alert('Please enter a valid Instagram username.');
         return;
     }
 
+    // Show loader while fetching the profile picture
     loader.style.display = 'block';
-    actionButtons.style.display = 'none';
 
     try {
-        // Send username to the backend
-        const response = await fetch(`/fetch-hd-url?username=${encodeURIComponent(usernameInput)}`);
+        // Fetch the profile picture URL from the server
+        const response = await fetch('/profile-pic', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username }),
+        });
+
         const data = await response.json();
 
-        if (data.success && data.url) {
-            hdUrl = data.url;
-            console.log(`Fetched URL: ${hdUrl}`);
-            loader.style.display = 'none';
+        if (data.url) {
+            // Show action buttons after fetching the profile picture
             actionButtons.style.display = 'block';
+
+            // Set up View Pic button
+            viewPicBtn.onclick = () => window.open(data.url, '_blank');
+
+            // Set up Download button
+            downloadBtn.onclick = () => {
+                const downloadUrl = `/download-pic?url=${encodeURIComponent(data.url)}`;
+                const anchor = document.createElement('a');
+                anchor.href = downloadUrl;
+                anchor.download = 'y2dpro.com - profile-pic.jpg'; // Optional: Specify a filename
+                anchor.click();
+            };
         } else {
-            alert('Failed to fetch the profile picture URL. Ensure the username is correct.');
+            alert(data.error || 'Profile picture not found.');
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred while fetching the profile picture.');
+        console.error('Error fetching profile picture:', error);
+        alert('An error occurred. Please try again.');
     } finally {
+        // Hide the loader after the process is complete
         loader.style.display = 'none';
     }
 });
 
-// Size button
-document.getElementById('sizebtn').addEventListener('click', () => {
-    if (hdUrl) {
-        window.open(hdUrl, '_blank');
-    }
-});
-
-// Download button
-document.getElementById('downloadBtn').addEventListener('click', async () => {
-    if (hdUrl) {
-        try {
-            const downloadBtn = document.getElementById('downloadBtn');
-            downloadBtn.innerHTML = 'Downloading...';
-            downloadBtn.disabled = true;
-
-            const response = await fetch(`/download-profile-pic?url=${encodeURIComponent(hdUrl)}`);
-            if (!response.ok) throw new Error('Download failed');
-            
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `instagram_profile_${Date.now()}.jpg`;
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            document.body.removeChild(a);
-        } catch (error) {
-            console.error('Download error:', error);
-            alert('Error downloading the image. Please try again.');
-        } finally {
-            downloadBtn.innerHTML = 'Download <i class="fas fa-download"></i>';
-            downloadBtn.disabled = false;
-        }
-    }
-});
 
 
 
