@@ -45,7 +45,7 @@ const options = {
     port: null,
     path: '/profile',
     headers: {
-        'x-rapidapi-key': '9fa5e12064msh0c4943a6f785d03p15c26djsn521145257622',
+        'x-rapidapi-key': process.env.RAPIDAPI_KEY,
         'x-rapidapi-host': 'save-insta1.p.rapidapi.com',
         'Content-Type': 'application/json'
     }
