@@ -363,7 +363,7 @@ background: none;
                   id="txt-url" 
                   name="url" 
                   type="text" 
-                  placeholder="Paste link here..." 
+                  placeholder="Search or paste link here..." 
                   autocomplete="off"
                   required
               >
@@ -871,7 +871,7 @@ function showMessage(urlType) {
         nextLink.style.display = 'none';
     }
 }
-// In your frontend JavaScript, modify the API fetch handling:
+
 downloadForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const url = urlInput.value.trim();
@@ -880,6 +880,7 @@ downloadForm.addEventListener('submit', async (e) => {
     if (!urlValidation.isValid) {
         showMessage(urlValidation.type);
         if (urlValidation.type === 'invalid') {
+            // Use SweetAlert2 for invalid URL error
             Swal.fire({
                 icon: 'error',
                 title: 'Invalid URL',
@@ -921,8 +922,7 @@ downloadForm.addEventListener('submit', async (e) => {
         if (data.type === 'profile') {
             addTableRow('Profile Picture', data.thumbnail);
         } else {
-            // Use the detected mediaType
-            const format = data.mediaType;
+            const format = data.mediaType === 'video' ? 'Video' : 'Image';
             addTableRow(format, data.downloadUrl);
         }
 
@@ -930,6 +930,7 @@ downloadForm.addEventListener('submit', async (e) => {
         tableContainer.style.display = 'block';
 
     } catch (error) {
+        // Use SweetAlert2 for any errors during fetch
         Swal.fire({
             icon: 'error',
             title: 'Oops!',
@@ -941,18 +942,16 @@ downloadForm.addEventListener('submit', async (e) => {
     }
 });
 
-// Modify the addTableRow function with better type detection
+
 function addTableRow(format, downloadUrl) {
-    const isVideo = format.toLowerCase() === 'video' || downloadUrl.includes('.mp4');
-    const extension = isVideo ? 'mp4' : 'jpg';
-    const contentType = isVideo ? 'video' : 'image';
+    const extension = format.toLowerCase() === 'video' ? 'mp4' : 'jpg';
     
     const row = document.createElement('tr');
     row.innerHTML = `
-        <td>${contentType.charAt(0).toUpperCase() + contentType.slice(1)}</td>
+        <td>${format}</td>
         <td>
-            <a href="/download?url=${encodeURIComponent(downloadUrl)}&filename=instagram-${contentType}.${extension}&type=${contentType}" 
-               class="styled-button download-btn">
+            <a href="/download?url=${encodeURIComponent(downloadUrl)}&filename=${encodeURIComponent(format)}.${extension}" 
+               class="styled-button download-btn" target="_blank">
                 <span class="icon"><i class="fas fa-download"></i></span>
                 Download
             </a>
@@ -960,6 +959,7 @@ function addTableRow(format, downloadUrl) {
     `;
     tableBody.appendChild(row);
 }
+
 
 
 
