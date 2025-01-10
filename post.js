@@ -72,21 +72,12 @@ async function fetchInstagramContent(url) {
 router.post('/api/fetch-instagram-post', async (req, res) => {
     const { url } = req.body;
 
-    // Post URL pattern
-    const POST_URL_PATTERN = /^https?:\/\/(?:www\.)?instagram\.com\/p\/([A-Za-z0-9_-]+)/;
-
-    // Ensure URL is provided and is a post URL
-    if (!url || !POST_URL_PATTERN.test(url)) {
-        return res.status(400).json({ 
-            success: false, 
-            message: 'Please provide a valid Instagram post URL' 
-        });
-    }
-
     try {
-        // Rest of your existing post download logic
         const content = await fetchInstagramContent(url);
         const igResponse = await instagramGetUrl(url);
+
+        // Improved media type detection
+        const mediaType = await detectMediaType(igResponse?.url_list?.[0]);
 
         res.json({
             success: true,
@@ -95,7 +86,7 @@ router.post('/api/fetch-instagram-post', async (req, res) => {
             thumbnail: content.thumbnail,
             username: content.username,
             downloadUrl: igResponse?.url_list?.[0] || null,
-            mediaType: igResponse?.url_list?.some(url => url.includes('.mp4')) ? 'video' : 'image'
+            mediaType
         });
     } catch (error) {
         console.error('Error:', error);
@@ -103,12 +94,40 @@ router.post('/api/fetch-instagram-post', async (req, res) => {
     }
 });
 
-// Download endpoint
+// Add this new helper function for media type detection
+async function detectMediaType(url) {
+    if (!url) return null;
+    
+    try {
+        // First check the URL pattern
+        if (url.includes('.mp4')) return 'video';
+        if (url.includes('.jpg') || url.includes('.jpeg') || url.includes('.png')) return 'image';
+
+        // If no clear extension, make a HEAD request
+        const response = await axios({
+            method: 'HEAD',
+            url: url,
+            timeout: 5000
+        });
+
+        const contentType = response.headers['content-type'];
+        if (contentType.includes('video')) return 'video';
+        if (contentType.includes('image')) return 'image';
+
+        // Default to image if we can't determine type
+        return 'image';
+    } catch (error) {
+        console.error('Error detecting media type:', error);
+        // If we can't detect, check URL for common patterns
+        return url.includes('video') ? 'video' : 'image';
+    }
+}
+
+// Update the download endpoint
 app.get('/download', async (req, res) => {
     try {
-        const { url, filename } = req.query;
+        const { url, filename, type } = req.query;
 
-        // Ensure URL is provided
         if (!url) {
             return res.status(400).json({
                 success: false,
@@ -116,24 +135,28 @@ app.get('/download', async (req, res) => {
             });
         }
 
-        console.log(`Starting download for URL: ${url}`);  // Log URL being downloaded
-
-        // Fetch the content and pipe the response to the client
+        // Use the detectMediaType function
+        const detectedType = await detectMediaType(url);
+        
         const response = await axios({
             method: 'GET',
             url: url,
             responseType: 'stream',
+            timeout: 30000,
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-            },
-            timeout: 30000
+            }
         });
 
-        // Set headers for file download
-        res.setHeader('Content-Disposition', `y2dpro.com - attachment; filename="${filename || 'instagram-content'}`);
-        res.setHeader('Content-Type', response.headers['content-type']);
-        
-        // Pipe the response data to the client
+        // Set proper content type based on detected type
+        const contentType = detectedType === 'video' ? 'video/mp4' : 'image/jpeg';
+        const extension = detectedType === 'video' ? 'mp4' : 'jpg';
+
+        res.setHeader('Content-Type', contentType);
+        res.setHeader('Content-Disposition', `attachment; filename="${filename || `instagram-${detectedType}.${extension}`}"`);
+        res.setHeader('Content-Length', response.headers['content-length']);
+        res.setHeader('X-Content-Type-Options', 'nosniff');
+
         response.data.pipe(res);
 
     } catch (error) {
@@ -145,5 +168,4 @@ app.get('/download', async (req, res) => {
         });
     }
 });
-
 module.exports = router;

@@ -9,9 +9,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Youtube converter</title>
+    <title>Instagram Posts Downloader || Posts | Reels | DP</title>
     <link rel="stylesheet" href="css/style.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <style>
 body {
       font-family: Arial, sans-serif;
@@ -141,6 +141,32 @@ nav ul{
   text-align: center;
 
 }
+
+@media (max-width: 601px) {
+  .pg-link {
+        background: none;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: small;
+        color: black;
+    }
+}
+
+@media (max-width: 400px) {
+  .page {
+    display: inline-block;
+    margin-right: 11px;
+    background: none;
+}
+}
+
+@media (min-width: 440px) {
+  .page {
+    display: inline-block;
+    margin-right: 25px;
+    background: none;
+}
+}
 @media (min-width: 920px) {
 .red-p {
     margin-top: 16px;
@@ -184,12 +210,76 @@ nav ul{
 }
 }
 
+.bun {
+    background: none;
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 17px;
+}
 
+.page{
 
+display: inline-block;
+margin-right: 15px;
+background: none;
+}
+@media (min-width: 440px) {
+    .page {
+        display: inline-block;
+        margin-right: 25px;
+        background: none;
+    }
+}
+.pg-link[href="/"] {
+    width: 200px;
+    /* height: 200px; */
+    background-color: #ddd;
+    z-index: 1;
+    padding: 0.656rem;
+    position: relative;
 
+    border-bottom: 4px solid #e0e0e0;
+    /* border-top: 2px solid purple; */
+    /* border-left: 2px solid purple; */
+    /* border-right: 2px solid purple; */
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
 
-
-
+.pg-link:hover {
+    width: 200px;
+    /* height: 200px; */
+    background-color: #ddd;
+    z-index: 1;
+    padding: 0.656rem;
+    position: relative;
+    border-bottom-style: 1px solid cornsilk;
+    border-bottom: 2px solid #e0e0e0;
+    /* border-top: 2px solid purple; */
+    /* border-left: 2px solid purple; */
+    /* border-right: 2px solid purple; */
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+@media (min-width: 602px) {
+    .pg-link {
+        background: none;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: larger;
+        color: black;
+    }
+}
+.next-link{
+  background: white;
+    text-align: center;
+    font-size: small;
+    /* margin-top: 6px; */
+    padding-top: 8px;
+    color: red;
+    font-weight: 600;
+}
     </style>
 </head>
 <body>
@@ -198,7 +288,7 @@ nav ul{
         
         <a href="/">
           <img class="logo-img" src="/images/favicon2.png" height="50px" width="50px" alt=""></a>
-          <p class="logo-name"><a href="/" style="text-decoration: none; color: #800020;">Y2DPro</a></p>
+          <p class="logo-name"><a href="/" style="text-decoration: none; color: #800020;">SaveReelify</a></p>
        
        </div>
        <input type="checkbox" id="click">
@@ -213,7 +303,7 @@ nav ul{
 
 
           <li class="lem" style=""><a class="poondi" href="#" style="padding: 0;">    <div class="dropdown">
-            <span id="selectedItem">English</span> <strong class="dog"><i style="background: none;" class="fa-solid fa-caret-down"></i></strong>
+            <span id="selectedItem">English  <i style="background: none;" class="fa-solid fa-caret-down"></i></span> <strong class="dog"></strong>
             <div class="dropdown-content" style="cursor: pointer;">
               <a style="background-color: #e0e0e0" id="reloadLink" class="dropdown-item" onclick="selectItem('English')" data-reload lang="English">English</a>
               <a style="background-color: #e0e0e0" class="dropdown-item" onclick="selectItem('Chinese')" data-reload lang="Chinese">Chinese</a>
@@ -245,6 +335,26 @@ nav ul{
     
           <h1 class="cont-heading">Instagram Post Downloader - Video, Image...
           </h1>
+          <ul class="bun">
+            <li class="page">
+              <a class="pg-link act" href="/index">
+                <strong class="sahi" style="background: none;position: relative; top: 11px;">
+                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="10px" height="2rem" viewBox="0 0 122.14 122.88" style="background: none; enable-background:new 0 0 122.14 122.88;" xml:space="preserve" width="2rem">
+                    <g>
+                      <path d="M35.14,0H87c9.65,0,18.43,3.96,24.8,10.32c6.38,6.37,10.34,15.16,10.34,24.82v52.61c0,9.64-3.96,18.42-10.32,24.79 l-0.02,0.02c-6.38,6.37-15.16,10.32-24.79,10.32H35.14c-9.66,0-18.45-3.96-24.82-10.32l-0.24-0.27C3.86,105.95,0,97.27,0,87.74 V35.14c0-9.67,3.95-18.45,10.32-24.82S25.47,0,35.14,0L35.14,0z M91.51,31.02l0.07,0.11h21.6c-0.87-5.68-3.58-10.78-7.48-14.69 C100.9,11.64,94.28,8.66,87,8.66h-8.87L91.51,31.02L91.51,31.02z M81.52,31.13L68.07,8.66H38.57l13.61,22.47H81.52L81.52,31.13z M42.11,31.13L28.95,9.39c-4.81,1.16-9.12,3.65-12.51,7.05c-3.9,3.9-6.6,9.01-7.48,14.69H42.11L42.11,31.13z M113.48,39.79H8.66 v47.96c0,7.17,2.89,13.7,7.56,18.48l0.22,0.21c4.8,4.8,11.43,7.79,18.7,7.79H87c7.28,0,13.9-2.98,18.69-7.77l0.02-0.02 c4.79-4.79,7.77-11.41,7.77-18.69V39.79L113.48,39.79z M50.95,54.95l26.83,17.45c0.43,0.28,0.82,0.64,1.13,1.08 c1.22,1.77,0.77,4.2-1,5.42L51.19,94.67c-0.67,0.55-1.53,0.88-2.48,0.88c-2.16,0-3.91-1.75-3.91-3.91V58.15h0.02 c0-0.77,0.23-1.55,0.7-2.23C46.76,54.15,49.19,53.72,50.95,54.95L50.95,54.95L50.95,54.95z" fill="#800020">
+                      </path>
+                    </g>
+                  </svg>  </strong>
+                Reels
+              </a>
+            </li>
+                        <li class="page"><a class="pg-link" href="/"><strong style="background: none;position: relative; top: 11px;"><?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="2rem" width="2rem" x="0px" y="0px" viewBox="0 0 122.88 122.88" style="enable-background:new 0 0 122.88 122.88; background: none;" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M61.44,0c33.93,0,61.44,27.51,61.44,61.44s-27.51,61.44-61.44,61.44S0,95.37,0,61.44S27.51,0,61.44,0L61.44,0z M83.31,65.24c3.13-2.02,3.12-4.27,0-6.06L50.98,40.6c-2.55-1.6-5.21-0.66-5.14,2.67l0.1,37.55c0.22,3.61,2.28,4.6,5.32,2.93 L83.31,65.24L83.31,65.24z M61.44,12.48c27.04,0,48.96,21.92,48.96,48.96c0,27.04-21.92,48.96-48.96,48.96S12.48,88.48,12.48,61.44 C12.48,34.4,34.4,12.48,61.44,12.48L61.44,12.48z" fill="#800020"/></g></svg></strong> Posts</a></li>
+            <li class="page"><a class="pg-link" href="/mp3"><strong style="background: none;position: relative; top: 11px;"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="2rem" width="2rem" viewBox="0 0 121.699 122.879" enable-background="background: none; new 0 0 121.699 122.879" xml:space="preserve" style="
+              background: none;
+          "><g><path fill="#800020" d="M53.613,0c14.79,0,28.202,6.018,37.918,15.694c9.715,9.716,15.693,23.089,15.693,37.918 c0,10.817-3.225,20.926-8.732,29.343l23.207,25.292l-16.008,14.632L83.311,98.256c-8.498,5.664-18.725,8.969-29.698,8.969 c-14.79,0-28.203-6.019-37.918-15.694C5.979,81.814,0,68.44,0,53.612c0-14.79,6.018-28.202,15.695-37.918 C25.41,5.979,38.784,0,53.613,0L53.613,0z M37.534,33.9c7.813-8.622,16.834-13.305,23.597-5.639 c1.773,0.084,3.359,0.671,4.684,1.921c2.781,2.615,3.213,7.508,1.941,11.394v3.392c0.861,0.567,1.418,1.628,1.67,2.835 c0.168,0.777,0.211,1.638,0.125,2.457c-0.082,0.851-0.293,1.659-0.629,2.332c-0.482,0.956-1.219,1.627-2.215,1.774 c-0.979,1.04-1.934,2.153-2.783,3.224c-0.936,1.176-1.734,2.289-2.289,3.203c-0.432,0.704-0.295,1.166-0.137,1.691 c0.072,0.262,0.156,0.535,0.209,0.829c1.713,0.367,3.256,0.661,4.643,0.924c8.811,1.648,14.01,2.163,14.01,13.631 c0,0.588-0.473,1.061-1.061,1.061H30.697c-0.588,0-1.061-0.473-1.061-1.061c0-11.468,5.189-11.982,14.01-13.631 c1.397-0.263,2.961-0.557,4.673-0.924c0.063-0.231,0.137-0.441,0.21-0.651c0.178-0.504,0.357-1.008-0.168-1.858 c-0.557-0.914-1.355-2.026-2.289-3.203c-0.851-1.071-1.807-2.184-2.783-3.224c-0.998-0.146-1.733-0.819-2.216-1.774 c-0.336-0.662-0.546-1.481-0.63-2.331c-0.074-0.819-0.032-1.68,0.126-2.458c0.252-1.208,0.798-2.258,1.648-2.825l-1.145-0.683 c-0.304-3.392,0.588-9.283-3.55-10.396L37.534,33.9L37.534,33.9z M87.283,19.942C78.668,11.328,66.75,5.979,53.613,5.979 c-13.138,0-25.056,5.35-33.67,13.963c-8.614,8.614-13.964,20.532-13.964,33.67c0,13.138,5.35,25.056,13.964,33.67 c8.614,8.614,20.532,13.964,33.67,13.964c13.137,0,25.055-5.35,33.67-13.964c8.613-8.614,13.963-20.532,13.963-33.67 C101.246,40.474,95.896,28.556,87.283,19.942L87.283,19.942L87.283,19.942z"></path></g></svg></strong>DP</a></li>
+          <li class="page"><a class="pg-link" href="/coming-soon"><strong style="background: none;position: relative; top: 11px;"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" height="2rem" width="2rem" viewBox="0 0 122.64 122.88" style="background: none;"><path fill="#800020"d="M104,31.15c2.31,5.65,5.11,11.94,6.52,17.55a51.83,51.83,0,0,1,1.54,15.24,50.9,50.9,0,0,1-3,15,49.87,49.87,0,0,1-7.24,13.23A49.12,49.12,0,0,1,91,102.49h0a54.85,54.85,0,0,1-4.74,3q-2.44,1.38-5,2.49a52,52,0,0,1-11.38,3.56,49.5,49.5,0,0,1-11.67.82L57,112.28l-2.76,10.28,1.89.15A60.44,60.44,0,0,0,71.05,122a63,63,0,0,0,14.51-4.42q2.94-1.3,5.83-2.93c1.87-1.06,3.75-2.25,5.62-3.55A59.59,59.59,0,0,0,119,82.48,61.68,61.68,0,0,0,120.7,46.1c-2-5.77-4.18-13.39-8.31-19.22-2.73-3.86-10.73-1.57-8.35,4.27ZM56,44.74a5.34,5.34,0,1,1,10.67,0V56.1H78a5.34,5.34,0,0,1,0,10.68H66.66V78.14a5.34,5.34,0,1,1-10.67,0V66.78H44.62a5.34,5.34,0,1,1,0-10.68H56V44.74ZM24.25,110.36a59.9,59.9,0,0,0,11.46,7l1.69.79,2.75-10.25L39,107.35a49.27,49.27,0,0,1-8.38-5.28,50.34,50.34,0,0,1-7.25-6.93l-.85-1-9.17,5.29,1.18,1.43a61.27,61.27,0,0,0,9.72,9.48ZM.57,69.53A59.49,59.49,0,0,0,4,82.67l.65,1.72,9.17-5.29-.44-1.24a49.32,49.32,0,0,1-2.4-9.72,48.75,48.75,0,0,1-.37-10l.07-1.29L.41,54.15.24,56A58.82,58.82,0,0,0,.57,69.53ZM8.38,31c-.92,1.55-1.75,3.11-2.51,4.7l-.81,1.7,10.25,2.75L15.89,39c.58-1.13,1.19-2.23,1.83-3.29s1.35-2.13,2.1-3.17a61.6,61.6,0,0,1,3.9-4.93A53.89,53.89,0,0,1,28,23.22l.93-.85-5.31-9.21-1.44,1.25a66.4,66.4,0,0,0-5.74,5.65,72.56,72.56,0,0,0-5.15,6.41c-1.05,1.48-2,3-2.92,4.5ZM50.44.78A54.27,54.27,0,0,0,40.27,3.52l-1.74.65,5.3,9.18,1.22-.43a44.39,44.39,0,0,1,15.71-2.43c1.21,0,2.48.11,3.79.26s2.51.33,3.74.58,2.55.56,3.8.93,2.5.8,3.79,1.3h0a5.24,5.24,0,1,0,3.79-9.77C78.15,3.2,76.59,2.67,75,2.2s-3.12-.84-4.65-1.15S67.28.5,65.76.33,62.63.05,61,0A55.87,55.87,0,0,0,50.44.78Z"/></svg></strong> Stories</a></li>
+
+        </ul>
           <div class="search-div">
             <form class="search" id="download-form" action="javascript:void(0)">
               <input 
@@ -257,7 +367,7 @@ nav ul{
                   autocomplete="off"
                   required
               >
-              <button type="submit" class="start-btn" id="start-btn">
+              <button type="submit" class="start-btn" id="start-btn" style="cursor: pointer;">
                   <span class="hidden-xs">Start </span><i class="fas fa-arrow-right"></i>
               </button>
           </form>
@@ -265,6 +375,7 @@ nav ul{
             You are using our service by accepting our
             <a href="terms" class="t-and-c-link">Terms of use</a>
         </p>
+        <p class="next-link" style="display: none;">Dear User This URL Is A {Reel/Prodile Picture} URL too download {Reel/Profile Picture} Click <a href="/index or /mp3" style="background: none;"> Here</a></Prodile></p>
     </div>
     
     <div class="loader" style="display:none;"></div>
@@ -277,7 +388,7 @@ nav ul{
     <div class="table-container" style="display:none;">
         <ul>
             <li><a href="#" class="video"><i class="fas fa-video icon"></i>Video</a></li>
-            <li><a href="#" class="audio"><i class="fas fa-volume-up icon"></i>Audio</a></li>
+
         </ul>
         <table>
             <thead>
@@ -301,12 +412,12 @@ nav ul{
         </strong>
     </h2>
 
-    <p class="lot2">      y2dpro.com is your
+    <p class="lot2">      savereelify.com is your
       go-to website for effortlessly
        downloading Instagram reels, posts,
         and profile pictures without the hassle of 
         registration. Designed for user convenience,
-         y2dpro.com allows unlimited downloads, making 
+         savereelify.com allows unlimited downloads, making 
          it perfect for anyone looking to save their 
          favorite Instagram content. Simply enter the
           URL or username, and in just a few clicks, 
@@ -321,11 +432,11 @@ nav ul{
     <div class="inst-cont">
             
 
-        <h2 class="instruction-h2">How to Download Instagram Posts on Y2DPro.com?</h2><br>
+        <h2 class="instruction-h2">How to Download Instagram Posts on savereelify.com?</h2><br>
         <p class="p1"><b style="font-weight: 440;">1.</b>Copy URL:<br>
         <li class="rt1" style="">Copy the Instagram Post URL.</li> </p><br>
-        <p id="lom1" class="p1"><b style="font-weight: 440;">2.</b>Visit Y2DPro.com:<br>
-            <li class="rt2">Go to Y2DPro.com.</li> </p><br>
+        <p id="lom1" class="p1"><b style="font-weight: 440;">2.</b>Visit savereelify.com:<br>
+            <li class="rt2">Go to savereelify.com.</li> </p><br>
 
             <p id="lom2" class="p1"><b style="font-weight: 440;">3.</b>Paste and Start:<br>
                 <li class="rt3" style="margin-bottom: 9px;">Paste the URL in the search and click start button for processing.</li> </p>
@@ -393,9 +504,9 @@ nav ul{
 <hr class="foot-lakeer">
 
 <footer class="footer">
-  <p class="copyright">@ 2025 Y2DPro.com</p>
+  <p class="copyright">@ 2025 savereelify.com</p>
   <div class="footer-address">
-    <p><a href="/">Y2DPro.com</a></p>
+    <p><a href="/">savereelify.com</a></p>
     <p><a href="/">Instagram Downloader</a></p>
     <p><a href="/index">Instagram Post Downloader</a></p>
     <p><a href="/mp3">Insta Profile Pic Downloader</a></p>
@@ -413,9 +524,9 @@ nav ul{
     <p><a href="/terms">Terms of Service</a></p>
     <p><a href="/privacy-policy">Privacy Policy</a></p>
   </div>
-  <p class="copyright">©Copyright Y2DPro.com </p>
+  <p class="copyright">©Copyright savereelify.com </p>
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function selectItem(item) {
       var h1 = document.querySelector(".cont-heading");
@@ -429,13 +540,13 @@ nav ul{
         h1.textContent = "Instagram帖子下载器 - 视频, 图片...";
 document.querySelector('.t-and-c-p').childNodes[0].textContent = "通过接受我们的服务条款，您正在使用我们的服务";
 document.querySelector('.lot1').textContent = "Instagram下载器。";
-document.querySelector('.lot2').textContent = "y2dpro.com 是您下载 Instagram Reels、帖子和个人资料照片的首选网站，无需注册即可轻松完成。y2dpro.com 专为用户友好设计，支持无限下载，是保存您喜爱的 Instagram 内容的完美选择。只需输入 URL 或用户名，几次点击即可直接下载高质量的内容到您的设备。享受无缝安全的体验，没有隐藏费用或注册要求！";
-document.querySelector('.instruction-h2').textContent = "如何在 Y2DPro.com 上下载 Instagram 帖子？";
+document.querySelector('.lot2').textContent = "savereelify.com 是您下载 Instagram Reels、帖子和个人资料照片的首选网站，无需注册即可轻松完成。savereelify.com 专为用户友好设计，支持无限下载，是保存您喜爱的 Instagram 内容的完美选择。只需输入 URL 或用户名，几次点击即可直接下载高质量的内容到您的设备。享受无缝安全的体验，没有隐藏费用或注册要求！";
+document.querySelector('.instruction-h2').textContent = "如何在 savereelify.com 上下载 Instagram 帖子？";
 document.querySelector('.p1').textContent = "1.复制链接：";
 document.querySelector('.rt1').textContent = "复制 Instagram 帖子的链接。";
-document.querySelector('#lom1').textContent = "2.访问 Y2DPro.com：";
+document.querySelector('#lom1').textContent = "2.访问 savereelify.com：";
 document.querySelector('#lom2').textContent = "3.粘贴并开始：";
-document.querySelector('.rt2').textContent = "打开 Y2DPro.com。";
+document.querySelector('.rt2').textContent = "打开 savereelify.com。";
 document.querySelector('.rt3').textContent = "将链接粘贴到搜索框中，然后点击开始按钮进行处理。";
 document.querySelector('.rt4').textContent = "点击 '开始'。";
 document.querySelector('#lom3').textContent = "4.下载文件：";
@@ -454,13 +565,13 @@ document.querySelector('#llp4').textContent = "只需复制 Instagram 帖子/Ree
         h1.textContent = "Descargador de publicaciones de Instagram - Vídeo, imagen...";
 document.querySelector('.t-and-c-p').childNodes[0].textContent = "Al aceptar nuestros términos de servicio, estás utilizando nuestro servicio";
 document.querySelector('.lot1').textContent = "Descargador de Instagram.";
-document.querySelector('.lot2').textContent = "y2dpro.com es tu sitio web ideal para descargar Reels de Instagram, publicaciones y fotos de perfil sin complicaciones ni registros. Diseñado para la comodidad del usuario, y2dpro.com permite descargas ilimitadas, siendo perfecto para guardar tu contenido favorito de Instagram. Simplemente ingresa la URL o nombre de usuario, y con unos pocos clics, podrás descargar contenido de alta calidad directamente en tu dispositivo. ¡Disfruta de una experiencia segura y sin problemas, sin costos ocultos ni registros!";
-document.querySelector('.instruction-h2').textContent = "¿Cómo descargar publicaciones de Instagram en Y2DPro.com?";
+document.querySelector('.lot2').textContent = "savereelify.com es tu sitio web ideal para descargar Reels de Instagram, publicaciones y fotos de perfil sin complicaciones ni registros. Diseñado para la comodidad del usuario, savereelify.com permite descargas ilimitadas, siendo perfecto para guardar tu contenido favorito de Instagram. Simplemente ingresa la URL o nombre de usuario, y con unos pocos clics, podrás descargar contenido de alta calidad directamente en tu dispositivo. ¡Disfruta de una experiencia segura y sin problemas, sin costos ocultos ni registros!";
+document.querySelector('.instruction-h2').textContent = "¿Cómo descargar publicaciones de Instagram en savereelify.com?";
 document.querySelector('.p1').textContent = "1. Copia la URL:";
 document.querySelector('.rt1').textContent = "Copia la URL de la publicación de Instagram.";
-document.querySelector('#lom1').textContent = "2. Visita Y2DPro.com:";
+document.querySelector('#lom1').textContent = "2. Visita savereelify.com:";
 document.querySelector('#lom2').textContent = "3. Pega y comienza:";
-document.querySelector('.rt2').textContent = "Abre Y2DPro.com.";
+document.querySelector('.rt2').textContent = "Abre savereelify.com.";
 document.querySelector('.rt3').textContent = "Pega la URL en la barra de búsqueda y haz clic en el botón de inicio para procesar.";
 document.querySelector('.rt4').textContent = "Haz clic en 'Comenzar'.";
 document.querySelector('#lom3').textContent = "4. Descarga el archivo:";
@@ -481,13 +592,13 @@ document.querySelector('#llp4').textContent = "Simplemente copia el enlace de la
           h1.textContent = "Téléchargeur de publications Instagram - Vidéo, image...";
 document.querySelector('.t-and-c-p').childNodes[0].textContent = "En acceptant nos conditions d'utilisation, vous utilisez notre service";
 document.querySelector('.lot1').textContent = "Téléchargeur Instagram.";
-document.querySelector('.lot2').textContent = "y2dpro.com est votre site incontournable pour télécharger facilement les Reels, publications et photos de profil Instagram sans tracas ni inscription. Conçu pour le confort des utilisateurs, y2dpro.com permet des téléchargements illimités, idéal pour sauvegarder votre contenu préféré d'Instagram. Il vous suffit d'entrer l'URL ou le nom d'utilisateur, et en quelques clics, vous pouvez télécharger du contenu de haute qualité directement sur votre appareil. Profitez d'une expérience fluide et sécurisée, sans frais cachés ni inscriptions!";
-document.querySelector('.instruction-h2').textContent = "Comment télécharger des publications Instagram sur Y2DPro.com ?";
+document.querySelector('.lot2').textContent = "savereelify.com est votre site incontournable pour télécharger facilement les Reels, publications et photos de profil Instagram sans tracas ni inscription. Conçu pour le confort des utilisateurs, savereelify.com permet des téléchargements illimités, idéal pour sauvegarder votre contenu préféré d'Instagram. Il vous suffit d'entrer l'URL ou le nom d'utilisateur, et en quelques clics, vous pouvez télécharger du contenu de haute qualité directement sur votre appareil. Profitez d'une expérience fluide et sécurisée, sans frais cachés ni inscriptions!";
+document.querySelector('.instruction-h2').textContent = "Comment télécharger des publications Instagram sur savereelify.com ?";
 document.querySelector('.p1').textContent = "1. Copiez l'URL :";
 document.querySelector('.rt1').textContent = "Copiez l'URL de la publication Instagram.";
-document.querySelector('#lom1').textContent = "2. Visitez Y2DPro.com :";
+document.querySelector('#lom1').textContent = "2. Visitez savereelify.com :";
 document.querySelector('#lom2').textContent = "3. Collez et commencez :";
-document.querySelector('.rt2').textContent = "Ouvrez Y2DPro.com.";
+document.querySelector('.rt2').textContent = "Ouvrez savereelify.com.";
 document.querySelector('.rt3').textContent = "Collez l'URL dans la barre de recherche et cliquez sur le bouton démarrer pour traiter.";
 document.querySelector('.rt4').textContent = "Cliquez sur 'Démarrer'.";
 document.querySelector('#lom3').textContent = "4. Téléchargez le fichier :";
@@ -508,13 +619,13 @@ document.querySelector('#llp4').textContent = "Copiez simplement le lien de la p
           h1.textContent = "تحميل منشورات إنستغرام - فيديو، صورة...";
 document.querySelector('.t-and-c-p').childNodes[0].textContent = "باستخدام خدمتنا، فإنك توافق على شروط الاستخدام الخاصة بنا";
 document.querySelector('.lot1').textContent = "أداة تحميل إنستغرام.";
-document.querySelector('.lot2').textContent = "y2dpro.com هو موقعك المفضل لتحميل مقاطع الريلز والمنشورات وصور الملف الشخصي من إنستغرام بسهولة دون الحاجة إلى تسجيل حساب. تم تصميم الموقع لراحة المستخدم، حيث يتيح تنزيلات غير محدودة، مما يجعله مثاليًا لحفظ المحتوى المفضل لديك من إنستغرام. ببساطة أدخل الرابط أو اسم المستخدم، وببضع نقرات يمكنك تحميل محتوى عالي الجودة مباشرة إلى جهازك. استمتع بتجربة سلسة وآمنة بدون رسوم خفية أو تسجيل!";
-document.querySelector('.instruction-h2').textContent = "كيف تقوم بتحميل منشورات إنستغرام من Y2DPro.com؟";
+document.querySelector('.lot2').textContent = "savereelify.com هو موقعك المفضل لتحميل مقاطع الريلز والمنشورات وصور الملف الشخصي من إنستغرام بسهولة دون الحاجة إلى تسجيل حساب. تم تصميم الموقع لراحة المستخدم، حيث يتيح تنزيلات غير محدودة، مما يجعله مثاليًا لحفظ المحتوى المفضل لديك من إنستغرام. ببساطة أدخل الرابط أو اسم المستخدم، وببضع نقرات يمكنك تحميل محتوى عالي الجودة مباشرة إلى جهازك. استمتع بتجربة سلسة وآمنة بدون رسوم خفية أو تسجيل!";
+document.querySelector('.instruction-h2').textContent = "كيف تقوم بتحميل منشورات إنستغرام من savereelify.com؟";
 document.querySelector('.p1').textContent = "1. انسخ الرابط:";
 document.querySelector('.rt1').textContent = "انسخ رابط المنشور على إنستغرام.";
-document.querySelector('#lom1').textContent = "2. قم بزيارة Y2DPro.com:";
+document.querySelector('#lom1').textContent = "2. قم بزيارة savereelify.com:";
 document.querySelector('#lom2').textContent = "3. الصق الرابط وابدأ:";
-document.querySelector('.rt2').textContent = "افتح Y2DPro.com.";
+document.querySelector('.rt2').textContent = "افتح savereelify.com.";
 document.querySelector('.rt3').textContent = "الصق الرابط في شريط البحث واضغط على زر البدء للمعالجة.";
 document.querySelector('.rt4').textContent = "اضغط على 'ابدأ'.";
 document.querySelector('#lom3').textContent = "4. قم بتحميل الملف:";
@@ -534,13 +645,13 @@ document.querySelector('#llp4').textContent = "ببساطة انسخ رابط ا
             h1.textContent = "Baixar Publicações do Instagram - Vídeo, Imagem...";
 document.querySelector('.t-and-c-p').childNodes[0].textContent = "Ao utilizar nosso serviço, você aceita nossos Termos de Uso";
 document.querySelector('.lot1').textContent = "Downloader do Instagram.";
-document.querySelector('.lot2').textContent = "y2dpro.com é o seu site ideal para baixar facilmente reels, publicações e fotos de perfil do Instagram sem complicações ou necessidade de registro. Projetado para a conveniência do usuário, o y2dpro.com permite downloads ilimitados, sendo perfeito para salvar o seu conteúdo favorito do Instagram. Basta inserir o URL ou nome de usuário, e com apenas alguns cliques, você terá acesso direto a downloads de alta qualidade no seu dispositivo. Desfrute de uma experiência segura e contínua sem custos ocultos ou cadastros!";
-document.querySelector('.instruction-h2').textContent = "Como baixar publicações do Instagram no Y2DPro.com?";
+document.querySelector('.lot2').textContent = "savereelify.com é o seu site ideal para baixar facilmente reels, publicações e fotos de perfil do Instagram sem complicações ou necessidade de registro. Projetado para a conveniência do usuário, o savereelify.com permite downloads ilimitados, sendo perfeito para salvar o seu conteúdo favorito do Instagram. Basta inserir o URL ou nome de usuário, e com apenas alguns cliques, você terá acesso direto a downloads de alta qualidade no seu dispositivo. Desfrute de uma experiência segura e contínua sem custos ocultos ou cadastros!";
+document.querySelector('.instruction-h2').textContent = "Como baixar publicações do Instagram no savereelify.com?";
 document.querySelector('.p1').textContent = "1. Copie o URL:";
 document.querySelector('.rt1').textContent = "Copie o URL da publicação no Instagram.";
-document.querySelector('#lom1').textContent = "2. Acesse o Y2DPro.com:";
+document.querySelector('#lom1').textContent = "2. Acesse o savereelify.com:";
 document.querySelector('#lom2').textContent = "3. Cole e inicie:";
-document.querySelector('.rt2').textContent = "Acesse o Y2DPro.com.";
+document.querySelector('.rt2').textContent = "Acesse o savereelify.com.";
 document.querySelector('.rt3').textContent = "Cole o URL na barra de pesquisa e clique no botão de iniciar para processar.";
 document.querySelector('.rt4').textContent = "Clique em 'Iniciar'.";
 document.querySelector('#lom3').textContent = "4. Baixe o arquivo:";
@@ -559,13 +670,13 @@ document.querySelector('#llp4').textContent = "Basta copiar o link da publicaç�
           h1.textContent = "Instagram Post Downloader - Video, afbeelding...";
           document.querySelector('.t-and-c-p').childNodes[0].textContent = "U maakt gebruik van onze service door onze te accepteren ";
           document.querySelector('.lot1').textContent = "Instagram Downloader.";
-          document.querySelector('.lot2').textContent = "y2dpro.com is jouw go-to-website voor moeiteloos downloaden van Instagram-rollen, berichten, en profielfoto's zonder gedoe registratie. Ontworpen voor gebruikersgemak, y2dpro.com maakt onbeperkte downloads mogelijk het is perfect voor iedereen die zijn of haar geld wil redden favoriete Instagram-inhoud. Voer eenvoudig de URL of gebruikersnaam, en met slechts een paar klikken, u heeft rechtstreeks toegang tot downloads van hoge kwaliteit naar uw apparaat. Geniet van een naadloze en veilige ervaring zonder verborgen kosten of aanmeldingen!";
-          document.querySelector('.instruction-h2').textContent = "Hoe Instagram-berichten op Y2DPro.com te downloaden?";
+          document.querySelector('.lot2').textContent = "savereelify.com is jouw go-to-website voor moeiteloos downloaden van Instagram-rollen, berichten, en profielfoto's zonder gedoe registratie. Ontworpen voor gebruikersgemak, savereelify.com maakt onbeperkte downloads mogelijk het is perfect voor iedereen die zijn of haar geld wil redden favoriete Instagram-inhoud. Voer eenvoudig de URL of gebruikersnaam, en met slechts een paar klikken, u heeft rechtstreeks toegang tot downloads van hoge kwaliteit naar uw apparaat. Geniet van een naadloze en veilige ervaring zonder verborgen kosten of aanmeldingen!";
+          document.querySelector('.instruction-h2').textContent = "Hoe Instagram-berichten op savereelify.com te downloaden?";
           document.querySelector('.p1').textContent = "1.Kopieer URL:";
           document.querySelector('.rt1').textContent = "Kopieer de URL van het Instagram-bericht.";
-          document.querySelector('#lom1').textContent = "2. Bezoek Y2DPro.com:";
+          document.querySelector('#lom1').textContent = "2. Bezoek savereelify.com:";
           document.querySelector('#lom2').textContent = "3. Plakken en starten:";
-          document.querySelector('.rt2').textContent = "Ga naar Y2DPro.com.";
+          document.querySelector('.rt2').textContent = "Ga naar savereelify.com.";
           document.querySelector('.rt3').textContent = "Plak de URL in de zoekopdracht en klik op de startknop om te verwerken.";
           document.querySelector('.rt4').textContent = "Klik op 'Starten'.";
           document.querySelector('#lom3').textContent = "4.Kopieer URL:";
@@ -583,13 +694,13 @@ document.querySelector('#llp4').textContent = "Basta copiar o link da publicaç�
         h1.textContent = "Instagram Post Downloader - Video, Bild...";
 document.querySelector('.t-and-c-p').childNodes[0].textContent = "Durch die Nutzung unseres Dienstes akzeptieren Sie unsere Nutzungsbedingungen";
 document.querySelector('.lot1').textContent = "Instagram Downloader.";
-document.querySelector('.lot2').textContent = "y2dpro.com ist Ihre Website für das mühelose Herunterladen von Instagram-Reels, Beiträgen und Profilbildern ohne Aufwand oder Registrierung. Entwickelt für Benutzerfreundlichkeit, ermöglicht y2dpro.com unbegrenzte Downloads und ist perfekt, um Ihre Lieblingsinhalte von Instagram zu speichern. Geben Sie einfach die URL oder den Benutzernamen ein, und mit nur wenigen Klicks haben Sie direkten Zugriff auf hochwertige Downloads auf Ihr Gerät. Genießen Sie eine nahtlose und sichere Erfahrung ohne versteckte Kosten oder Anmeldungen!";
-document.querySelector('.instruction-h2').textContent = "Wie lade ich Instagram-Beiträge auf Y2DPro.com herunter?";
+document.querySelector('.lot2').textContent = "savereelify.com ist Ihre Website für das mühelose Herunterladen von Instagram-Reels, Beiträgen und Profilbildern ohne Aufwand oder Registrierung. Entwickelt für Benutzerfreundlichkeit, ermöglicht savereelify.com unbegrenzte Downloads und ist perfekt, um Ihre Lieblingsinhalte von Instagram zu speichern. Geben Sie einfach die URL oder den Benutzernamen ein, und mit nur wenigen Klicks haben Sie direkten Zugriff auf hochwertige Downloads auf Ihr Gerät. Genießen Sie eine nahtlose und sichere Erfahrung ohne versteckte Kosten oder Anmeldungen!";
+document.querySelector('.instruction-h2').textContent = "Wie lade ich Instagram-Beiträge auf savereelify.com herunter?";
 document.querySelector('.p1').textContent = "1. URL kopieren:";
 document.querySelector('.rt1').textContent = "Kopieren Sie die URL des Instagram-Beitrags.";
-document.querySelector('#lom1').textContent = "2. Besuchen Sie Y2DPro.com:";
+document.querySelector('#lom1').textContent = "2. Besuchen Sie savereelify.com:";
 document.querySelector('#lom2').textContent = "3. Einfügen und starten:";
-document.querySelector('.rt2').textContent = "Besuchen Sie Y2DPro.com.";
+document.querySelector('.rt2').textContent = "Besuchen Sie savereelify.com.";
 document.querySelector('.rt3').textContent = "Fügen Sie die URL in das Suchfeld ein und klicken Sie auf die Start-Schaltfläche, um die Verarbeitung zu starten.";
 document.querySelector('.rt4').textContent = "Klicken Sie auf 'Start'.";
 document.querySelector('#lom3').textContent = "4. Datei herunterladen:";
@@ -608,13 +719,13 @@ document.querySelector('#llp4').textContent = "Kopieren Sie einfach den Link zu 
         h1.textContent = "Instagram पोस्ट डाउनलोडर - वीडियो, छवि...";
 document.querySelector('.t-and-c-p').childNodes[0].textContent = "हमारी सेवा का उपयोग करके आप हमारी शर्तों को स्वीकार करते हैं";
 document.querySelector('.lot1').textContent = "Instagram डाउनलोडर।";
-document.querySelector('.lot2').textContent = "y2dpro.com आपकी पसंदीदा वेबसाइट है जो Instagram रील्स, पोस्ट और प्रोफाइल तस्वीरों को आसानी से डाउनलोड करने की सुविधा प्रदान करती है। उपयोगकर्ता के अनुकूल डिजाइन के साथ, y2dpro.com असीमित डाउनलोड की अनुमति देता है और यह आपकी पसंदीदा Instagram सामग्री को सुरक्षित रखने के लिए बिल्कुल सही है। बस URL या उपयोगकर्ता नाम दर्ज करें, और कुछ ही क्लिक में, आप सीधे अपने डिवाइस पर उच्च गुणवत्ता वाले डाउनलोड तक पहुंच सकते हैं। बिना किसी छुपे शुल्क या पंजीकरण के एक सहज और सुरक्षित अनुभव का आनंद लें!";
-document.querySelector('.instruction-h2').textContent = "Y2DPro.com पर Instagram पोस्ट कैसे डाउनलोड करें?";
+document.querySelector('.lot2').textContent = "savereelify.com आपकी पसंदीदा वेबसाइट है जो Instagram रील्स, पोस्ट और प्रोफाइल तस्वीरों को आसानी से डाउनलोड करने की सुविधा प्रदान करती है। उपयोगकर्ता के अनुकूल डिजाइन के साथ, savereelify.com असीमित डाउनलोड की अनुमति देता है और यह आपकी पसंदीदा Instagram सामग्री को सुरक्षित रखने के लिए बिल्कुल सही है। बस URL या उपयोगकर्ता नाम दर्ज करें, और कुछ ही क्लिक में, आप सीधे अपने डिवाइस पर उच्च गुणवत्ता वाले डाउनलोड तक पहुंच सकते हैं। बिना किसी छुपे शुल्क या पंजीकरण के एक सहज और सुरक्षित अनुभव का आनंद लें!";
+document.querySelector('.instruction-h2').textContent = "savereelify.com पर Instagram पोस्ट कैसे डाउनलोड करें?";
 document.querySelector('.p1').textContent = "1. URL कॉपी करें:";
 document.querySelector('.rt1').textContent = "Instagram पोस्ट का URL कॉपी करें।";
-document.querySelector('#lom1').textContent = "2. Y2DPro.com पर जाएं:";
+document.querySelector('#lom1').textContent = "2. savereelify.com पर जाएं:";
 document.querySelector('#lom2').textContent = "3. पेस्ट करें और शुरू करें:";
-document.querySelector('.rt2').textContent = "Y2DPro.com पर जाएं।";
+document.querySelector('.rt2').textContent = "savereelify.com पर जाएं।";
 document.querySelector('.rt3').textContent = "URL को सर्च बार में पेस्ट करें और प्रोसेस शुरू करने के लिए स्टार्ट बटन पर क्लिक करें।";
 document.querySelector('.rt4').textContent = "'शुरू करें' पर क्लिक करें।";
 document.querySelector('#lom3').textContent = "4. फ़ाइल डाउनलोड करें:";
@@ -633,13 +744,13 @@ document.querySelector('#llp4').textContent = "बस Instagram पोस्ट/
         h1.textContent = "انسٹاگرام پوسٹ ڈاؤنلوڈر - ویڈیو، تصویر...";
 document.querySelector('.t-and-c-p').childNodes[0].textContent = "ہماری سروس استعمال کرتے ہوئے آپ ہماری شرائط کو قبول کرتے ہیں";
 document.querySelector('.lot1').textContent = "انسٹاگرام ڈاؤنلوڈر۔";
-document.querySelector('.lot2').textContent = "y2dpro.com آپ کی پسندیدہ ویب سائٹ ہے جو انسٹاگرام ریلز، پوسٹس اور پروفائل تصاویر کو بآسانی ڈاؤنلوڈ کرنے کی سہولت فراہم کرتی ہے۔ صارف دوست ڈیزائن کے ساتھ، y2dpro.com لامحدود ڈاؤنلوڈز کی اجازت دیتا ہے اور آپ کے پسندیدہ انسٹاگرام مواد کو محفوظ رکھنے کے لیے بالکل موزوں ہے۔ صرف یو آر ایل یا یوزر نیم درج کریں، اور چند کلکس میں، آپ اپنے آلے پر براہ راست اعلیٰ معیار کے ڈاؤنلوڈز تک رسائی حاصل کر سکتے ہیں۔ بغیر کسی پوشیدہ فیس یا رجسٹریشن کے ایک ہموار اور محفوظ تجربے سے لطف اٹھائیں!";
-document.querySelector('.instruction-h2').textContent = "Y2DPro.com پر انسٹاگرام پوسٹس کیسے ڈاؤنلوڈ کریں؟";
+document.querySelector('.lot2').textContent = "savereelify.com آپ کی پسندیدہ ویب سائٹ ہے جو انسٹاگرام ریلز، پوسٹس اور پروفائل تصاویر کو بآسانی ڈاؤنلوڈ کرنے کی سہولت فراہم کرتی ہے۔ صارف دوست ڈیزائن کے ساتھ، savereelify.com لامحدود ڈاؤنلوڈز کی اجازت دیتا ہے اور آپ کے پسندیدہ انسٹاگرام مواد کو محفوظ رکھنے کے لیے بالکل موزوں ہے۔ صرف یو آر ایل یا یوزر نیم درج کریں، اور چند کلکس میں، آپ اپنے آلے پر براہ راست اعلیٰ معیار کے ڈاؤنلوڈز تک رسائی حاصل کر سکتے ہیں۔ بغیر کسی پوشیدہ فیس یا رجسٹریشن کے ایک ہموار اور محفوظ تجربے سے لطف اٹھائیں!";
+document.querySelector('.instruction-h2').textContent = "savereelify.com پر انسٹاگرام پوسٹس کیسے ڈاؤنلوڈ کریں؟";
 document.querySelector('.p1').textContent = "1. یو آر ایل کاپی کریں:";
 document.querySelector('.rt1').textContent = "انسٹاگرام پوسٹ کا یو آر ایل کاپی کریں۔";
-document.querySelector('#lom1').textContent = "2. Y2DPro.com پر جائیں:";
+document.querySelector('#lom1').textContent = "2. savereelify.com پر جائیں:";
 document.querySelector('#lom2').textContent = "3. پیسٹ کریں اور شروع کریں:";
-document.querySelector('.rt2').textContent = "Y2DPro.com پر جائیں۔";
+document.querySelector('.rt2').textContent = "savereelify.com پر جائیں۔";
 document.querySelector('.rt3').textContent = "یو آر ایل کو سرچ بار میں پیسٹ کریں اور عمل شروع کرنے کے لیے اسٹارٹ بٹن پر کلک کریں۔";
 document.querySelector('.rt4').textContent = "'شروع کریں' پر کلک کریں۔";
 document.querySelector('#lom3').textContent = "4. فائل ڈاؤنلوڈ کریں:";
@@ -727,21 +838,55 @@ const thumbnailImage = document.querySelector('.thumbnail-image');
 const titleElement = document.querySelector('.thumb-p');
 const tableContainer = document.querySelector('.table-container');
 const tableBody = document.getElementById('format-table-body');
+const nextLink = document.querySelector('.next-link');
 
-// Combined URL validation
-// In downloader.ejs
+// Validate Instagram URLs and identify their types
 function validateInstagramUrl(url) {
-    // Only check for post URLs
-    const postPattern = /^https?:\/\/(?:www\.)?instagram\.com\/p\/([A-Za-z0-9_-]+)/;
-    return postPattern.test(url);
+    const patterns = {
+        post: /^https?:\/\/(?:www\.)?instagram\.com\/p\/([A-Za-z0-9_-]+)/,
+        reel: /^https?:\/\/(?:www\.)?instagram\.com\/(?:reel|tv)\/([A-Za-z0-9_-]+)/,
+        profilePic: /^https?:\/\/(?:www\.)?instagram\.com\/([A-Za-z0-9_.]+(\/\?img=.+)?)\/?$/
+    };
+
+    if (patterns.post.test(url)) {
+        return { isValid: true, type: 'post' };
+    } else if (patterns.reel.test(url)) {
+        return { isValid: false, type: 'reel' };
+    } else if (patterns.profilePic.test(url)) {
+        return { isValid: false, type: 'profile' };
+    }
+    
+    return { isValid: false, type: 'invalid' };
 }
 
+// Show appropriate message based on URL type
+function showMessage(urlType) {
+    nextLink.style.display = 'block';
+    
+    if (urlType === 'reel') {
+        nextLink.innerHTML = 'Dear user, this is a reel URL. To download the reel, click <a href="/index" style="background: none;">here</a>.';
+    } else if (urlType === 'profile') {
+        nextLink.innerHTML = 'Dear user, this is a profile picture URL. To view/download the profile picture, click <a href="/mp3" style="background: none;">here</a>.';
+    } else {
+        nextLink.style.display = 'none';
+    }
+}
+// In your frontend JavaScript, modify the API fetch handling:
 downloadForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const url = urlInput.value.trim();
+    const urlValidation = validateInstagramUrl(url);
 
-    if (!validateInstagramUrl(url)) {
-        alert('Please enter a valid Instagram URL');
+    if (!urlValidation.isValid) {
+        showMessage(urlValidation.type);
+        if (urlValidation.type === 'invalid') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid URL',
+                text: 'Please enter a valid Instagram URL.',
+                confirmButtonText: 'OK'
+            });
+        }
         return;
     }
 
@@ -749,16 +894,16 @@ downloadForm.addEventListener('submit', async (e) => {
         loader.style.display = 'block';
         imageContainer.style.display = 'none';
         tableContainer.style.display = 'none';
+        nextLink.style.display = 'none';
 
-      // In downloader.ejs, change the fetch URL
-const response = await fetch('/api/fetch-instagram-post', {  // Changed from '/api/fetch-instagram'
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-    body: JSON.stringify({ url })
-});
+        const response = await fetch('/api/fetch-instagram-post', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ url })
+        });
 
         const data = await response.json();
 
@@ -766,7 +911,7 @@ const response = await fetch('/api/fetch-instagram-post', {  // Changed from '/a
             throw new Error(data.message || 'Failed to fetch data');
         }
 
-        // Update thumbnail and title based on content type
+        // Update thumbnail and title
         thumbnailImage.src = data.thumbnail || 'default-thumbnail.jpg';
         titleElement.textContent = data.type === 'profile' ? data.username : data.title;
 
@@ -776,7 +921,8 @@ const response = await fetch('/api/fetch-instagram-post', {  // Changed from '/a
         if (data.type === 'profile') {
             addTableRow('Profile Picture', data.thumbnail);
         } else {
-            const format = data.mediaType === 'video' ? 'Video' : 'Image';
+            // Use the detected mediaType
+            const format = data.mediaType;
             addTableRow(format, data.downloadUrl);
         }
 
@@ -784,21 +930,29 @@ const response = await fetch('/api/fetch-instagram-post', {  // Changed from '/a
         tableContainer.style.display = 'block';
 
     } catch (error) {
-        alert('Error: ' + error.message);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: error.message,
+            confirmButtonText: 'Try Again'
+        });
     } finally {
         loader.style.display = 'none';
     }
 });
 
+// Modify the addTableRow function with better type detection
 function addTableRow(format, downloadUrl) {
-    const extension = format.toLowerCase() === 'video' ? 'mp4' : 'jpg';
+    const isVideo = format.toLowerCase() === 'video' || downloadUrl.includes('.mp4');
+    const extension = isVideo ? 'mp4' : 'jpg';
+    const contentType = isVideo ? 'video' : 'image';
     
     const row = document.createElement('tr');
     row.innerHTML = `
-        <td>${format}</td>
+        <td>${contentType.charAt(0).toUpperCase() + contentType.slice(1)}</td>
         <td>
-            <a href="/download?url=${encodeURIComponent(downloadUrl)}&filename=${encodeURIComponent(format)}.${extension}" 
-               class="styled-button download-btn" target="_blank">
+            <a href="/download?url=${encodeURIComponent(downloadUrl)}&filename=instagram-${contentType}.${extension}&type=${contentType}" 
+               class="styled-button download-btn">
                 <span class="icon"><i class="fas fa-download"></i></span>
                 Download
             </a>
@@ -806,8 +960,6 @@ function addTableRow(format, downloadUrl) {
     `;
     tableBody.appendChild(row);
 }
-
-
 
 
 

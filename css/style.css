@@ -40,7 +40,7 @@ nav .logo-name{
     font-weight: 600;
     /* position: relative; */
     margin-left: 53px;
-
+    margin-top: 3px;
 
 }
 nav ul{
@@ -94,13 +94,13 @@ nav .menu-btn i{
   .content>.cont-heading{
     background: none;
     font-size: 30px;
-    font-weight: 300;
+    font-weight: 600;
     text-align: center;
     padding: 55px 1px 1px 1px;
 
   }
   .search-div{
-    margin: 36px auto;
+    margin: 10px auto;
     max-width: 600px;
     position: relative;
   }
@@ -467,7 +467,7 @@ nav .menu-btn i{
   border-radius: 50%;
   animation: l5 1s infinite linear alternate;
   position: absolute;
-  margin: -20px 48%;
+  margin: -6px 48%;
   display: none;
 }
 
