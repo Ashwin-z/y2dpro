@@ -168,4 +168,8 @@ router.get('/download-pic', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 5b6ac6f3ac08f83c8e259cce6cb69dfde7c92a6a
